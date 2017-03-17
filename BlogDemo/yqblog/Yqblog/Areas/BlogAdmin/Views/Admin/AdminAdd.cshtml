@@ -1,0 +1,284 @@
+﻿@model ArticleModel
+@using Yqblog.Models
+@using res = Resource.Admin.Admin;
+@{
+    string contendstyle = string.Empty;
+    bool isCustom = false;
+    switch ((int)ViewBag.tid)
+    {
+        case 2:
+            contendstyle = " singlestyle";
+            break;
+        case 7:
+            contendstyle = " customareastyle";
+            isCustom = true;
+            break;
+        case 8:
+            contendstyle = " customareastyle";
+            isCustom = true;
+            break;
+    }
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/kindeditor/kindeditor.js")" type="text/javascript"></script> 
+<script src="@Url.Content("~/Scripts/kindeditor/lang/zh_CN.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/bootstrap-select.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/bootstrap-switch.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.tagsinput.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/application.js")" type="text/javascript"></script>
+<h1 class="page-title">
+    @res.AddContent		
+</h1>
+<div class="row">			
+    <div class="span9">
+        <div class="widget">			
+            <div class="widget-header">
+                <h3>@res.AddContent</h3>
+            </div>					
+            <div class="widget-content">
+                <div class="tabbable contentBox@(contendstyle)">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#1">@res.BasicInformation</a></li>
+                        <li><a data-toggle="tab" href="#2">@res.SEO</a></li>
+                    </ul>
+                    @using (Html.BeginForm("AdminAdd", "Admin", null, FormMethod.Post, new {id = "articleaddform", name = "articleaddform", @class = "form-horizontal"}))
+                    {
+                        <div class="tab-content">
+                            <div id="1" class="tab-pane active">						
+                                <fieldset>          
+                                    @if (isCustom)
+                                    {
+                                        <input type="hidden" id="CateId" name="CateId" value="@ViewBag.DefaultCateId"/>
+                                        if (ViewBag.DefaultCateId == 0)
+                                        {
+                                            <input type="hidden" id="TypeId" name="TypeId" value="@ViewBag.tid"/> 
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <div class="control-group cateinfo">											
+                                            @Html.LabelFor(m => m.CateId, new { @class = "control-label" })
+                                            <div class="controls">
+                                                @Html.DropDownList("CateId")
+                                                @Html.ActionLink(res.AddCategory, "AdminCategoryAdd", "Admin", new { id = 0, ViewBag.tid }, null)
+                                                @Html.ValidationMessageFor(m => m.CateId)
+                                            </div>		
+                                        </div>
+                                    }
+                                    <div class="control-group testtt">											
+                                        @Html.LabelFor(m => m.Title, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.Title, new { @class = "input-xxlarge" })
+                                            @Html.ValidationMessageFor(m => m.Title)
+                                        </div>			
+                                    </div>             
+                                    <div class="control-group">											
+                                        @Html.LabelFor(m => m.Content, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextAreaFor(model => model.Content, new { rows = "15" })
+                                            @Html.ValidationMessageFor(m => m.Content)
+                                        </div>			
+                                    </div>                
+                                    <div class="control-group summary">											
+                                        @Html.LabelFor(m => m.Summary, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextAreaFor(model => model.Summary, null)
+                                            <p class="help-block">(<span id="SummaryTxtCount">300</span>)</p>
+                                            @Html.ValidationMessageFor(m => m.Summary)
+                                        </div>			
+                                    </div> 
+                                    <div class="control-group tags">											
+                                        @Html.LabelFor(m => m.Tags, new { @class = "control-label" })
+                                        <div class="controls">
+                                             <input type="hidden" id="Tags" name="Tags" value=""/> 
+                                             <div class="tagsinput" id="Tag" style="height: 100%;"></div>
+                                        </div>			
+                                    </div> 
+                                    <div class="control-group displayInline">											
+                                        @Html.LabelFor(model => model.Status, new { @class = "control-label" })
+                                        <div class="controls">
+                                            <label class="radio">
+                                                <input type="radio" value="1" name="Status" id="Status_y" checked="checked" />
+                                                @res.ImmediateRelease
+                                            </label>
+                                            <label class="radio">
+                                                <input type="radio" value="2" name="Status" id="Status_n" />
+                                                @res.SaveDraft
+                                            </label>
+                                        </div>			
+                                    </div> 
+                                    <div class="control-group replypermit displayInline">											
+                                        @Html.LabelFor(model => model.ReplyPermit, new { @class = "control-label" })
+                                        <div class="controls">
+                                            <label class="radio">
+                                                <input type="radio" value="1" name="ReplyPermit" id="ReplyPermit_y" checked="checked" />
+                                                @res.Yes
+                                            </label>
+                                            <label class="radio">
+                                                <input type="radio" value="2" name="ReplyPermit" id="ReplyPermit_n" />
+                                                @res.No
+                                            </label>
+                                        </div>			
+                                    </div>                 
+                                    <div class="control-group iscommend displayInline">											
+                                        @Html.LabelFor(model => model.IsCommend, new { @class = "control-label" })
+                                        <div class="controls"> 
+                                            <label class="radio">
+                                                <input type="radio" value="1" name="IsCommend" id="IsCommend_y"/>
+                                                @res.Yes
+                                            </label>
+                                            <label class="radio">
+                                                <input type="radio" value="2" name="IsCommend" id="IsCommend_n" checked="checked" />
+                                                 @res.No
+                                            </label>
+                                        </div>			
+                                    </div>  
+                                    <div class="control-group istop displayInline">											
+                                        @Html.LabelFor(model => model.IsTop, new { @class = "control-label" })
+                                        <div class="controls">
+                                            <label class="radio">
+                                                <input type="radio" value="1" name="IsTop" id="IsTop_y"/>
+                                                @res.Yes
+                                            </label>
+                                            <label class="radio">
+                                                <input type="radio" value="2" name="IsTop" id="IsTop_n"  checked="checked" />
+                                                 @res.No
+                                            </label>
+                                        </div>			
+                                    </div> 
+                                    <div class="control-group istop displayInline">											
+                                        @Html.LabelFor(model => model.IsIndexTop, new { @class = "control-label" })
+                                        <div class="controls">
+                                            <label class="radio">
+                                                <input type="radio" value="1" name="IsIndexTop" id="IsIndexTop_y"/>
+                                                @res.Yes
+                                            </label>
+                                            <label class="radio">
+                                                <input type="radio" value="2" name="IsIndexTop" id="IsIndexTop_n"  checked="checked" />
+                                                 @res.No
+                                            </label>
+                                        </div>			
+                                    </div>		
+                                </fieldset>
+                            </div>
+								
+                            <div id="2" class="tab-pane">
+                                <fieldset>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.ReName, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.ReName, new { @class = "input-xlarge" })
+                                            @Html.ValidationMessageFor(m => m.ReName)
+                                        </div>
+                                    </div>   
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.SeoTitle, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextAreaFor(model => model.SeoTitle, null)
+                                            @Html.ValidationMessageFor(m => m.SeoTitle)
+                                        </div>
+                                    </div>   
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.SeoDescription, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextAreaFor(model => model.SeoDescription, null)
+                                            @Html.ValidationMessageFor(m => m.SeoDescription)
+                                        </div>
+                                    </div>  
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.Seokeywords, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextAreaFor(model => model.Seokeywords, null)
+                                            @Html.ValidationMessageFor(m => m.Seokeywords)
+                                        </div>
+                                    </div>  
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.SeoMetas, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextAreaFor(model => model.SeoMetas, null)
+                                            @Html.ValidationMessageFor(m => m.SeoMetas)
+                                        </div>
+                                    </div>  
+                                </fieldset>
+                            </div>
+        
+                            <div class="form-actions">
+                                 <a id="BtnSubmit" class="btn btn-primary"  href="javascript:;">@res.Submit</a>
+                                 <a class="btn btn_cancel">Cancel</a>
+                            </div> 
+
+                        </div>
+                    }
+                </div>					
+            </div> 		
+        </div>
+    </div>		
+</div>
+
+@section Js{
+    <script type="text/javascript"> 
+        var thecateid="@ViewBag.cid";
+
+        $(function () {
+            $('input[name="Title"]').focus(
+            function() {
+                if($(document).scrollTop()==345)
+                {ScrollToTop(this);}
+            } );
+            
+            $("#CateId").focus(
+            function() {
+                if($(document).scrollTop()==270)
+                {ScrollToTop(this);}
+            } );
+
+            //var editorSummary = null;
+            var editorContent = null;
+
+            KindEditor.ready(function (k) {
+//                editorSummary = k.create('textarea[name="Summary"]',
+//                    {
+//                        allowImageUpload: true,
+//                        uploadJson: '@Url.Action("UploadFile", "admin")',
+//                        afterCreate: function () {
+//                            $(this.edit.doc).keyup(function () { summaryTxtKeyUp(); });
+//                        }
+//                        , items: ['fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', '|', 'image', 'link']
+//                    });
+
+                editorContent = k.create('textarea[name="Content"]', {
+                    allowImageUpload: true,
+                    uploadJson: '@Url.Action("UploadFile", "admin")',
+                    items: [
+                        'source', '|', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                        'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                        'insertunorderedlist', '|', 'emoticons','code', 'image', 'flash', 'media', 'insertfile', 'table', 'link', '|','fullscreen']
+                });
+            });
+        
+            $("#BtnSubmit").click(function () {
+                if (/^[0-9]+$/.test($("#ReName").val())) {
+                    alert("@res.PageRenameTip");
+                    return false;
+                }
+                if ($('#CateId').val() == null) {
+                    $('#CateIdTip').show();
+                    $('#CateId').focus();
+                    return false;
+                }
+                var taginfo = '';
+                $('#Tag_tagsinput span.tag >span').each(function () {
+                    taginfo += $.trim($(this).text()) + ',';
+                });
+                $('#Tags').val(taginfo);
+//                editorSummary.html(ReplaceKESpace(editorSummary.html()));
+//                editorSummary.sync();
+                editorContent.html(ReplaceKESpace(editorContent.html()));
+                editorContent.sync();
+                $('#articleaddform').submit();
+            });
+        });
+
+    </script>
+}

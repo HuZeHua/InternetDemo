@@ -1,0 +1,51 @@
+﻿@model CarManager.Core.Paging.IPagedList<CarManager.Web.Models.Cars.CarViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script>
+    function start()
+    {
+        alert("start");
+    }
+
+    function end(data) {
+        alert(data.name);
+    }
+</script>
+<h2>汽车管理</h2>
+@Ajax.ActionLink("异步测试", "GetCars","Car",new AjaxOptions { OnBegin = "start", OnSuccess = "end" },new { @class="btn btn-default"})
+<div>
+    @using (Ajax.BeginForm("Index",null,new AjaxOptions { UpdateTargetId= "pager" },new { @class="search" }))
+    {
+        <div class="btn-toolbar">
+            <div class="btn-group">
+                <a  class="btn btn-default" href="@Url.Action("Create")" >
+                    <span class="glyphicon glyphicon-plus" />新增
+                </a>
+                <button type="button" class="btn btn-default">测试</button>
+                <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-edit" />编辑
+                </button>
+            </div>
+            <div class="input-group pull-right">
+                <div class="input-group">
+                    @Html.TextBox("keyword", "", new { @class = "form-control" })
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" autofocus type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div id="pager">
+    @Html.Partial("CarListPartial")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/Jquery-Unobtrusive-Ajax")
+}

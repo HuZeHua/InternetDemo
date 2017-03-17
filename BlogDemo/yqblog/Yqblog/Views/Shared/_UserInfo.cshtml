@@ -1,0 +1,64 @@
+﻿@model Yqblog.Models.UserInfoModel
+@using lang = Resource.Web;
+<div class="uinfo">
+    <ul class="unstyled">
+        <li>
+            <img id="uavatar" onerror=" this.onerror = null;this.src = '@Url.Content("~/upload/avatar/upload/avatars/noavatar_medium.gif")'; " />
+        </li>
+        <li>
+            <span class="fontweightbold">@lang.NickName:</span>
+            @Model.NickName
+        </li>
+        <li>
+            <span class="fontweightbold">@lang.Gender:</span>
+            <img src="@Url.Content("~/content/image/gender/" + Model.Gender + ".png")" />
+        </li>
+        <li>
+            <span class="fontweightbold">@lang.Birth:</span>
+            @Html.GetDate(Model.Birth)
+        </li>
+        <li>
+            <span class="fontweightbold">@lang.Location:</span>
+            @Model.Location
+        </li>
+        <li>
+            <span class="fontweightbold">@lang.Website:</span>
+            @Model.Website
+        </li>
+        <li>
+            <span class="fontweightbold">@lang.Qq:</span>
+            @Model.Qq
+        </li>
+        <li>
+            <span class="fontweightbold">@lang.Weibo:</span>
+            @Model.Sina
+        </li>
+        <li>
+            <span class="fontweightbold">@lang.Facebook:</span>
+            @Model.Facebook
+        </li>
+        <li>
+            <span class="fontweightbold">@lang.Twitter:</span>
+            @Model.Twitter
+        </li>
+        <li>
+            <span class="fontweightbold">@lang.Phone:</span>
+            @Model.Phone
+        </li>
+        @if ((Session["user"] as Yqblog.Data.blog_users) != null)
+        {
+            var user = (Session["user"] as Yqblog.Data.blog_users);
+            if (user.username == Model.UserName)
+            {
+                <li>
+                    <span class="fontweightbold">@lang.Email:</span>
+                    @Model.Email
+                </li>
+            }
+        }
+        <li>
+            <span class="fontweightbold">@lang.Intro:</span>
+            @Html.Raw(Model.Intro)
+        </li>
+    </ul>
+</div>

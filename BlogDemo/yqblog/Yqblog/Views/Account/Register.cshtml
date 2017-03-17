@@ -1,0 +1,60 @@
+﻿@model Yqblog.Models.RegisterModel
+@using lang = Resource.Web;
+@{
+    ViewBag.Title = lang.Register;
+}
+<h2>@lang.Register</h2>
+<div class="alert alert-block">
+    <button data-dismiss="alert" class="close" type="button">×</button>
+    <p>
+        @lang.Register_Tip
+    </p>
+</div>
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new {id = "registerForm", @class = "form-horizontal"}))
+{
+    <div>
+        <h4>@lang.Register_CreateNewAccount</h4>
+        <input id="returnUrl" name="returnUrl" value="@ViewBag.ReturnUrl" type="hidden" />
+        <div class="control-group">
+            <label for="UserName" class="control-label"><span>@lang.Username</span></label>
+            <div class="controls">
+                <input type="text" value="" name="UserName" id="UserName"/>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label for="Password" class="control-label"><span>@lang.Password</span></label>
+            <div class="controls">
+                <input type="password" name="Password" id="Password"/>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label for="Password" class="control-label"><span>@lang.ConfirmPassword</span></label>
+            <div class="controls">
+                <input type="password" name="ConfirmPassword" id="ConfirmPassword"/>
+                <span class="form_tip"></span>
+                <div class="summary_tip_wrap"><p class="summary_tip"></p></div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls loadingwrap">
+                <a class="btn" id="BtnRegister">@lang.Register</a>
+            </div>
+        </div>
+    </div>
+}
+@section Js{
+    <script type="text/javascript">
+        $(function() {
+            $(document).keypress(function(event) {
+                if (event.keyCode == 13) {
+                    $("#BtnRegister").trigger('click');
+                }
+            });
+        });
+    </script>
+}

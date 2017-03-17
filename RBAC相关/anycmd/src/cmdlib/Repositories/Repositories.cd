@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Anycmd.Repositories.DomainRepository&lt;TAggregateRootId&gt;">
+    <Position X="1.5" Y="0.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAMwAECAQJABCQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\DomainRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Anycmd.Repositories.EventPublisherDomainRepository&lt;TAggregateRootId&gt;">
+    <Position X="1.5" Y="5.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQAACCAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Repositories\EventPublisherDomainRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Anycmd.Repositories.RegularEventPublisherDomainRepository&lt;TAggregateRootId&gt;">
+    <Position X="4.5" Y="8.75" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAiAQBABCQAAAAAAQAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Repositories\RegularEventPublisherDomainRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Anycmd.Repositories.RepositoryContext" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACCkgQACAQAAACAKBAAABBBAAAAAggAEEABAARAAg=</HashCode>
+      <FileName>Repositories\RepositoryContext.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Anycmd.Repositories.RepositoryException">
+    <Position X="6" Y="4" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\RepositoryException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Anycmd.Repositories.SnapshotDomainRepository&lt;TAggregateRootId&gt;">
+    <Position X="5.5" Y="5.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAACAQAABCQAAAAAAAAAAAAAAAAAAAAAAAggA=</HashCode>
+      <FileName>Repositories\SnapshotDomainRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Anycmd.Repositories.EventSourcedDomainRepository&lt;TAggregateRootId&gt;">
+    <Position X="0.5" Y="8.75" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAQCABCQEAAIAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\EventSourcedDomainRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Anycmd.Repositories.RegularDomainRepository&lt;TAggregateRootId&gt;">
+    <Position X="6" Y="0.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAiAQBABCQAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\RegularDomainRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Anycmd.Repositories.Repository&lt;TAggregateRoot, TAggregateRootId&gt;">
+    <Position X="12.75" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAA4gAAAAAAAAAAFAAACAAAAAAAAAAACAAAABA=</HashCode>
+      <FileName>Repositories\Repository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Anycmd.Repositories.IDomainRepository&lt;TAggregateRootId&gt;">
+    <Position X="10.75" Y="9" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repositories\IDomainRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Anycmd.Repositories.IRepositoryContext">
+    <Position X="9" Y="9" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAQAAAAAAAAAAAAAABAAAAAAAgAAEAAAAAAAAA=</HashCode>
+      <FileName>Repositories\IRepositoryContext.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Anycmd.Repositories.IRepository&lt;TAggregateRoot, TAggregateRootId&gt;">
+    <Position X="9.25" Y="6.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAggAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Repositories\IRepository`1.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - 汽车管理系统</title>
+    @Styles.Render("~/Styles/Bootstrap")
+    @Styles.Render("~/Styles/Font-Awesome")
+    @Styles.Render("~/Styles/Fonts-Googleapis")
+    @Styles.Render("~/Styles/Ace-Template")
+
+    @RenderSection("styles", required: false)
+</head>
+<body class="no-skin">
+    @Html.Partial("_NavBarPartialPage")
+    <div class="main-container" id="main-container">
+        @Html.Partial("_SideBarPartialPage")
+        @RenderBody()
+        @Html.Partial("_FooterPartialPage")
+    </div>
+
+    @Scripts.Render("~/Scripts/Extra")
+    @Scripts.Render("~/Scripts/Jquery")
+    @Scripts.Render("~/Scripts/Bootstrap")
+    @Scripts.Render("~/Scripts/Ace-Elements")
+    @Scripts.Render("~/Scripts/Ace")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

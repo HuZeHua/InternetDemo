@@ -1,0 +1,125 @@
+﻿@model Yqblog.ViewModels.UCenterViewModel
+@using lang = Resource.Web;
+@using (Html.BeginForm("UserProfile", "Account", FormMethod.Post, new { id = "userProfileForm", @class = "form-horizontal" }))
+{
+    <div>
+        <div class="control-group">
+            <label for="NickName" class="control-label"><span>@lang.NickName</span></label>
+            <div class="controls">
+                <input type="text" value="@Model.UserInfo.NickName" name="NickName" id="NickName"/>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label for="Gender" class="control-label"><span>@lang.Gender</span></label>
+            <div class="controls">
+                @Html.DropDownList("Gender", Model.GenderList)
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label for="Birth" class="control-label"><span>@lang.Birth</span></label>
+            <div class="controls input-append datecontrol">
+                <input type="text" value="@Html.GetDate(Model.UserInfo.Birth, "yyyy-MM-dd")" name="Birth" id="Birth"/>
+                <label class="add-on calendaricon"><i class="icon-calendar"></i></label>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label for="Location" class="control-label"><span>@lang.Location</span></label>
+            <div class="controls">
+                <input type="text" value="@Model.UserInfo.Location" name="Location" id="Location"/>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label for="Qq" class="control-label"><span>@lang.Qq</span></label>
+            <div class="controls">
+                <input type="text" value="@Model.UserInfo.Qq" name="Qq" id="Qq"/>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label for="Sina" class="control-label"><span>@lang.Weibo</span></label>
+            <div class="controls">
+                <input type="text" value="@Model.UserInfo.Sina" name="Sina" id="Sina"/>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label for="Facebook" class="control-label"><span>@lang.Facebook</span></label>
+            <div class="controls">
+                <input type="text" value="@Model.UserInfo.Facebook" name="Facebook" id="Facebook"/>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label for="Twitter" class="control-label"><span>@lang.Twitter</span></label>
+            <div class="controls">
+                <input type="text" value="@Model.UserInfo.Twitter" name="Twitter" id="Twitter"/>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label for="Website" class="control-label"><span>@lang.Website</span></label>
+            <div class="controls">
+                <input type="text" value="@Model.UserInfo.Website" name="Website" id="Website"/>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <label for="Phone" class="control-label"><span>@lang.Phone</span></label>
+            <div class="controls">
+                <input type="text" value="@Model.UserInfo.Phone" name="Phone" id="Phone"/>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label for="Email" class="control-label"><span>@lang.Email</span></label>
+            <div class="controls">
+                <input type="text" value="@Model.UserInfo.Email" name="Email" id="Email"/>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label for="Intro" class="control-label"><span>@lang.Intro</span></label>
+            <div class="controls">
+                <textarea name="Intro" id="Intro" style="width: 80%" rows="8">@Model.UserInfo.Intro</textarea>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        @{ var hide = !Model.IsSendEmail ? " hide" : String.Empty;}
+        <div class="control-group@(hide)">
+            <label for="Intro" class="control-label"><span>@lang.IsSendEmail</span></label>
+            <div class="controls displayInline">
+                    <input type="radio" value="true" name="IsSendEmail" id="IsSendEmail_y"  @if (Model.UserInfo.IsSendEmail)
+                                                                                         {@Html.Raw("checked=\"checked\"")}/>
+                    <label for="IsSendEmail_y">
+                        @lang.Send</label>
+                    <input type="radio" value="false" name="IsSendEmail" id="IsSendEmail_n" @if (!Model.UserInfo.IsSendEmail)
+                                                                                        {@Html.Raw("checked=\"checked\"")}/>
+                <label for="IsSendEmail_n">
+                    @lang.Donotsend</label>
+                <div class="summary_tip_wrap"><p class="summary_tip"></p></div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls loadingwrap">
+                <a class="btn" id="BtnUserProfile">@lang.Ok</a>
+            </div>
+        </div>
+
+    </div>
+}

@@ -1,0 +1,465 @@
+﻿@model GeneralConfigInfo
+@using Yqblog.General
+@using Yqblog.Models
+@using res = Resource.Admin.Admin;
+@{
+    ViewBag.NavSelectedItem = "baseconfig";
+}
+<style>
+    .form-horizontal .control-label {
+    width: 160px;
+}
+
+.form-horizontal .controls {
+    margin-left: 180px;
+}
+</style>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script> 
+<h1 class="page-title">
+    @res.BasisSet
+</h1>
+<div class="row">			
+    <div class="span9">
+        <div class="widget">			
+            <div class="widget-header">
+                <h3>@res.BasisSet</h3>
+            </div>					
+            <div class="widget-content" id="AjaxResult">
+                <div class="tabbable">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#1">@res.BasisSet</a></li>
+                        <li><a data-toggle="tab" href="#2">@res.EmailSet</a></li>
+                        <li><a data-toggle="tab" href="#3">@res.StaticSet</a></li>
+                        <li><a data-toggle="tab" href="#4">@res.MultiLangSet</a></li>
+                    </ul>
+                    @using (Ajax.BeginForm("AdminBaseConfig", "Admin", new AjaxOptions { LoadingElementId = "Loading", InsertionMode = InsertionMode.InsertBefore, OnSuccess = "ProcessSuccess" }, new { id = "configform", name = "configform", @class = "form-horizontal" }))
+                    {
+                        <div class="tab-content">
+                            <div id="1" class="tab-pane active">						
+                                <fieldset>
+
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.Webtitle, new {@class = "control-label"})
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.Webtitle, new {@class = "input-xxlarge"})
+                                            @Html.ValidationMessageFor(m => m.Webtitle)
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.WebDescription, new {@class = "control-label"})
+                                        <div class="controls">
+                                            @Html.TextAreaFor(model => model.WebDescription)
+                                            @Html.ValidationMessageFor(m => m.WebDescription)
+                                        </div>
+                                    </div>
+                                    <div class="control-group hide">
+                                        @Html.LabelFor(m => m.WebPath, new {@class = "control-label"})
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.WebPath)
+                                            @Html.ValidationMessageFor(m => m.WebPath)
+                                        </div>
+                                    </div>
+                                    <div class="control-group hide">
+                                        @Html.LabelFor(m => m.Logo, new {@class = "control-label"})
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.Logo, new {@class = "input-xxlarge"})
+                                            @Html.ValidationMessageFor(m => m.Logo)
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.Theme, new {@class = "control-label"})
+                                        <div class="controls">
+                                            @Html.DropDownList("Theme")
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group hide">
+                                        @Html.LabelFor(m => m.Icp, new {@class = "control-label"})
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.Icp)
+                                            @Html.ValidationMessageFor(m => m.Icp)
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.IndexPagerCount, new {@class = "control-label"})
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.IndexPagerCount, new { @class = "input-mini" })
+                                            @Html.ValidationMessageFor(m => m.IndexPagerCount)
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.CatePagerCount, new {@class = "control-label"})
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.CatePagerCount, new { @class = "input-mini" })
+                                            @Html.ValidationMessageFor(m => m.CatePagerCount)
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.CommentPagerCount, new {@class = "control-label"})
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.CommentPagerCount, new { @class = "input-mini" })
+                                            @Html.ValidationMessageFor(m => m.CommentPagerCount)
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.NotePagerCount, new {@class = "control-label"})
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.NotePagerCount, new { @class = "input-mini" })
+                                            @Html.ValidationMessageFor(m => m.NotePagerCount)
+                                        </div>
+                                    </div>
+                                    <div class="control-group hide">
+                                        @Html.LabelFor(m => m.ForumPagerCount, new {@class = "control-label"})
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.ForumPagerCount, new { @class = "input-mini" })
+                                            @Html.ValidationMessageFor(m => m.ForumPagerCount)
+                                        </div>
+                                    </div>
+                                    <div class="control-group hide">
+                                        @Html.LabelFor(m => m.ThreadPagerCount, new {@class = "control-label"})
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.ThreadPagerCount, new { @class = "input-mini" })
+                                            @Html.ValidationMessageFor(m => m.ThreadPagerCount)
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="pull-right btn_help" id="help_thumbnail">?</div>
+                                        @Html.LabelFor(m => m.ThumbnailInfo, new {@class = "control-label"})
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.ThumbnailInfo, new { @class = "input-xlarge" })
+                                            @Html.ValidationMessageFor(m => m.ThumbnailInfo)
+                                            <div class="controls-tip">@res.ThumbnailInfoTip</div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.MaxSummaryCharCount, new {@class = "control-label"})
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.MaxSummaryCharCount, new { @class = "input-mini" })
+                                            @Html.ValidationMessageFor(m => m.MaxSummaryCharCount)
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group displayInline">
+                                        @Html.LabelFor(model => model.UserPermission, new {@class = "control-label"})
+                                        <div class="controls">
+            
+                                            <label class="radio">
+                                                <input type="radio" value="false" name="UserPermission" id="UserPermission_y" @if (!Model.UserPermission)
+                                                                                                                          {@Html.Raw("checked=\"checked\"")
+                                                                                                                          }/>
+                                                @res.Anonymous
+                                            </label>
+                                            <label class="radio">
+                                                <input type="radio" value="true" name="UserPermission" id="UserPermission_n" @if (Model.UserPermission)
+                                                                                                                          {@Html.Raw("checked=\"checked\"")
+                                                                                                                          }/>
+                                                @res.LoggedUser
+                                            </label>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group displayInline">
+                                        @Html.LabelFor(model => model.IfValidateCode, new {@class = "control-label"})
+                                        <div class="controls">
+                                            <label class="radio">
+                                                <input type="radio" value="true" name="IfValidateCode" id="IfValidateCode_y" @if (Model.IfValidateCode)
+                                                                                                                             {@Html.Raw("checked=\"checked\"")
+                                                                                                                             }/>
+                                                @res.Yes
+                                            </label>
+                                            <label class="radio">
+                                                <input type="radio" value="false" name="IfValidateCode" id="IfValidateCode_n" @if (!Model.IfValidateCode)
+                                                                                                                              {@Html.Raw("checked=\"checked\"")
+                                                                                                                              }/>
+                                                @res.No
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="control-group displayInline">
+                                        @Html.LabelFor(model => model.IfPagingAjax, new {@class = "control-label"})
+                                        <div class="controls">
+                                            <label class="radio">
+                                                <input type="radio" value="true" name="IfPagingAjax" id="IfPagingAjax_y" @if (Model.IfPagingAjax)
+                                                                                                                          {@Html.Raw("checked=\"checked\"")
+                                                                                                                          }/>
+                                                @res.Yes
+                                            </label>
+                                            <label class="radio">
+                                                <input type="radio" value="false" name="IfPagingAjax" id="IfPagingAjax_n" @if (!Model.IfPagingAjax)
+                                                                                                                          {@Html.Raw("checked=\"checked\"")
+                                                                                                                          }/>
+                                                @res.No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            
+                            <div id="2" class="tab-pane">                        
+                                <fieldset>
+                                    <div class="control-group displayInline">
+                                        @Html.LabelFor(model => model.IfSendReplyEmail, new { @class = "control-label" })
+                                        <div class="controls">
+                                            <label class="radio">
+                                                <input type="radio" value="1" name="IfSendReplyEmail" id="IfSendReplyEmail_y" @if (Model.IfSendReplyEmail == 1)
+                                                                                                                              {@Html.Raw("checked=\"checked\"")
+                                                                                                                              }/>
+                                                @res.Yes
+                                            </label>
+                                            <label class="radio">
+                                                <input type="radio" value="2" name="IfSendReplyEmail" id="IfSendReplyEmail_n" @if (Model.IfSendReplyEmail == 2)
+                                                                                                                              {@Html.Raw("checked=\"checked\"")
+                                                                                                                              }/>
+                                                @res.No
+                                            </label>    
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.SmtpServer, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.SmtpServer, new { @class = "input-xlarge" })
+                                            @Html.ValidationMessageFor(m => m.SmtpServer)
+                                            <div class="controls-tip">@res.SmtpServerTip</div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.SmtpPort, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.SmtpPort, new { @class = "input-mini" })
+                                            @Html.ValidationMessageFor(m => m.SmtpPort)
+                                            <div class="controls-tip">@res.SmtpPortTip</div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.SmtpUser, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.SmtpUser, new { @class = "input-xlarge" })
+                                            @Html.ValidationMessageFor(m => m.SmtpUser)
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.AdminEmail, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.AdminEmail, new { @class = "input-xlarge" })
+                                            @Html.ValidationMessageFor(m => m.AdminEmail)
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.SmtpPass, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.PasswordFor(m => m.SmtpPass, new { @class = "input-xlarge", value = Model.SmtpPass })
+                                            @Html.ValidationMessageFor(m => m.SmtpPass)
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div id="3" class="tab-pane">                        
+                                <fieldset>
+                                    
+                                    <div class="control-group displayInline">
+                                        @Html.LabelFor(model => model.IfWebStatic, new { @class = "control-label" })
+                                        <div class="controls">
+                                            <label class="radio">
+                                                <input type="radio" value="1" name="IfWebStatic" id="IfWebStatic_y" @if (Model.IfWebStatic == 1)
+                                                                                                                    {@Html.Raw("checked=\"checked\"")
+                                                                                                                    }/>
+                                                @res.Yes
+                                            </label>
+                                            <label class="radio">
+                                                <input type="radio" value="2" name="IfWebStatic" id="IfWebStatic_n" @if (Model.IfWebStatic == 2)
+                                                                                                                    {@Html.Raw("checked=\"checked\"")
+                                                                                                                    }/>
+                                                @res.No
+                                            </label> 
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group displayInline">
+                                        @Html.LabelFor(model => model.IfHtmlCreated, new { @class = "control-label" })
+                                        <div class="controls">
+                                            <label class="radio">
+                                            <input type="radio" value="1" name="IfHtmlCreated" id="IfHtmlCreated_y" @if (Model.IfHtmlCreated == 1)
+                                                                                                                    {@Html.Raw("checked=\"checked\"")
+                                                                                                                    }/>
+                                                @res.Yes
+                                            </label>
+                                            <label class="radio">
+                                            <input type="radio" value="2" name="IfHtmlCreated" id="IfHtmlCreated_n" @if (Model.IfHtmlCreated == 2)
+                                                                                                                    {@Html.Raw("checked=\"checked\"")
+                                                                                                                    }/>
+                                                @res.No
+                                            </label> 
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.WebStaticFolder, new { @class = "control-label" })
+                                        <div class="controls">
+                                            /
+                                            @Html.TextBoxFor(m => m.WebStaticFolderPart1, new { @class = "input-mini" })
+                                            /{lang}/
+                                            @Html.TextBoxFor(m => m.WebStaticFolderPart2, new { @class = "input-xlarge" })
+                                            @Html.ValidationMessageFor(m => m.WebStaticFolderPart1)
+                                            @Html.ValidationMessageFor(m => m.WebStaticFolderPart2)
+                                            <div class="controls-tip">@res.WebStaticFolderTip</div>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </div>
+
+                            <div id="4" class="tab-pane">                        
+                                <fieldset>
+                                    @Html.HiddenFor(m => m.LangTemplateStr)
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.WebLangList, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @foreach (var o in (IEnumerable<MyCheckBox>) ViewBag.Langs)
+                                            {
+                                                var optionValue = "WebLangList" + o.Value;
+                                                <label class="checkbox inline">
+                                                <input type="checkbox"          
+                                                       id="@optionValue"          
+                                                       name="WebLangList"         
+                                                       value="@o.Value"
+                                                    @if (o.IsChecked)
+                                                    {@Html.Raw("checked=\"checked\"")
+                                                    }/> @o.Text
+                                                </label>
+                                            } 
+                                            <span class="red hide" id="WebLangListTip">@res.Atleastone</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.DefaultLang, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.DropDownList("DefaultLang")
+                                            <span class="red hide" id="DefaultLangTip">@res.DefaultLangSet</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.Theme, new { @class = "control-label" })
+                                        <div class="controls" id="langTemplateSet">
+                                            @foreach (MyCheckBox o in (IEnumerable<MyCheckBox>)ViewBag.Langs)
+                                            {
+                                                string optionLang = "Lang_" + o.Value;
+                                                <div>  <input type="hidden"          
+                                                              id="@optionLang"          
+                                                              name="Langs"         
+                                                              value="@o.Value"/>
+                                                    <label for="@optionLang">@o.Text</label>
+                                                    @Html.DropDownList("Theme_" + o.Value)
+                                                </div>
+                                            } 
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group displayInline">
+                                        @Html.LabelFor(model => model.IfIndependentContentViaLang, new { @class = "control-label" })
+                                        <div class="controls">
+
+                                            <label class="radio">
+                                                <input type="radio" value="1" name="IfIndependentContentViaLang" id="IfIndependentContentViaLang_y" @if (Model.IfIndependentContentViaLang == 1)
+                                                                                                                                                    {@Html.Raw("checked=\"checked\"")
+                                                                                                                                                    }/>
+                                                @res.Yes
+                                            </label>
+                                            <label class="radio">
+                                                <input type="radio" value="2" name="IfIndependentContentViaLang" id="IfIndependentContentViaLang_n" @if (Model.IfIndependentContentViaLang == 2)
+                                                                                                                                                    {@Html.Raw("checked=\"checked\"")
+                                                                                                                                                    }/>
+                                                @res.No
+                                            </label> 
+
+
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.WebContentLang, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.DropDownList("WebContentLang")
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <a id="BtnSubmit" class="adminbtn btn btn-primary" href="javascript:;">@res.Submit</a>
+                                <a class="btn btn_cancel">@res.Cancel</a>
+                                <span id="Loading" style="display: none;"> @res.Loading</span>
+                            </div> 
+                        </div>
+                    }
+                </div>					
+            </div> 		
+        </div>
+    </div>		
+</div>
+
+@section Js{
+    <script type="text/javascript">
+        $(function() {
+            $("#langTemplateSet select").change(function() {
+                var str = "[";
+                var lang;
+                var template;
+                $(":input[name=Langs]").each(function() {
+                    lang = $(this).val();
+                    template = $("#Theme_" + lang).val();
+                    str += '{"Lang":"' + lang + '","Template":"' + template + '"},';
+                });
+                str = str.substring(0, str.length - 1) + ']';
+                $("#LangTemplateStr").val(str);
+            });
+
+            $(":checkbox[name=WebLangList]").click(function() {
+                $('#WebLangListTip').hide();
+                $('#DefaultLangTip').hide();
+            });
+
+            $('#DefaultLang').change(function() {
+                $('#DefaultLangTip').hide();
+            });
+
+        });
+
+        $("#BtnSubmit").click(function() {
+            var selectLangs = "";
+            $(":checkbox[name=WebLangList]:checked").each(function() {
+                selectLangs += $(this).val();
+            });
+            if (selectLangs == "") {
+                $('#WebLangListTip').show();
+                $(":checkbox[name=WebLangList]").focus();
+                return false;
+            }
+            if (selectLangs.indexOf($('#DefaultLang').val()) == -1) {
+                $('#DefaultLangTip').show();
+                $(":checkbox[name=WebLangList]").focus();
+                return false;
+            }
+            $('#configform').submit();
+        });
+
+
+        function ProcessSuccess(re) {
+            $('#AjaxResult').html(re);
+        }
+
+        $(".switcherTabs li").click(function() {
+            var tar = $(this).find("a").attr("tar");
+            $(this).addClass("selected").siblings("li").removeClass("selected");
+            $(".tab1-box").hide();
+            $(tar).show();
+        });
+    </script> 
+}

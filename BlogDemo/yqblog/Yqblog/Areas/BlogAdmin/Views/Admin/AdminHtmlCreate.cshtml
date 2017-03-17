@@ -1,0 +1,175 @@
+﻿@model IEnumerable<MembershipUser> 
+@using res = Resource.Admin.Admin;
+@{
+    ViewBag.NavSelectedItem = "htmlcreate";
+    var ci = ViewBag.CI as Yqblog.General.GeneralConfigInfo;
+}
+<h1 class="page-title">
+    @res.Generatepages		
+</h1>
+<div class="widget">
+    <div class="widget-header">
+        <h3>@res.Generatepages</h3>
+    </div>									
+    <div class="widget-content">
+     <form autocomplete="off">   
+        <fieldset>
+            <div class="control-group" @if (ci.IfIndependentContentViaLang == 1){@Html.Raw("style=\"display:none;\"")}>
+                <label for="LangList" class="control-label"><span>@res.Language</span></label> 
+                <div class="controls">
+                    @Html.DropDownList("LangList")
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="CateId" class="control-label"><span>@res.Category</span></label> 
+                <div class="controls">
+                    @Html.DropDownList("CateId")
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="LangList" class="control-label"><span>@res.Date</span></label> 
+                <div class="controls">
+                    <select name="SelDateRange" id="SelDateRange">
+                        <option value="0" selected="selected">@res.Nolimited</option>
+                        <option value="1">@res.Range</option>
+                    </select>
+                    <div id="rangeInfo" class="input-append" style="display:none;margin-bottom: 5px;">
+                        <label class="title">From:</label> 
+                        <input type="text" value="@DateTime.Now.ToString("MM/dd/yyyy")" name="rangeStart" id="rangeStart">
+                        <label class="add-on calendaricon"><i class="icon-calendar"></i></label>
+                         <label class="title">To:</label> 
+                        <input type="text" value="@DateTime.Now.ToString("MM/dd/yyyy")" name="rangeEnd" id="rangeEnd">
+                         <label class="add-on calendaricon"><i class="icon-calendar"></i></label>               
+                    </div>
+                </div>
+            </div>
+            
+    <div class="progress">
+    <div class="bar" style="width: 0;"></div>
+    </div>
+    <div class="scheduleBg"><div class="schedule"></div></div> <div class="scheduleStat"><span id="currentcount">0</span>/<span id="maxcount">0</span></div>
+
+            <div class="form-actions">
+                <a href="###" class="btn btn-primary" onclick="BatchCreate();">@res.Create</a>
+                <a class="btn btn_cancel">@res.Cancel</a>
+           </div> 
+
+        </fieldset>
+    </form>
+    </div> 	
+</div>
+@section Js{
+    @if (Resource.Models.Web.Web.Lang == "" || Resource.Models.Web.Web.Lang == "zh-tw")
+    {
+        <script src="@Url.Content("~/Scripts/jquery.ui.datepicker-zh-CN.js")" type="text/javascript"></script>
+    }
+    <script type="text/javascript">
+        var d = null;
+        var i = 0;
+        var langLength = $('#LangList option').length;
+        var langIndex = 1;
+        var langValue = "";
+        var max = 0;
+        var current = 0;
+        $(function () {
+            $("#rangeStart").datepicker(
+                {
+                    changeMonth: true,
+                    changeYear: true
+                });
+            $("#rangeEnd").datepicker(
+                {
+                    changeMonth: true,
+                    changeYear: true
+                });
+
+            $('#LangList').change(function () {
+                RefreshBar();
+            });
+
+            $('#CateId').change(function () {
+                RefreshBar();
+            });
+
+
+            $('#SelDateRange').change(function () {
+                RefreshBar();
+                if ($('#SelDateRange').val() == "0") {
+                    $('#rangeInfo').hide();
+                } else {
+                    $('#rangeInfo').show();
+                }
+            });
+        });
+
+        function BatchCreate() {
+            var d1 = new Date($('#rangeStart').val());
+            var d2 = new Date($('#rangeEnd').val());
+            if ($('#SelDateRange').val() == "1" && d1 > d2) {
+                alert("@res.DateCompare");
+                return;
+            }
+            $.post('@Url.Action("AdminHtmlBatchCreate", "Admin")', { cate: $('#CateId').val(), dateRange: $('#SelDateRange').val(), from: $('#rangeStart').val(), to: $('#rangeEnd').val(), rn: Math.random() }, function (data) {
+                d = eval(data);
+                i = 0;
+                langIndex = 1;
+                langValue = $('#LangList').val();
+                current = 0;
+                if (d.length > 0) {
+                    BatchCreateExec();
+                } else {
+                    RefreshBar();
+                }
+            });
+        }
+
+        function RefreshBar() {
+            $('#currentcount').html("0");
+            $('#maxcount').html("0");
+            $('.bar').css({ "width": "0" });
+        }
+
+        function BatchCreateExec() {
+            if (langValue != "") {
+                max = d.length;
+                DoCreate();
+            } else {
+                max = d.length * (langLength - 1);
+                DoCreateByLang();
+            }
+            $('#maxcount').html(max);
+            $('#currentcount').html(current);
+        }
+
+        function DoCreate() {
+            $.post('@Url.Action("AdminDoCreate", "Admin")', { date: d[i]["Date"], lang: langValue, id: d[i]["Id"], rename: d[i]["Rename"], rn: Math.random() }, function(re) {
+                i++;
+                SetSchedule();
+                if (i < d.length) {
+                    DoCreate();
+                }
+            });
+        }
+
+        function DoCreateByLang() {
+            $.post('@Url.Action("AdminDoCreate", "Admin")', { date: d[i]["Date"], lang: $('#LangList option:eq(' + langIndex + ')').val(), id: d[i]["Id"], rename: d[i]["Rename"], rn: Math.random() }, function (re) {
+                langIndex++;
+                SetSchedule();
+                if (langIndex < langLength) {
+                    DoCreateByLang();
+                } else {
+                    langIndex = 1;
+                    i++;
+                    if (i < d.length) {
+                        DoCreateByLang();
+                    }
+                }
+            });
+        }
+
+        function SetSchedule() {
+            $('#currentcount').html(++current);
+            $('.bar').css({ "width": current * 100 / max + "%" });
+        }
+    </script>
+}

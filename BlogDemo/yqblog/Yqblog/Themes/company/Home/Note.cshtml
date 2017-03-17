@@ -1,0 +1,132 @@
+﻿@model Yqblog.ViewModels.NoteViewModel
+@using lang = Resource.Web;
+@using Yqblog.General
+@{
+    ViewBag.Title = Model.WebTitle;
+    var webConfigInfo = ViewBag.CI as GeneralConfigInfo;
+    ViewBag.Category = Model.Category;
+} 
+<input type="hidden" value="@Model.NoteOrderType" id="NoteOrderType" name="NoteOrderType"/>
+<div class="row">
+    <div class="col-md-12">
+        <ul class="breadcrumb">
+            <li>@Html.ActionLink(lang.HomePage, "Index", "Home") <span class="divider">/</span></li>
+            @Html.Raw(Model.WebPath)
+        </ul>
+    </div>
+    <div class="col-md-12 note">
+        <div id="notelist">
+            <img class="loadingImgSmall" src="@Url.Content("~/content/image/ajax-loader-small.gif")"/>
+        </div>
+        <div id="noteform">
+            @if ((webConfigInfo != null && !webConfigInfo.UserPermission) || ((Session["user"] as Yqblog.Data.blog_users) != null))
+            {
+                <a name="noteFormA"></a>
+                <h4>@lang.AddNote</h4>
+                <form name="NoteForm" id="NoteForm" action="" role="form">
+                    <div class="tabbable innerContent">
+                        <input type="hidden" value="@Model.Note.CategoryId" id="CategoryId" name="CategoryId"/>
+                        <input type="hidden" value="@Model.Note.ParentId" id="ParentId" name="ParentId"/>
+                        <input type="hidden" value="@Model.Note.NoteId" id="NoteId" name="NoteId"/>
+                        <input type="hidden" value="@Model.Note.DataType" id="DataType" name="DataType"/>
+                        <input type="hidden" value="@Model.Note.UserId" id="UserId" name="UserId"/>
+                        <div class="form-remark"></div>
+                        @if (Model.Note.UserId == 0)
+                        {
+                            <div class="form-group">
+                                <label for="UserName"><span>@lang.Username</span></label>
+                                <div class="input-wrap">
+                                    <div class="col-sm-3"><input type="text"  value="@Model.Note.UserName" name="UserName" id="UserName" class="form-control"/></div>
+                                    <span class="form_tip"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Email"><span>@lang.Email</span></label>
+                                <div class="input-wrap">
+                                    <div class="col-sm-3"><input type="text" value="" name="Email" id="Email" class="form-control"/></div>
+                                    <span class="form_tip"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Url"><span>@lang.Url</span></label>
+                                <div class="input-wrap">
+                                    <div class="col-sm-3"><input type="text" value="" name="Url" id="Url" class="form-control"/></div>
+                                    <span class="form_tip"></span>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                <label><span>@lang.Username:</span>@Model.Note.UserName</label>
+                            </div>
+                            <input type="hidden" value="@Model.Note.UserName" id="UserName" name="UserName"/>
+                            <input type="hidden" value="@Model.Note.Email" id="Email" name="Email"/>
+                            <input type="hidden" value="@Model.Note.Url" id="Url" name="Url"/>
+                        }
+                        <div class="form-group">
+                            <label for="Content"><span>@lang.Content</span></label>
+                            <div class="input-wrap">
+                                <textarea rows="6" class="form-control" name="Content" id="Content"></textarea>
+                                <span class="form_tip viewline"></span>
+                            </div>
+                        </div>
+                        @if (webConfigInfo != null && webConfigInfo.IfValidateCode)
+                        {
+                            <div class="form-group">
+                                <label for="ValidationCode"><span>@lang.ValidationCode</span></label>
+                                <div class="input-wrap">
+                                    <input type="text" value="" name="ValidationCode" id="ValidationCode" class="input-sm fl"/>
+                                    <img src="@Url.Content("~/validateCode.ashx?n=4")" class="validateImg fl" title="@lang.ChangeValidationCode" alt=""/>
+                                    <div class="form_tip validateCodeTip fl">@lang.ValidationCodeError</div>
+                                </div>
+                            </div>
+                        }
+                        <div class="form-group loadingwrap">
+                            <a type="submit" class="btn btn-primary" id="BtnNoteSubmit">@lang.Submit</a> 
+                            <a class="btn-reply-cancel nodisplay">@lang.Cancel</a>
+                            <a class="btn-edit-cancel nodisplay">@lang.Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            }
+            else
+            {
+                <div id="mustLoginTip">@lang.MustLogIn, @lang.Please @Html.ActionLink(lang.Login, "LogOn", "Account") @lang.Or @Html.ActionLink(lang.Register, "Register", "Account")</div>
+            }    
+        </div>
+    </div>
+</div>
+<input type="hidden" value="" id="current-note" name="current-note"/>
+
+<div id="modalbackdroptrue" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4>@lang.DeleteNote</h4>
+        </div>
+        <div class="modal-body">
+            <p>
+                @lang.DeleteTip_AreUSureDelete
+            </p>
+        </div>
+        <div class="modal-footer">
+            <a data-dismiss="modal" class="btn btn-default" id="note-delete-no">@lang.No</a>
+            <a class="btn btn-primary" id="note-delete-yes">@lang.Yes</a>
+        </div>
+    </div>
+  </div>
+</div>
+@section Js{
+    <script type="text/javascript">
+        $(function () {
+            var orderid = getQueryString("f") == "" ? 0 : getQueryString("f");
+            if (orderid > 0) {
+                GetNoteListByOrderId(orderid);
+            } else {
+                GetNotes(1);
+            }
+        });
+    </script>
+}

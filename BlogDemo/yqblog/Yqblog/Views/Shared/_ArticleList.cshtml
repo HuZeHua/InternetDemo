@@ -1,0 +1,91 @@
+﻿@using Yqblog.Models
+@using lang = Resource.Web;
+@model Yqblog.General.Pager
+@{
+    var articlePagerList = ((IQueryable<Yqblog.Data.blog_varticle>)Model.Entity).ToList();
+    var pagerRootUrl = Url.RequestContext.HttpContext.Request.RawUrl.Split('?')[0];
+    var parasInfo = (AjaxArticleListParamsModel)ViewBag.ArticleListParasInfo;
+    if (parasInfo.ArticleListType == "index")
+    {
+        pagerRootUrl = Html.YqUrl();
+    }
+    var order = string.IsNullOrEmpty(parasInfo.Order) ? "desc" : parasInfo.Order;
+    var odderIcon = (order == "asc" ? "icon-arrow-down" : "icon-arrow-up");
+    var commend = parasInfo.Commend;
+    var classAll = (commend == 0 ? " class=active" : string.Empty);
+    var classCommend = (commend == 1 ? " class=active" : string.Empty);
+
+}
+<input type="hidden" value="@pagerRootUrl" id="PagerRootUrl" name="PagerRootUrl"/>
+<input type="hidden" value="@parasInfo.ArticleListType" id="ArticleListType" name="ArticleListType"/>
+<input type="hidden" value="@order" id="ArticleListOrder" name="ArticleListOrder"/>
+<input type="hidden" value="@commend" id="ArticleRecommend" name="ArticleRecommend"/>
+<input type="hidden" value="@parasInfo.CategoryId" id="CategoryId" name="CategoryId"/>
+<input type="hidden" value="@parasInfo.AuthorName" id="AuthorName" name="AuthorName"/>
+<input type="hidden" value="@parasInfo.Tag" id="Tag" name="Tag"/>
+<input type="hidden" value="@parasInfo.SearchKey" id="SearchKey" name="SearchKey"/>
+<input type="hidden" value="@parasInfo.Year" id="Year" name="Year"/>
+<input type="hidden" value="@parasInfo.Month" id="Month" name="Month"/>
+<input type="hidden" value="@parasInfo.Day" id="Day" name="Day"/>
+<div class="clearfix articlelist_top">
+    <div class="pagination pull-left loadingwrap"></div>
+    <ul class="article_sortBar pull-right loadingwrap loadingwrapPullLeft">
+        <li><a id="setArticleOrder" class="arrow"><i class="@odderIcon"></i></a></li> 
+        <li class="divider-vertical"></li> 
+        <li><a id="articleViewAll"@classAll>@lang.All</a></li>
+        <li><a id="articleViewCommended"@classCommend>@lang.Commend</a></li>  
+    </ul>
+    <hr class="site-separator"/>
+</div>
+@if (articlePagerList.Any())
+{
+    foreach (var item in articlePagerList)
+    {
+        var topInfo = string.Empty;
+        topInfo = (item.istop == 1 && parasInfo.ArticleListType == "category" && parasInfo.CategoryId==item.cateid ? "[" + lang.Top + "]" : topInfo);
+        topInfo = (item.isindextop == 1 && parasInfo.ArticleListType == "index" ? "[" + lang.Top + "]" : topInfo);
+        <div>
+            <h3>
+                @topInfo
+                <a href="@Html.YqUrl(item)">@item.title</a>
+            </h3>
+            <p class="article_list_meta">
+                <a href="@Html.YqUrl("/author/" + item.username)">@item.username.Trim()</a>
+                @lang.PostedOn
+                <a href="@Html.YqUrl("/archives/" + item.createdate.ToString("yyyy\\/MM\\/dd"))">@Html.GetDate(item.createdate)</a>
+                @if (!(parasInfo.ArticleListType == "category" && Html.IsLastCategory(parasInfo.CategoryId)))
+                {
+                    <span class="ui-icon ui-icon-folder-collapsed"></span>
+                    @: 
+                    @Html.GetPathInfo(item.catepath)
+                }
+
+                @if (item.subcount > 0)
+                {
+                    <span class="ui-icon ui-icon-comment"></span>
+                    <a class="grayUnderlineA" href="@Html.YqUrl(item)?#commentA"> @item.subcount @lang.Tiao@Html.JudgeSingularOrPlural(item.subcount, lang.Comment, lang.Comments)</a>
+                }
+            </p>
+            <p>@Html.Raw(item.summary)</p>
+            <p><a href="@Html.YqUrl(item)" class="btn">@lang.ViewDetails »</a></p>
+            <div class="article_tag"> 
+                @foreach (var tag in item.tags.Split(',').Where(tag => !string.IsNullOrEmpty(tag.Trim())))
+                {
+                    <a class="grayBoxA" href="@Html.YqUrl("/tag/" + HttpUtility.UrlEncode(tag.Replace(".", "@"), System.Text.Encoding.UTF8).Replace("+", "%20"))">@tag</a>
+                }
+            </div> 
+
+        </div>
+        <hr class="site-separator" />
+    }
+}
+else
+{
+    <h4>@lang.NoData</h4>
+}
+<div class="pagination pull-left"></div>
+<script type="text/javascript">
+        $(function () {
+            $(".pagination").pager({ pagenumber: @(Model.PageNo), pagecount: @(Model.PageCount), buttonClickCallback: ArticlePageClick });
+        });
+</script>

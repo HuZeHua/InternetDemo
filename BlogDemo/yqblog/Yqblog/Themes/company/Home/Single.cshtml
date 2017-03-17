@@ -1,0 +1,21 @@
+﻿@model Yqblog.ViewModels.SingleViewModel
+@using lang = Resource.Web;
+@{
+    ViewBag.Title = Model.ArticleInfo.title;
+    ViewBag.Category = Model.Category;
+}
+@section Seo{
+    @Html.Raw(ViewBag.Seo)
+}
+<div class="row">
+    <div class="col-md-12">
+        <ul class="breadcrumb">
+        <li>@Html.ActionLink(lang.HomePage, "Index", "Home") <span class="divider">/</span></li>
+        @Html.Raw(Model.WebPath)
+        </ul>
+    </div>
+    <div class="col-md-12">
+        <h3>@Model.ArticleInfo.title</h3>
+        <div>@Html.Raw(Model.ArticleInfo.content)</div>
+    </div>
+</div>

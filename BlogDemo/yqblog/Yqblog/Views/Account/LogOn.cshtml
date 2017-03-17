@@ -1,0 +1,53 @@
+﻿@model Yqblog.Models.LogOnModel
+@using lang = Resource.Web;
+@{
+    ViewBag.Title = lang.Login;
+}
+<h2>@lang.Login</h2>
+<div class="alert alert-block">
+    <button data-dismiss="alert" class="close" type="button">×</button>
+    @lang.LogOn_Tip @Html.ActionLink(lang.Register, "Register")。
+</div>
+@using (Html.BeginForm("LogOn", "Account", FormMethod.Post, new {id = "loginForm", @class = "form-horizontal"}))
+{
+    <div>
+        <h4>@lang.LogOn_AccountInfo</h4>
+        <input id="returnUrl" name="returnUrl" value="@ViewBag.ReturnUrl" type="hidden" />
+        <div class="control-group">
+            <label for="UserName" class="control-label"><span>@lang.Username</span></label>
+            <div class="controls">
+                <input type="text" value="" name="UserName" id="UserName"/>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="Password" class="control-label"><span>@lang.Password</span></label>
+            <div class="controls">
+                <input type="password" name="Password" id="Password"/>
+                <span class="form_tip"></span>
+                <div class="summary_tip_wrap"><p class="summary_tip"></p></div>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls loadingwrap">
+                <label class="checkbox">
+                    <input type="checkbox" value="true" name="RememberMe" id="RememberMe"/>
+                    <label for="RememberMe">@lang.LogOn_RememberMe</label>
+                </label>
+                <a class="btn" id="BtnLogon">@lang.Login</a>
+            </div>
+        </div>
+    </div>
+}
+@section Js{
+    <script type="text/javascript">
+        $(function() {
+            $(document).keypress(function(event) {
+                if (event.keyCode == 13) {
+                    $("#BtnLogon").trigger('click');
+                }
+            });
+        });
+    </script>
+}
+

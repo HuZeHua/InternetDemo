@@ -1,0 +1,32 @@
+﻿@using lang = Resource.Web;  
+@model Yqblog.ViewModels.CommentListViewModel
+@{
+    var commentPagerList = ((IQueryable<Yqblog.Data.blog_varticle>)Model.CommentPagerInfo.Entity).ToList();
+}    
+<div class="pagination userCommentPager"></div>   
+<ul class="unstyled datalist">
+    @if (commentPagerList.Any())
+    {
+        foreach (var item in commentPagerList)
+        {
+        <li id="@item.id">
+            <div class="title">
+                 <a title="@item.title" href="@Html.YqUrl(item)" target="_blank">@lang.Re: @item.title</a>
+                <span class="fr">@Html.GetTime(item.lastreplydate)</span>
+            </div>
+            <div class="content">
+                <a href="@Html.YqUrl(item)?f=@item.orderid" target="_blank"><span class="ui-icon ui-icon-document"></span></a> @Html.Raw(item.content)
+            </div>
+        </li>
+        }
+    }
+</ul>
+<div class="pagination userCommentPager"></div>
+<script type="text/javascript">
+        $(function () {
+            $(".userCommentPager").pager({ pagenumber: @(Model.CommentPagerInfo.PageNo), pagecount: @(Model.CommentPagerInfo.PageCount), buttonClickCallback: UserCommentPageClick });
+        });
+        function UserCommentPageClick(no) {
+            GetUserComment(no);
+        };
+</script>

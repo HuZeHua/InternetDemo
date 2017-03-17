@@ -1,0 +1,244 @@
+﻿@model ArticleModel
+@using Yqblog.Models
+@using res = Resource.Admin.Admin;
+@{
+    ViewBag.NavSelectedItem = "album";
+}
+@section Css{
+    <link href="@Url.Content("~/Content/css/uploadify.css")" rel="stylesheet" type="text/css" />
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.uploadify-3.1.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/bootstrap-select.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/bootstrap-switch.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.tagsinput.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/application.js")" type="text/javascript"></script>
+<h1 class="page-title">
+    @res.AlbumsEdits		
+</h1>
+<div class="row">			
+    <div class="span9">
+        <div class="widget">			
+            <div class="widget-header">
+                <h3>@res.AlbumsEdits</h3>
+            </div>					
+            <div class="widget-content">
+                <div class="tabbable">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#1">@res.BasicInformation</a></li>
+                        <li><a data-toggle="tab" href="#2">@res.SEO</a></li>
+                    </ul>
+                    @using (Html.BeginForm("AdminEdit", "Admin", FormMethod.Post, new { id = "albumaddform", name = "albumaddform", @class = "form-horizontal" }))
+                    {
+                        <input type="hidden" id="Id" name="Id" value="@Model.Id"/>
+                        <div class="tab-content">         
+                            <div id="1" class="tab-pane active">						
+                                <fieldset>  
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.CateId, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.DropDownList("CateId")
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.Title, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.Title, new { @class = "input-xxlarge" })
+                                            @Html.ValidationMessageFor(m => m.Title)
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.Summary, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextAreaFor(model => model.Summary)
+                                            <p class="help-block"><span>(300)</span></p>
+                                            @Html.ValidationMessageFor(m => m.Summary)
+                                        </div>
+                                    </div>
+
+                                    <div class="photoUpload clearfix">
+                                        <div class="photoDisplayChange"><a href="###" class="resetPhotoDelete hide">@res.Undelete</a> @res.AspectRatio：<a href="###">1X</a> <a href="###">4X</a> <a href="###">6X</a> <a href="###">9X</a></div>
+                                        <p><input type="file" name="file_upload" id="file_upload_1" /></p>  
+                                        <div id="retip"></div>
+                                        <ul class="photobox box clearfix">
+                                        </ul>
+                                        <div class="controls-tip">@res.Cover_Tip</div>
+                                    </div>
+
+                                    <div class="hide">
+                                        <textarea name="Content" id="Content">@Model.Content</textarea>
+                                    </div>
+
+                                    <div class="control-group hide">
+                                        @Html.LabelFor(m => m.Tags, new { @class = "control-label" })
+                                        <div class="controls">
+                                            <input type="hidden" id="Tags" name="Tags"/> 
+                                            <div class="tagsinput" id="Tag" style="height: 100%;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group displayInline">
+                                        @Html.LabelFor(model => model.Status, new { @class = "control-label" })
+                                        <div class="controls">
+                                            <label class="radio">
+                                                <input type="radio" value="1" name="Status" id="Status_y"  @if (Model.Status == 1)
+                                                                                                           {@Html.Raw("checked=\"checked\"")}/>
+                                                @res.ImmediateRelease</label>
+                                            <label class="radio">
+                                                <input type="radio" value="2" name="Status" id="Status_n"  @if (Model.Status == 2)
+                                                                                                           {@Html.Raw("checked=\"checked\"")}/>
+                                                @res.SaveDraft</label>
+                                        </div>
+                                    </div>
+                                    <div class="control-group displayInline">
+                                        @Html.LabelFor(model => model.ReplyPermit, new { @class = "control-label" })
+                                        <div class="controls">
+                                            <label class="radio">
+                                                <input type="radio" value="1" name="ReplyPermit" id="ReplyPermit_y" @if (Model.ReplyPermit == 1)
+                                                                                                                    {@Html.Raw("checked=\"checked\"")}/>
+                                                @res.Yes</label>
+                                            <label class="radio">
+                                                <input type="radio" value="2" name="ReplyPermit" id="ReplyPermit_n" @if (Model.ReplyPermit == 2)
+                                                                                                                    {@Html.Raw("checked=\"checked\"")}/>
+                                                @res.No</label>
+                                        </div>
+                                    </div>
+                                    <div class="control-group displayInline">
+                                        @Html.LabelFor(model => model.IsCommend, new { @class = "control-label" })
+                                        <div class="controls">
+                                            <label class="radio">
+                                                <input type="radio" value="1" name="IsCommend" id="IsCommend_y"  @if (Model.IsCommend == 1)
+                                                                                                                 {@Html.Raw("checked=\"checked\"")}/>
+                                                @res.Yes</label>
+                                            <label class="radio">
+                                                <input type="radio" value="2" name="IsCommend" id="IsCommend_n"  @if (Model.IsCommend == 2)
+                                                                                                                 {@Html.Raw("checked=\"checked\"")}/>
+                                                @res.No</label>
+                                        </div>
+                                    </div>
+                                    <div class="control-group displayInline">
+                                        @Html.LabelFor(model => model.IsTop, new { @class = "control-label" })
+                                        <div class="controls">
+                                            <label class="radio">
+                                                <input type="radio" value="1" name="IsTop" id="IsTop_y"  @if (Model.IsTop == 1)
+                                                                                                         {@Html.Raw("checked=\"checked\"")}/>
+                                                @res.Yes</label>
+                                            <label class="radio">
+                                                <input type="radio" value="2" name="IsTop" id="IsTop_n"  @if (Model.IsTop == 2)
+                                                                                                         {@Html.Raw("checked=\"checked\"")}/>
+                                                @res.No</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="control-group">
+                                        <label class="control-label">@res.ResetThumbnail</label>
+                                        <div class="controls">
+                                            <label style="padding-top: 5px;"><input type="checkbox" value="true" name="IsResetThumbnail" id="IsResetThumbnail"></label>
+                                        </div>
+                                    </div>
+
+                                </fieldset>  
+                            </div>
+    
+                            <div id="2" class="tab-pane">
+                                <fieldset>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.ReName, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextBoxFor(m => m.ReName, new { @class = "input-xlarge" })
+                                            @Html.ValidationMessageFor(m => m.ReName)
+                                        </div>
+                                    </div> 
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.SeoTitle, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextAreaFor(model => model.SeoTitle)
+                                            @Html.ValidationMessageFor(m => m.SeoTitle)
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.SeoDescription, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextAreaFor(model => model.SeoDescription)
+                                            @Html.ValidationMessageFor(m => m.SeoDescription)
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.Seokeywords, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextAreaFor(model => model.Seokeywords)
+                                            @Html.ValidationMessageFor(m => m.Seokeywords)
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        @Html.LabelFor(m => m.SeoMetas, new { @class = "control-label" })
+                                        <div class="controls">
+                                            @Html.TextAreaFor(model => model.SeoMetas)
+                                            @Html.ValidationMessageFor(m => m.SeoMetas)
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="form-actions">
+                                <button id="BtnSubmit"  class="btn btn-primary" type="button">@res.Submit</button> 
+                                <a class="btn btn_cancel">@res.Cancel</a>
+                            </div> 
+                        </div>
+                    }
+                </div>					
+            </div> 		
+        </div>
+    </div>		
+</div>
+
+@section Js{
+    <script src="@Url.Content("~/Content/js/admin-album.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".photobox").sortable();
+
+            InitialPhotos();
+            //$("#Content").val("[]");
+
+            $("#file_upload_1").uploadify({
+                height: 30,
+                swf: '@Url.Content("~/Content/uploadify-v3.1/uploadify.swf")',
+                uploader: '@Url.Action("Upload", "Uploadify")',
+                width: 120,
+                buttonText: '@(res.SelectPhotos)',
+                fileTypeDesc: '.jpg,.gif,.png',
+                fileTypeExts: '*.jpg;*.gif;*.png',
+                onUploadSuccess: UploadResultFun
+            });
+
+            $("#BtnSubmit").click(function() {
+                if (/^[0-9]+$/.test($("#ReName").val())) {
+                    alert("@res.PageRenameTip");
+                    return false;
+                }
+                GetPhotos();
+                if ($("#Content").val() == "[]") {
+                    alert("@(res.Upload_Tip)");
+                    return false;
+                }
+                
+                var taginfo = '';
+                $('#Tag_tagsinput span.tag >span').each(function () {
+                    taginfo += $.trim($(this).text()) + ',';
+                });
+                $('#Tags').val(taginfo);
+                
+                $('#albumaddform').submit();
+            });
+
+            $(".switcherTabs li").click(function() {
+                var tar = $(this).find("a").attr("tar");
+                $(this).addClass("selected").siblings("li").removeClass("selected");
+                $(".tab1-box").hide();
+                $(tar).show();
+            });
+
+            $('.tagsinput').importTags('@Model.Tags.Trim(',')');
+        });
+    </script> 
+}

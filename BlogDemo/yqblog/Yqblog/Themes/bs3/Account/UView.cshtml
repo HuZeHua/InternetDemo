@@ -1,0 +1,26 @@
+﻿@using lang = Resource.Web;
+@model Yqblog.Models.UserInfoModel  
+@{
+    ViewBag.Title = lang.UserInfo;
+}
+<h2 class="utitle">@Model.UserName</h2>
+<div class="usercenterWrap">
+    <div class="tabbable tabs-left">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#userinfo">@lang.BasicInformation</a></li>
+        </ul>
+        <div class="tab-content usercenter">
+            <div id="userinfo" class="tab-pane active"> 
+                @{Html.RenderPartial("_UserInfo", Model);}
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        RefreshAvatar();
+    });
+    function RefreshAvatar() {
+        $('.uavatar').attr("src", '@(ViewBag.Localhost)/Content/Avatar/upload/avatars/@(Model.UserName)/large.jpg?random=1' + Math.random());
+    }
+</script>

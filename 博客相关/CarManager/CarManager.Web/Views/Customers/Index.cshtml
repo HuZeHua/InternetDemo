@@ -1,0 +1,97 @@
+﻿@model WaterMonitor.Core.Paging.IPagedList<CarManager.Core.Domain.Customer>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List</title>
+</head>
+<body>
+    <section class="content-header">
+        <h1>
+            @ModelDisplayName<small>@T("List")</small>
+        </h1>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        @using (Html.BeginForm(null, null, FormMethod.Get))
+                        {
+                            <div class="btn-toolbar" role="toolbar" aria-label="btn-toolbar">
+                                <div class="btn-group" role="group" aria-label="btn-group">
+                                    <a class="btn btn-default" aria-label="Left Align" href="@Url.Action("Create")">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 创建
+                                    </a>
+                                    <button id="check-all" type="button" class="btn btn-default" aria-label="Left Align">
+                                        <span class="glyphicon glyphicon-check" aria-hidden="true"></span> 全选
+                                    </button>
+                                    <button type="button" class="btn btn-default" aria-label="Left Align">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 删除
+                                    </button>
+                                    <button type="button" class="btn btn-default" aria-label="Left Align">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 编辑
+                                    </button>
+                                </div>
+                                <div class="input-group pull-right">
+                                    <div class="input-group">
+                                        @Html.TextBox("keyword", "", new { @class = "form-control" })
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" autofocus aria-label="Left Align" type="submit">
+                                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered table-hover">
+    						<tr>
+    							<th>
+    							    @Html.DisplayNameFor(model => model.CustomName)
+    							</th>
+    							<th>
+    							    @Html.DisplayNameFor(model => model.CreateDate)
+    							</th>
+    							<th>
+    							    @Html.DisplayNameFor(model => model.OrderIndex)
+    							</th>
+    							<th>相关操作</th>
+    						</tr>
+    
+    						@foreach (var item in Model) {
+    							<tr>
+    								<td>
+    								    @Html.DisplayFor(modelItem => item.CustomName)
+    								</td>
+    								<td>
+    								    @Html.DisplayFor(modelItem => item.CreateDate)
+    								</td>
+    								<td>
+    								    @Html.DisplayFor(modelItem => item.OrderIndex)
+    								</td>
+    								<td>
+    								    @Html.ActionLink(T("Edit"), "Edit", new { id=item.ID }) |
+    								    @Html.ActionLink(T("Details"), "Details", new { id=item.ID }) |
+    								    @Html.ActionLink(T("Delete"), "Delete", new { id=item.ID })
+    								</td>
+    							</tr>
+    						}
+    
+    					</table>
+    					@Html.Pager(Model, page => Url.FormParameters(Url.Action("List", new { page })))
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

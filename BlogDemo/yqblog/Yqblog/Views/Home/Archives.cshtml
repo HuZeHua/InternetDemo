@@ -1,0 +1,19 @@
+﻿@model Yqblog.ViewModels.ArchivesViewModel
+@using lang = Resource.Web;
+<div class="row">
+    <div class="span12">
+        <ul class="breadcrumb">
+        <li>@Html.ActionLink(lang.HomePage, "Index", "Home") <span class="divider">/</span></li>
+        <li class="active">@Html.Raw(Model.WebPath)</li>
+        </ul>
+    </div>
+    <div class="span9" id="articleListWrap">
+        @{Html.RenderPartial("_ArticleList", Model.ArticlePagerInfo);}
+    </div>
+    <div class="span3 sidebar">
+        <div class="input-append search">
+            <input class="span2" id="searchKey" type="text" autocomplete="off"/>
+            <button class="btn btn-inverse" type="button" id="searchBtn">@lang.Search</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+﻿@model CarManager.Core.Domain.Customer
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <section class="content-header">
+        <h1>
+            @ModelDisplayName<small>@T("Details")</small>
+        </h1>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="box">
+                <div class="box-body">
+                    <table class="table table-bordered table-hover">
+    					<tr>
+    						<th>
+    						    @Html.DisplayNameFor(model => model.CustomName)
+    						</th>
+    						<td>
+    						    @Html.DisplayFor(model => model.CustomName)
+    						</td>
+    					</tr>
+    					<tr>
+    						<th>
+    						    @Html.DisplayNameFor(model => model.CreateDate)
+    						</th>
+    						<td>
+    						    @Html.DisplayFor(model => model.CreateDate)
+    						</td>
+    					</tr>
+    					<tr>
+    						<th>
+    						    @Html.DisplayNameFor(model => model.OrderIndex)
+    						</th>
+    						<td>
+    						    @Html.DisplayFor(model => model.OrderIndex)
+    						</td>
+    					</tr>
+    				</table>
+                </div>
+                <div class="box-footer">
+    				@using (Html.BeginForm()) {
+    				    @Html.AntiForgeryToken()
+    				    <input type="submit" value='@T("Delete")' class="btn btn-default" />
+    				    @Html.ActionLink(T("Back"), "Index", null, new { @class = "btn btn-default" })
+    				}
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

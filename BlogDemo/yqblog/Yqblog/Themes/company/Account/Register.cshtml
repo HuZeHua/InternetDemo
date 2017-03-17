@@ -1,0 +1,69 @@
+﻿@model Yqblog.Models.RegisterModel
+@using lang = Resource.Web;
+@{
+    ViewBag.Title = lang.Register;
+}
+<h2>@lang.Register</h2>
+<div class="alert alert-warning">
+    <button data-dismiss="alert" class="close" type="button">×</button>
+    <p>
+        @lang.Register_Tip
+    </p>
+</div>
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new {id = "registerForm", @class = "form-horizontal", role = "form"}))
+{
+    <div>
+        <h4>@lang.Register_CreateNewAccount</h4>
+        <input id="returnUrl" name="returnUrl" value="@ViewBag.ReturnUrl" type="hidden" />
+        
+        <div class="form-group">
+            <label for="UserName" class="col-sm-2 control-label"><span>@lang.Username</span></label>
+            <div class="col-sm-10 input-wrap">
+                <div class="col-sm-3"><input type="text" value="" class="form-control" name="UserName" id="UserName"/></div>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        
+        <div class="form-group">
+            <label for="Password" class="col-sm-2 control-label"><span>@lang.Password</span></label>
+            <div class="col-sm-10 input-wrap">
+                <div class="col-sm-3"><input type="password" class="form-control" name="Password" id="Password"/></div>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+
+        
+        <div class="form-group">
+            <label for="ConfirmPassword" class="col-sm-2 control-label"><span>@lang.ConfirmPassword</span></label>
+            <div class="col-sm-10 input-wrap">
+                <div class="col-sm-3"><input type="password" class="form-control" name="ConfirmPassword" id="ConfirmPassword"/></div>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="summary_tip_wrap"><p class="summary_tip"></p></div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10 loadingwrap">
+            <a class="btn btn-default" id="BtnRegister">@lang.Register</a>
+        </div>
+      </div>
+
+    </div>
+}
+@section Js{
+    <script type="text/javascript">
+        $(function() {
+            $(document).keypress(function(event) {
+                if (event.keyCode == 13) {
+                    $("#BtnRegister").trigger('click');
+                }
+            });
+        });
+    </script>
+}

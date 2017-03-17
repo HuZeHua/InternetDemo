@@ -1,0 +1,71 @@
+﻿@using Yqblog.Data
+@using lang = Resource.Web;
+@model IEnumerable<blog_article>
+@if (Model.Any())
+{
+    var floorCount = Model.Count();
+    var floorInfo = string.Empty;
+    var floorNo = 0;
+    foreach (var item in Model)
+    {
+        floorNo++;
+        var floorNoInfo = string.Empty;
+        var authAvatar = string.Empty;
+        var hide = string.Empty;
+        var voteInfo = string.Empty;
+        if (floorCount > 1 && floorNo != floorCount)
+        {
+            hide = " operationHover";
+            floorNoInfo = "<div class=\"floor-no\">" + floorNo + "</div>";
+        }
+        else
+        {
+            voteInfo = "<div class=\"vote_tip\"></div><a class=\"vote_favor\">" +
+                       "<span class=\"glyphicon glyphicon-thumbs-up\"></span>[<span class=\"vote_favor_value\">" + item.favor + "</span>]</a> <a class=\"vote_against ml10\">" +
+                       "<span class=\"glyphicon glyphicon-thumbs-down\"></span>[<span class=\"vote_against_value\">" + item.against + "</span>]</a>";
+            authAvatar = "<div class=\"authAvatar\"><img onerror=\"this.onerror=null;this.src='" + Url.Content("~/upload/avatar/upload/avatars/noavatar_small.png") + "';\" " +
+                         "src=\"" + Url.Content("~/upload/avatar/upload/avatars/" + item.username.Trim() + "/small.jpg") + "\" alt=\"\"></div>";
+        }
+        if (item == null)
+        {
+            floorInfo = "<div class=\"floor-box\">" + floorInfo + "<p class=\"floor-box-content\">" + lang.Tip_ThisFloorBeenDeleted + "</p></div>";
+        }
+        else
+        {
+            var userinfo = item.username.Trim();
+            if (item.userid > 0)
+            { userinfo = "<a href=\"" + Url.Action("UView", "Account", new { user = item.username.Trim() }) + "\">" + item.username.Trim() + "</a> "; }
+            var webLink = string.Empty;
+            if (!string.IsNullOrEmpty(item.summary))
+            {
+                webLink = " <a target=\"_blank\" title=\"" + item.summary + "\" href=\"" + item.summary + "\"><span class=\"ui-icon ui-icon-link\"></span></a>";
+            }
+            var authInfo = "<div class=\"auth-info\">" + userinfo + webLink + " " + Html.GetTime(item.createdate) + floorNoInfo + "</div>";
+
+            var operateInfo = "<div class=\"operations floorvote vote" + hide + "\"  voteid=\"" + item.id + "\" itemId=\"" + item.id + "\" order=\"" + item.orderid + "\">"
+                + voteInfo + "<a class=\"item-reply\">" + lang.Reply + "</a></div>";
+            if ((Session["user"] as blog_users) != null)
+            {
+                var user = (Session["user"] as blog_users);
+                if (user.blog_roles.rolename == "admin" || user.userid == item.userid)
+                {
+                    operateInfo = "<div class=\"operations floorvote vote" + hide + "\"  voteid=\"" + item.id + "\" itemId=\"" + item.id + "\" order=\"" + item.orderid + "\">"
+                        + voteInfo + "<a class=\"item-reply\">" + lang.Reply + "</a><a class=\"item-edit\">" + lang.Edit + "</a><a data-target=\"#modalbackdroptrue\" data-toggle=\"modal\" class=\"item-delete\">" + lang.Delete + "</a></div>";
+                }
+            }
+
+            if (floorCount > 1 && floorNo != floorCount)
+            {
+                floorInfo = "<div class=\"floor-box\">" + floorInfo + authAvatar + "<div class=\"floor-words-content operationHoverWrap\">" + authInfo + "<p class=\"floor-box-content\">" + item.content + "</p>" + operateInfo + "</div></div>";
+            }
+            else
+            {
+                floorInfo = "<div class=\"floor-box\">" + authAvatar + "<div class=\"floor-words-content\">" + authInfo + floorInfo + "<p class=\"floor-box-content\">" + item.content + "</p>" + operateInfo + "</div></div>";
+            }
+
+        }
+
+    }
+    @Html.Raw(floorInfo)
+}
+

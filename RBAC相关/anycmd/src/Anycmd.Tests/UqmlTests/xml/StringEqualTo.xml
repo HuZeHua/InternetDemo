@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QuerySpecification>
+  <Expression Name="FirstName" Type="String" Operator="EqualTo" Value="PeterR"/>
+</QuerySpecification>
+

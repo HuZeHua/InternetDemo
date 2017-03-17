@@ -1,0 +1,23 @@
+﻿@model Yqblog.ViewModels.CategoryViewModel
+@using lang = Resource.Web;
+@{
+    ViewBag.Title = Model.Category.CateName;
+    ViewBag.Category = Model.Category;
+}
+<div class="row">
+    <div class="col-md-12">
+        <ul class="breadcrumb">
+            <li>@Html.ActionLink(lang.HomePage, "Index", "Home") <span class="divider">/</span></li>
+            @Html.Raw(Model.WebPath)
+        </ul>
+    </div>
+    <div class="col-md-9" id="articleListWrap">
+        @{Html.RenderPartial("_ArticleList", Model.ArticlePagerInfo);}
+    </div>
+    <div class="col-md-3 sidebar">
+        <div class="input-append search form-inline input-wrap">
+            <div class="form-group col-md-8"><input id="searchKey" class="form-control" type="text" autocomplete="off"/></div>
+            <button class="btn btn-default" type="button" id="searchBtn">@lang.Search</button>
+        </div>
+    </div>
+</div>

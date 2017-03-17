@@ -1,0 +1,135 @@
+﻿@model Yqblog.ViewModels.IndexViewModel
+@using lang = Resource.Web;
+<div class="row">
+    <div class="span9" id="articleListWrap">
+        @{Html.RenderPartial("_ArticleList", Model.ArticlePagerInfo);}
+    </div>
+
+    <div class="span3 sidebar">
+        <div class="rss_info">
+            <span class="ui-icon ui-icon-signal-diag"></span>
+            <a href="@Url.Action("commentrss")" class="rss_comment grayUnderlineA" target="_blank">@lang.Comments</a> 
+            <a href="@Url.Action("rss")"  class="rss_article grayUnderlineA" target="_blank">@lang.Rss</a>
+        </div>
+        
+        <div class="input-append search">
+            <input class="span2" id="searchKey" type="text" autocomplete="off"/>
+            <button class="btn btn-inverse" type="button" id="searchBtn">@lang.Search</button>
+        </div>
+
+        <div id="datepicker">
+        </div>
+
+        <div>
+            <h3>@lang.Archive</h3>
+            <ul>
+                @foreach (var item in Model.ArticleArchivesInfo)
+                {
+                    var datestr = item.Year + lang.Year + item.Month + lang.Month;
+                    if (Resource.Models.Web.Web.Lang == "en-us")
+                    {
+                        System.Globalization.DateTimeFormatInfo myDtfi = new System.Globalization.CultureInfo(Resource.Models.Web.Web.Lang, false).DateTimeFormat;
+                        datestr = myDtfi.GetAbbreviatedMonthName(item.Month) + " " + item.Year;
+                    }
+        
+                    <li><a href="@Html.YqUrl("/archives/" + item.Year + "/" + item.Month + "/")">@datestr (@item.Count)</a></li>
+                }
+            </ul>   
+        </div>
+
+        <div>
+            <h3>@lang.TopView</h3>
+            <ul>
+                @foreach (var item in Model.MostViewArticles)
+                {
+                    <li><a title="@item.title" href="@Html.YqUrl(item)">@(item.title)(@item.viewcount)</a></li>
+                }
+            </ul>   
+        </div>
+
+        <div>
+            <h3>@lang.TopComments</h3>
+            <ul>
+                @foreach (var item in Model.MostReplyArticles)
+                {
+                    <li><a title="@item.title" href="@Html.YqUrl(item)">@(item.title)(@item.subcount)</a></li>
+                }
+            </ul>   
+        </div>
+
+        <div class="article_latest_replies">
+            <h3>@lang.NewComments</h3>
+            <ul>
+                @foreach (var item in Model.NewArticleReplies)
+                {
+                    <li><a title="@item.title" href="@Html.YqUrl(item)">re:@item.title</a>
+                        <div><a href="@Html.YqUrl(item)?f=@item.orderid"><span class="ui-icon ui-icon-document"></span></a>@Html.Raw(item.content)</div>
+                        <div class="muted">
+                            @item.username @lang.PostedOn @Html.GetTime(item.createdate)
+                        </div>
+                    </li>
+                }
+            </ul>   
+        </div>
+
+        <div>
+            <h3>@lang.Tag</h3>
+            <div class="tags"> 
+                @foreach (var item in Model.Tags)
+                {
+                    <a class="grayBoxA" href="@Html.YqUrl("/tag/" + HttpUtility.UrlEncode(item.Tag.Replace(".", "@"), System.Text.Encoding.UTF8).Replace("+", "%20"))">@(item.Tag)</a>
+                }
+            </div>   
+        </div> 
+
+        <div>
+            <h3>@lang.Statistics</h3>
+            <div>
+                @lang.Articles: @Model.ArticleCount
+                <br/>
+                @lang.Albums: @Model.AlbumCount
+                <br/>
+                @lang.Notes: @Model.NoteCount
+                <br/>
+                @lang.ArticleComments: @Model.ArticleReplyCount
+                <br/>
+                @lang.AlbumComments: @Model.AlbumReplyCount
+            </div>   
+        </div>
+
+    </div>
+</div>
+
+@section Js{
+    <script type="text/javascript">
+        var strArticleDates = @Html.Raw(Json.Encode(Model.ArticleDates));
+        $(function () {
+            $("#datepicker").datepicker({
+                dateFormat:'yy-m-d',
+                "beforeShowDay":
+                    function (date) {
+                        if (IsArticleDate($.datepicker.formatDate("yy-m-d",date))) {
+                            return [true, "article_date", ""];
+                        } else {
+                            return [true, ""];
+                        }
+                    },
+                onSelect: function (dateText) {
+                    RedirectToArticleDate(dateText);
+                }
+            });
+        });
+
+        function IsArticleDate(datestr) {
+            return ($.inArray(datestr, strArticleDates) > -1);
+        }
+
+        function RedirectToArticleDate(dateText) {
+            if (IsArticleDate(dateText)) {
+                var d = $.datepicker.parseDate("yy-m-d", dateText);
+                Go(urlPath + "archives/" + $.datepicker.formatDate("yy/m/d", d));
+            }
+            return false;
+        }
+    </script>
+}

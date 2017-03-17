@@ -1,0 +1,35 @@
+﻿@using lang = Resource.Web;
+@model Yqblog.ViewModels.NoteListViewModel
+@{
+    var notePagerList = ((IQueryable<Yqblog.Data.blog_varticle>)Model.NotePagerInfo.Entity).ToList();
+}
+<div class="userNotePager">
+</div>
+<ul class="list-unstyled datalist">
+    @if (notePagerList.Any())
+    {
+        foreach (var item in notePagerList)
+        {
+            <li id="@item.id">
+                <div class="title">
+                    <span>@Html.GetTime(item.createdate)</span>
+                </div>
+                <div class="content">
+                    <a href="@(ViewBag.NoteUrl)?f=@(item.orderid)" target="_blank"><span class="ui-icon ui-icon-document"></span></a> @Html.Raw(item.content)
+                </div>
+            </li>
+        }
+    }
+</ul>
+<div class="userNotePager">
+</div>
+<script type="text/javascript">
+    $(function() {
+        $(".userNotePager").pager({ pagenumber: @(Model.NotePagerInfo.PageNo), pagecount: @(Model.NotePagerInfo.PageCount), buttonClickCallback: UserNotePageClick });
+        $(".userNotePager").find("ul").addClass("pagination");
+    });
+
+    function UserNotePageClick(no) {
+        GetUserNote(no);
+    }
+</script>

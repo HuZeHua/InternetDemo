@@ -1,0 +1,28 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<script src="/Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/Scripts/kindeditor/kindeditor.js" type="text/javascript"></script> 
+<script src="/Scripts/kindeditor/lang/zh_CN.js" type="text/javascript"></script> 
+
+<textarea style="width: 850px; height: 450px; display: none;" rows="2" name="Content" id="Content" cols="20"></textarea>
+</html>
+<script type="text/javascript">
+
+    $(function () {
+        var editorContent = null;
+        KindEditor.ready(function (K) {
+            editorContent = K.create('textarea[name="Content"]', {
+                allowImageUpload: true,
+                uploadJson: '/admin/UploadFile'
+                //                ,items: [
+                //'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                //'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                //'insertunorderedlist', '|', 'emoticons', 'image', 'flash', 'media', 'insertfile', 'table', 'link']
+            });
+        });
+    });
+</script> 

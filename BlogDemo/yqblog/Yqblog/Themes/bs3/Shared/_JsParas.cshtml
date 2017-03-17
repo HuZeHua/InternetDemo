@@ -1,0 +1,10 @@
+﻿@{var ci = ViewBag.CI as Yqblog.General.GeneralConfigInfo;}
+<script type="text/javascript">
+    var Urls = {};
+    Urls.RootPath = '@Url.Content("~/")';
+    Urls.LoadingImgSmall = '@Url.Content("~/content/image/ajax-loader-small.gif")';
+
+    var Config = {};
+    Config.DefaultLang = '@(ci.DefaultLang)';
+    Config.IsPagingAjax = '@(ci.IfPagingAjax)';
+</script>

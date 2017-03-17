@@ -1,0 +1,56 @@
+﻿@using Yqblog.Models
+@{
+    var webConfigInfo = ViewBag.CI as Yqblog.General.GeneralConfigInfo;
+    var weblang = Resource.Web.Lang;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="Pragma" content="no-cache"/>
+        <meta http-equiv="Cache-Control" content="no-cache"/>
+        <meta http-equiv="Expires" content="0"/>
+        <title>@webConfigInfo.Webtitle @ViewBag.Title</title>
+        @RenderSection("Seo", false)
+        <!--[if lt IE 9]>
+          <script src="@Url.Content("~/Scripts/html5shiv.js")"></script>
+        <![endif]-->
+        <link href="@Url.Content("~/Themes/bs3/Content/css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Content/themes/base/jquery.ui.all.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Content/SyntaxHighlighter/shCoreDefault.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Themes/bs3/Content/css/style.css")" rel="stylesheet" type="text/css" />
+        @RenderSection("Css", false)
+        @{Html.RenderPartial("_JsParas");}
+        <script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery-ui-1.10.3.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Themes/bs3/Content/js/bootstrap.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Content/js/lang_" + weblang + ".js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Content/js/Web.Lang." + weblang + ".js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Themes/bs3/Content/js/site.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery.pager.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/jquery.scrollUp.min.js")" type="text/javascript"></script>
+        @if (weblang == "zh-cn" || weblang == "zh-tw")
+        { 
+            <script src="@Url.Content("~/Scripts/jquery.ui.datepicker-" + weblang + ".js")" type="text/javascript"></script>
+        }
+    </head>
+    <body>
+        <a href="#content" class="sr-only">Skip to main content</a>
+        <header role="banner" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
+            <div class="container">
+                @{Html.RenderPartial("_WebNav", ViewBag.Category==null?new CategoryModel():(CategoryModel)ViewBag.Category);}
+            </div>
+        </header>
+        @RenderSection("yqheader", false)
+        <div class="container main-content">
+            @RenderBody()
+        </div>
+        <footer>
+            <div class="container">
+                @LangHtml("Home.Index.Copy", "yqhome.net")
+            </div>
+        </footer>
+        @{ Html.RenderPartial("_ThemeSwitch");}
+        @RenderSection("Js", false)
+    </body>
+</html>

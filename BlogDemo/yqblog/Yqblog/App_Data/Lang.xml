@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dicts>
+  <dict name="Home.Index.Test">
+    <zh-cn>测试</zh-cn>
+    <zh-tw>测试[繁体]</zh-tw>
+    <en-us>Test</en-us>
+  </dict>
+  <dict name="Home.Index.Copy">
+    <zh-cn><![CDATA[版权所有  &copy; {0}]]></zh-cn>
+    <zh-tw><![CDATA[版权所有  &copy; {0}]]></zh-tw>
+    <en-us><![CDATA[Copyright &copy; {0} All Rights Reserved]]></en-us>
+  </dict>
+  <dict name="Comment.Reply.EmailTemplate">
+    <zh-cn><![CDATA[#Re:{0}<br><br>你的评论<p style="background:#eeeeee;font-size:12px;padding:10px;">"{1}"<p>{2} 回复于 {3}<p style="background:#eeeeee;font-size:12px;padding:10px;">{4}</p><a href="{5}">文章链接</a> <a href="{6}">评论链接</a>]]></zh-cn>
+    <zh-tw><![CDATA[#Re:{0}<br><br>你的評論<p style="background:#eeeeee;font-size:12px;padding:10px;">"{1}"<p>{2} 回復於{3}<p style="background:#eeeeee;font-size:12px;padding:10px;">{4}</p><a href="{5}">文章鏈接</a> <a href="{6}">評論鏈接</a>]]></zh-tw>
+    <en-us><![CDATA[#Re:{0}<br><br>Your comment<p style="background:#eeeeee;font-size:12px;padding:10px;">"{1}"<p>{2} reply on {3}<p style="background:#eeeeee;font-size:12px;padding:10px;">{4}</p><a href="{5}">Article Link</a> <a href="{6}">Comment Link</a>]]></en-us>
+  </dict>
+  <dict name="Note.Reply.EmailTemplate">
+    <zh-cn><![CDATA[#Re:你的留言<p style="background:#eeeeee;font-size:12px;padding:10px;">"{0}"<p>{1} 回复于 {2}<p style="background:#eeeeee;font-size:12px;padding:10px;">{3}</p><a href="{4}">回复链接</a>]]></zh-cn>
+    <zh-tw><![CDATA[#Re:你的留言<p style="background:#eeeeee;font-size:12px;padding:10px;">"{0}"<p>{1} 回復於{2}<p style="background :#eeeeee;font-size:12px;padding:10px;">{3}</p><a href="{4}">回复鏈接</a>]]></zh-tw>
+    <en-us><![CDATA[#Re:Your message<p style="background:#eeeeee;font-size:12px;padding:10px;">"{0}"<p>{1} reply on {2}<p style="background:#eeeeee;font-size:12px;padding:10px;">{3}</p><a href="{4}">Reply Link</a>]]></en-us>
+  </dict>
+  <dict name="Comment.Reply.EmailTemplateTitle">
+    <zh-cn>评论回复提醒邮件</zh-cn>
+    <zh-tw>評論回复提醒郵件</zh-tw>
+    <en-us>Email alert for comment replied</en-us>
+  </dict>
+  <dict name="Note.Reply.EmailTemplateTitle">
+    <zh-cn>留言回复提醒邮件</zh-cn>
+    <zh-tw>留言回复提醒邮件</zh-tw>
+    <en-us>Email alert for message replied</en-us>
+  </dict>
+</dicts>

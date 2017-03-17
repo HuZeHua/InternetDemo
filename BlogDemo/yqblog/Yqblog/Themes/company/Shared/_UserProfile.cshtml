@@ -1,0 +1,135 @@
+﻿@model Yqblog.ViewModels.UCenterViewModel
+@using lang = Resource.Web;
+@using (Html.BeginForm("UserProfile", "Account", FormMethod.Post, new { id = "userProfileForm", @class = "form-horizontal", role = "form" }))
+{
+    <div>
+
+        <div class="form-group">
+            <label for="NickName" class="col-sm-2 control-label"><span>@lang.NickName</span></label>
+            <div class="col-sm-10 input-wrap">
+                <div class="col-sm-3"><input type="text" class="form-control" value="@Model.UserInfo.NickName" name="NickName" id="NickName"/></div>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="Gender" class="col-sm-2 control-label"><span>@lang.Gender</span></label>
+            <div class="col-sm-10 input-wrap">
+                <div class="col-sm-3">@Html.DropDownList("Gender", Model.GenderList, new { @class = "form-control" })</div>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="Birth" class="col-sm-2 control-label"><span>@lang.Birth</span></label>
+            <div class="col-sm-10 input-wrap">
+                <div class="col-sm-3 input-group datecontrol">
+                    <input type="text" class="form-control" value="@Html.GetDate(Model.UserInfo.Birth, "yyyy-MM-dd")" name="Birth" id="Birth"/>
+                    <label class="input-group-addon calendaricon"><span class="glyphicon glyphicon-calendar"></span></label>
+                </div>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="Location" class="col-sm-2 control-label"><span>@lang.Location</span></label>
+            <div class="col-sm-10 input-wrap">
+                <div class="col-sm-3"><input type="text" class="form-control" value="@Model.UserInfo.Location" name="Location" id="Location"/></div>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="Qq" class="col-sm-2 control-label"><span>@lang.Qq</span></label>
+            <div class="col-sm-10 input-wrap">
+                <div class="col-sm-3"><input type="text" class="form-control" value="@Model.UserInfo.Qq" name="Qq" id="Qq"/></div>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+       
+        <div class="form-group">
+            <label for="Sina" class="col-sm-2 control-label"><span>@lang.Weibo</span></label>
+            <div class="col-sm-10 input-wrap">
+                <div class="col-sm-3"><input type="text" class="form-control" value="@Model.UserInfo.Sina" name="Sina" id="Sina"/></div>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Facebook" class="col-sm-2 control-label"><span>@lang.Facebook</span></label>
+            <div class="col-sm-10 input-wrap">
+                <div class="col-sm-3"><input type="text" class="form-control" value="@Model.UserInfo.Facebook" name="Facebook" id="Facebook"/></div>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="Twitter" class="col-sm-2 control-label"><span>@lang.Twitter</span></label>
+            <div class="col-sm-10 input-wrap">
+                <div class="col-sm-3"><input type="text" class="form-control" value="@Model.UserInfo.Twitter" name="Twitter" id="Twitter"/></div>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="Website" class="col-sm-2 control-label"><span>@lang.Website</span></label>
+            <div class="col-sm-10 input-wrap">
+                <div class="col-sm-3"><input type="text" class="form-control" value="@Model.UserInfo.Website" name="Website" id="Website"/></div>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="Phone" class="col-sm-2 control-label"><span>@lang.Phone</span></label>
+            <div class="col-sm-10 input-wrap">
+                <div class="col-sm-3"><input type="text" class="form-control" value="@Model.UserInfo.Phone" name="Phone" id="Phone"/></div>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="Email" class="col-sm-2 control-label"><span>@lang.Email</span></label>
+            <div class="col-sm-10 input-wrap">
+                <div class="col-sm-3"><input type="text" class="form-control"  value="@Model.UserInfo.Email" name="Email" id="Email"/></div>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="Intro" class="col-sm-2 control-label"><span>@lang.Intro</span></label>
+            <div class="col-sm-10 input-wrap">
+                <textarea name="Intro" id="Intro" style="width: 80%" rows="8">@Model.UserInfo.Intro</textarea>
+                <span class="form_tip"></span>
+            </div>
+        </div>
+        @{ var hide = !Model.IsSendEmail ? " hide" : String.Empty;}
+
+        <div class="form-group@(hide)">
+            
+            <label for="IsSendEmail" class="col-sm-2 control-label"><span>@lang.IsSendEmail</span></label>
+            <div class="col-sm-10 input-wrap displayInline">
+                <input type="radio" value="true" name="IsSendEmail" id="IsSendEmail_y"  @if (Model.UserInfo.IsSendEmail)
+                                                                                        {@Html.Raw("checked=\"checked\"")}/>
+                <label for="IsSendEmail_y">
+                    @lang.Send</label>
+                <input type="radio" value="false" name="IsSendEmail" id="IsSendEmail_n" @if (!Model.UserInfo.IsSendEmail)
+                                                                                        {@Html.Raw("checked=\"checked\"")}/>
+                <label for="IsSendEmail_n">
+                    @lang.Donotsend</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="summary_tip_wrap"><p class="summary_tip"></p></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10 loadingwrap">
+                <a class="btn btn-default" id="BtnUserProfile">@lang.Ok</a>
+            </div>
+        </div>
+
+    </div>
+}

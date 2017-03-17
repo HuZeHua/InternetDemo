@@ -1,0 +1,24 @@
+﻿@using Yqblog.Models
+@using lang = Resource.Web;
+@model CategoryModel
+@{
+    var navlist = (IEnumerable<CategoryModel>) ViewBag.NavInfo;
+    var webConfigInfo = ViewBag.CI as Yqblog.General.GeneralConfigInfo;
+    var langPath = Resource.Web.Lang == webConfigInfo.DefaultLang ? "" : Resource.Web.Lang;
+}
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+                <div class="container">
+                  <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar collapsed">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </a>
+                  <a href="@Url.Content("~")@langPath" class="brand">@lang.NavHome</a>
+                  <div class="nav-collapse navbar-responsive-collapse in collapse" style="height: auto;">
+                      @Html.GetNav(navlist,category:Model)
+                    <ul class="nav pull-right" id="logonAndLangInfo"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>

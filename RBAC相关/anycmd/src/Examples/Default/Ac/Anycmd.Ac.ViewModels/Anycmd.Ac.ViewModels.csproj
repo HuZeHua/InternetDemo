@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8D1E81D1-E4B8-41CC-88E3-98539B333B93}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Anycmd.Ac.ViewModels</RootNamespace>
+    <AssemblyName>Anycmd.Ac.ViewModels</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <ProductVersion>12.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\..\..\AssemblyVersion.cs">
+      <Link>Properties\AssemblyVersion.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="AcDomainExtension.cs" />
+    <Compile Include="DsdViewModels\DsdRoleCreateIo.cs" />
+    <Compile Include="DsdViewModels\DsdSetCreateIo.cs" />
+    <Compile Include="DsdViewModels\DsdSetUpdateIo.cs" />
+    <Compile Include="GroupViewModels\GetPlistRoleGroups.cs" />
+    <Compile Include="AccountViewModels\AccountCreateInput.cs" />
+    <Compile Include="AccountViewModels\AccountUpdateInput.cs" />
+    <Compile Include="AccountViewModels\GetPlistAccounts.cs" />
+    <Compile Include="AccountViewModels\GetPlistGroupAccounts.cs" />
+    <Compile Include="AccountViewModels\GetPlistMyVisitingLogs.cs" />
+    <Compile Include="AccountViewModels\GetPlistRoleAccounts.cs" />
+    <Compile Include="AccountViewModels\GetPlistVisitingLogs.cs" />
+    <Compile Include="AccountViewModels\IAccountQuery.cs" />
+    <Compile Include="AccountViewModels\IVisitingLogQuery.cs" />
+    <Compile Include="AccountViewModels\PasswordChangeInput.cs" />
+    <Compile Include="AccountViewModels\PasswordAssignInput.cs" />
+    <Compile Include="AppSystemViewModels\AppSystemCreateInput.cs" />
+    <Compile Include="AppSystemViewModels\AppSystemInfo.cs" />
+    <Compile Include="AppSystemViewModels\AppSystemTr.cs" />
+    <Compile Include="AppSystemViewModels\AppSystemUpdateInput.cs" />
+    <Compile Include="ButtonViewModels\ButtonCreateInput.cs" />
+    <Compile Include="ButtonViewModels\ButtonInfo.cs" />
+    <Compile Include="ButtonViewModels\ButtonTr.cs" />
+    <Compile Include="ButtonViewModels\ButtonUpdateInput.cs" />
+    <Compile Include="ButtonViewModels\GetPlistUiViewButtons.cs" />
+    <Compile Include="ButtonViewModels\UiViewAssignButtonTr.cs" />
+    <Compile Include="EntityTypeViewModels\EntityTypeCreateInput.cs" />
+    <Compile Include="EntityTypeViewModels\EntityTypeInfo.cs" />
+    <Compile Include="EntityTypeViewModels\EntityTypeTr.cs" />
+    <Compile Include="EntityTypeViewModels\EntityTypeUpdateInput.cs" />
+    <Compile Include="EntityTypeViewModels\GetPlistProperties.cs" />
+    <Compile Include="EntityTypeViewModels\PropertyCreateInput.cs" />
+    <Compile Include="EntityTypeViewModels\PropertyTr.cs" />
+    <Compile Include="EntityTypeViewModels\PropertyUpdateInput.cs" />
+    <Compile Include="FunctionViewModels\FunctionCreateInput.cs" />
+    <Compile Include="FunctionViewModels\FunctionInfo.cs" />
+    <Compile Include="FunctionViewModels\FunctionTr.cs" />
+    <Compile Include="FunctionViewModels\FunctionUpdateInput.cs" />
+    <Compile Include="LogViewModels\GetPlistAnyLogs.cs" />
+    <Compile Include="LogViewModels\GetPlistExceptionLogs.cs" />
+    <Compile Include="LogViewModels\GetPlistOperationLogs.cs" />
+    <Compile Include="MenuViewModels\GetPlistMenuChildren.cs" />
+    <Compile Include="MenuViewModels\MenuCreateInput.cs" />
+    <Compile Include="MenuViewModels\MenuMiniNode.cs" />
+    <Compile Include="MenuViewModels\MenuTr.cs" />
+    <Compile Include="MenuViewModels\MenuUpdateInput.cs" />
+    <Compile Include="CatalogViewModels\GetPlistChildren.cs" />
+    <Compile Include="CatalogViewModels\CatalogCreateInput.cs" />
+    <Compile Include="CatalogViewModels\CatalogInfo.cs" />
+    <Compile Include="CatalogViewModels\CatalogTr.cs" />
+    <Compile Include="CatalogViewModels\CatalogUpdateInput.cs" />
+    <Compile Include="UiViewViewModels\UiViewButtonCreateInput.cs" />
+    <Compile Include="UiViewViewModels\UiViewButtonUpdateInput.cs" />
+    <Compile Include="UiViewViewModels\UiViewCreateInput.cs" />
+    <Compile Include="UiViewViewModels\UiViewTr.cs" />
+    <Compile Include="UiViewViewModels\UiViewUpdateInput.cs" />
+    <Compile Include="GroupViewModels\GroupCreateInput.cs" />
+    <Compile Include="GroupViewModels\GroupUpdateInput.cs" />
+    <Compile Include="ModelExtension.cs" />
+    <Compile Include="PrivilegeViewModels\GetPlistCatalogAccounts.cs" />
+    <Compile Include="PrivilegeViewModels\GetPlistFunctionByRoleId.cs" />
+    <Compile Include="PrivilegeViewModels\IPrivilegeQuery.cs" />
+    <Compile Include="PrivilegeViewModels\PrivilegeCreateIo.cs" />
+    <Compile Include="PrivilegeViewModels\PrivilegeUpdateIo.cs" />
+    <Compile Include="PrivilegeViewModels\RoleAssignFunctionTr.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SsdViewModels\SsdRoleCreateIo.cs" />
+    <Compile Include="SsdViewModels\SsdSetCreateIo.cs" />
+    <Compile Include="SsdViewModels\SsdSetUpdateIo.cs" />
+    <Compile Include="ViewModelHelper.cs" />
+    <Compile Include="RdbViewModels\DatabaseInfo.cs" />
+    <Compile Include="RdbViewModels\DatabaseUpdateInput.cs" />
+    <Compile Include="RdbViewModels\DbTableColumnUpdateInput.cs" />
+    <Compile Include="RdbViewModels\DbTableUpdateInput.cs" />
+    <Compile Include="RdbViewModels\DbViewColumnUpdateInput.cs" />
+    <Compile Include="RdbViewModels\DbViewUpdateInput.cs" />
+    <Compile Include="RdbViewModels\GetPlistTableColumns.cs" />
+    <Compile Include="RdbViewModels\GetPlistTables.cs" />
+    <Compile Include="RdbViewModels\GetPlistViewColumns.cs" />
+    <Compile Include="RdbViewModels\GetPlistViews.cs" />
+    <Compile Include="RoleViewModels\AccountAssignRoleTr.cs" />
+    <Compile Include="RoleViewModels\DsdSetAssignRoleTr.cs" />
+    <Compile Include="RoleViewModels\GetPlistAccountRoles.cs" />
+    <Compile Include="RoleViewModels\GetPlistDsdSetRoles.cs" />
+    <Compile Include="RoleViewModels\GetPlistGroupRoles.cs" />
+    <Compile Include="RoleViewModels\GetPlistMenuRoles.cs" />
+    <Compile Include="RoleViewModels\GetPlistFunctionRoles.cs" />
+    <Compile Include="RoleViewModels\GetPlistSsdSetRoles.cs" />
+    <Compile Include="RoleViewModels\GroupAssignRoleTr.cs" />
+    <Compile Include="RoleViewModels\MenuAssignRoleTr.cs" />
+    <Compile Include="RoleViewModels\RoleCreateInput.cs" />
+    <Compile Include="RoleViewModels\RoleUpdateInput.cs" />
+    <Compile Include="RoleViewModels\SsdSetAssignRoleTr.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Anycmd.DataContracts\Anycmd.DataContracts.csproj">
+      <Project>{7EBBD487-F38F-475C-BC2C-3EBFACBD8F7D}</Project>
+      <Name>Anycmd.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\cmdlib\cmdlib.csproj">
+      <Project>{08F6F897-E8F2-44A5-A52C-FD4E310B0996}</Project>
+      <Name>cmdlib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Anycmd.ViewModel\Anycmd.ViewModel.csproj">
+      <Project>{A82B9D2C-F780-4EAC-8ADA-D9E8108E8155}</Project>
+      <Name>Anycmd.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Anycmd\Anycmd.csproj">
+      <Project>{A5EE9FFC-35F4-4CAB-9AB0-C9C98E97C8B5}</Project>
+      <Name>Anycmd</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

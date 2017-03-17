@@ -1,0 +1,37 @@
+﻿@using Yqblog.Models
+@using lang = Resource.Web; 
+<div id="themeSwitch">
+    @{
+        var currentThemeFolder = Session["CustomTheme"] == null ? "Default" : Session["CustomTheme"].ToString();
+        var themeIndex = 0;
+        var themes = new List<ThemeModel> {
+            new ThemeModel {ThemeName = "BootStrap3", ThemeFolder = "bs3"},
+        };
+        var first = themes.FirstOrDefault(x => x.ThemeFolder == currentThemeFolder);
+        var currentThemeName = first == null ? currentThemeFolder : first.ThemeName;
+    }
+    <a id="viewThemeList"><span class="ui-icon ui-icon-gear"></span></a>
+    <div class="popover right nodisplay" id="themlistWrap">
+        <div class="arrow"></div>
+        <button class="close" type="button">×</button>
+        <h3 class="popover-title clearfix">
+            @lang.ThemeSetting
+        </h3>
+        <div class="popover-content">
+            <p class="currenttheme">@currentThemeName</p>
+            <ul>
+                @if (Session["CustomTheme"] != null)
+                {<li><a href="?theme=default"> @lang.RestoreDefault</a></li>}
+                @foreach (var item in themes)
+                {
+                    if (item.ThemeFolder == currentThemeFolder)
+                    {
+                        continue;
+                    }
+                    themeIndex++;
+                    <li><span class="themeindex">@themeIndex</span><a href="?theme=@item.ThemeFolder">@item.ThemeName</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

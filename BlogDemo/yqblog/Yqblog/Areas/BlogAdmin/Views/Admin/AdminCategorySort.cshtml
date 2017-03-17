@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Yqblog.Models.CategoryModel>
+@using res = Resource.Admin.Admin;     
+@{
+    ViewBag.NavSelectedItem = "categorysort";
+}
+<h1 class="page-title">
+    @res.CategorySettings
+</h1>
+<div class="row">			
+    <div class="span9">
+        <div class="widget">			
+            <div class="widget-header">
+                <h3>@res.CategorySettings</h3>
+            </div>					
+            <div class="widget-content">
+                <a class="iconAdd btn btn-primary" onclick="AddRootCate();">@res.Add</a>
+                @if (Model.Any())
+                {  
+                    <ul class="catelist">
+                        @foreach (var item in Model)
+                        {
+                            var classstr = "default";
+                            if (item.ParentId == 0)
+                            {
+                                classstr += " cl_root";
+                            }
+                            if (item.Type == 7 || item.Type == 8)
+                            {
+                                classstr += " hide";
+                            }
+                            <li id="@item.CateId" class="@classstr">
+                                @Html.Raw(item.ViewName)
+                            </li>
+                        } 
+                    </ul>
+                }
+            </div> 		
+        </div>
+    </div>		
+</div>
+<div id="ModalDeleteCate">
+    @{Html.RenderPartial("_ModalPopUp");}
+</div>
+<input type="hidden" id="deleteid" name="deleteid" value=""/>
+@section Js{
+    <script type="text/javascript">
+        $(function () {
+            $('.iconAdd').click(function () {
+                AddRootCate();
+            });
+
+            $(".catelist").sortable({
+                stop: function () { saveOrder(); }
+            });
+
+            SetCateOperate();
+            
+            $('.widget-content').on('click', ".cate-operate .iconAdd", function () {
+                window.location.href = '@Url.Action("AdminCategoryAdd", "Admin")' + '?id=' + $(this).parent().parent().attr("id");
+            });
+            $('.widget-content').on('click', ".cate-operate .iconEdit", function () {
+                window.location.href = '@Url.Action("AdminCategoryEdit", "Admin")' + '?id=' + $(this).parent().parent().attr("id");
+            });
+
+            $('.widget-content').on('click', ".cate-operate .iconDel", function () {
+                $('#deleteid').val($(this).parent().parent().attr("id"));
+                ModalView("ModalDeleteCate", "Delete Category", "@(res.CategoryDel_Tip)");
+            });
+
+            $('#ModalDeleteCate .modal-yes').click(function () {
+                $.post('@Url.Action("AdminCategoryDel", "Admin")', { id: $('#deleteid').val() }, function () {
+                    window.location.href = '@Url.Action("AdminCategorySort", "Admin")';
+                });
+            });
+        });
+
+        function AddRootCate() {
+           Go('@Url.Action("AdminCategoryAdd", "Admin")');
+        }
+
+        function SetCateOperate() {
+            $(".catelist li").append("<div class=\"cate-operate\"><a class=\"iconAdd btn btn-primary\">@res.Add</a><a class=\"btn btn-success iconEdit\">@res.Edit</a><a class=\"btn btn-danger iconDel\">@res.Delete</a></div>"); 
+        }
+
+        function saveOrder() {
+            var t = "";
+            $(".catelist li").each(function () {
+                t = t + $(this).attr("id") + ",";
+            });
+            $.post('@Url.Action("AdminCategorySort", "Admin")', { ids: t }, function (data) {
+                $(".catelist").html(data);
+                SetCateOperate();
+            });
+        }
+    </script>
+}

@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        @using (Html.BeginForm("PushNotice","Csrf",FormMethod.Post)) {
+
+            @Html.AntiForgeryToken()
+            <input type="text" name="notice" id="notice" />
+            <input type="submit" value="发公告" />
+        }
+    </div>
+</body>
+</html>

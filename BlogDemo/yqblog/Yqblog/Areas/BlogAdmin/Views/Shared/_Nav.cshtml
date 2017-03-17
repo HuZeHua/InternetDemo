@@ -1,0 +1,43 @@
+﻿@model string
+@using res = Resource.Admin.Admin;
+@{
+    var rn = string.IsNullOrEmpty(Request["rn"])?DateTime.Now.ToString("hhmmss"):Request["rn"];
+}
+<div class="navwrap @Model">
+    <ul class="nav nav-tabs nav-stacked admin-main-nav">
+        <li class="mainli main2">
+            <a>@res.ContentManagement</a>
+            <ul>
+                <li class="sub3">@Html.ActionLink(res.Article, "AdminArticle", "Admin", new { tid = 1, rn }, null)</li>
+                <li class="sub4">@Html.ActionLink(res.SinglePage, "AdminArticle", "Admin", new { tid = 2, rn }, null)</li>
+                <li class="sub5">@Html.ActionLink(res.Album, "AdminArticle", "Admin", new { tid = 4, rn }, null)</li>
+                <li class="sub6">@Html.ActionLink(res.Note, "AdminArticle", "Admin", new { tid = 6, rn }, null)</li>
+                <li class="sub7">@Html.ActionLink(res.Comment, "AdminArticle", "Admin", new { layer = 1, tid = 1, rn }, null)</li>
+                <li class="sub10">@Html.ActionLink(res.CustomArea, "AdminArticle", "Admin", new { tid = 7, rn }, null)</li>
+                <li class="sub11">@Html.ActionLink(res.CustomGlobalArea, "AdminArticle", "Admin", new { tid = 8, rn }, null)</li>
+            </ul>
+        </li>
+        <li class="mainli main3">
+            <a>@res.Configuration</a>
+            <ul>
+                <li class="sub12">@Html.ActionLink(res.BasisSet, "AdminBaseConfig", "Admin", new {rn }, null)</li>
+                <li class="sub13">@Html.ActionLink(res.CategorySettings, "AdminCategorySort", "Admin", new { rn }, null)</li>
+            </ul>
+        </li>
+        <li class="mainli main4">
+            <a>@res.UserManagement</a>
+            <ul>
+                <li class="sub15">@Html.ActionLink(res.Users, "AdminUserList", "Admin", new { rn }, null)</li>
+                <li class="sub16">@Html.ActionLink(res.Administrators, "AdminManagerList", "Admin", new { rn }, null)</li>
+            </ul>
+        </li>
+        <li class="mainli main1 theLastNavLi">
+            <a>@res.GeneratingManagement</a>
+            <ul>
+                <li class="sub1 hide">@Html.ActionLink(res.Home, "AdminIndex", "Admin", new { rn }, null)</li>
+                <li class="sub2">@Html.ActionLink(res.Generatepages, "AdminHtmlCreate", "Admin", new { rn }, null)</li>
+                <li class="sub_generateJsLangInfo">@Html.ActionLink(res.JsLangGenerate, "AdminJsMultiLanguage", "Admin", new { rn }, null)</li>
+            </ul>
+        </li>
+    </ul>
+</div>

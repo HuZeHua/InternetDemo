@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QuerySpecification>
+  <Expression Name="Int32Age" Type="Int32" Operator="GreaterThan" Value="30"/>
+</QuerySpecification>
+

@@ -1,0 +1,29 @@
+﻿@model Yqblog.ViewModels.CommentListViewModel
+@using lang = Resource.Web;  
+@{
+    var commentPagerList = ((IQueryable<Yqblog.Models.FloorArticleModel>)Model.CommentPagerInfo.Entity).ToList();
+}
+    @if (commentPagerList.Any())
+    {
+        <h4>@Model.CommentPagerInfo.Amount @lang.Tiao@Html.JudgeSingularOrPlural(Model.CommentPagerInfo.Amount, lang.Comment, lang.Comments)</h4>
+        <div class="pagerwrap loadingwrap"></div>
+        <ul class="datalist">
+            @foreach (var item in commentPagerList)
+            {
+                <li>
+                    <a name="item@(item.orderid)"></a>
+                    @{Html.RenderPartial("_FloorContent", item.FloorArticles);}
+                </li>
+            }
+        </ul>
+        <div class="pagerwrap loadingwrap"></div>
+    }
+<script type="text/javascript">
+        $(function () {
+            $(".pagerwrap").pager({ pagenumber: @(Model.CommentPagerInfo.PageNo), pagecount: @(Model.CommentPagerInfo.PageCount), buttonClickCallback: PageClick });
+            $(".pagerwrap").find("ul").addClass("pagination");
+        });
+        function PageClick(no,tar) {
+            GetComments(no,tar);
+        };
+</script>

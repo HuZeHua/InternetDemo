@@ -1,0 +1,189 @@
+﻿@model Yqblog.ViewModels.AlbumViewModel
+@using System.Text
+@using Yqblog.Models
+@using lang = Resource.Web;
+@{
+    ViewBag.Title = Model.Category.CateName + " - " + Model.ArticleInfo.title;
+    ViewBag.Category = Model.Category;
+    var headstr = string.Empty;
+    var albumGroupIndex = 0;
+}
+@section Seo{
+    @Html.Raw(ViewBag.Seo)
+}
+<input type="hidden" value="@Model.ArticleInfo.articleid" id="ArticleId" name="ArticleId"/>
+<div class="row">
+    <div class="col-md-12">
+
+        <ul class="breadcrumb">
+            <li>@Html.ActionLink(lang.HomePage, "Index", "Home") <span class="divider">/</span></li>
+            @Html.Raw(Model.WebPath)
+            <li class="active">@Model.ArticleInfo.title</li>
+        </ul>
+
+    </div>
+    <div class="col-md-9">
+        <h3>@Model.ArticleInfo.title</h3>
+        <p class="article_meta album_article_meta">
+            @Model.ArticleInfo.username.Trim() 
+            @lang.PostedOn
+            @Html.GetTime(Model.ArticleInfo.createdate)
+            @lang.Photos: @Model.ImgCount
+            <span class="ui-icon ui-icon-folder-collapsed"></span>
+            <a href="@Html.GetCateUrl(Model.Category)" >@Model.Category.CateName</a>
+            <span class="article_viewcount"></span>
+            <span class="article_commentcount"></span>
+            <span class="album-switch">
+                <a class="albumview-switchtoalbum" title="" data-placement="top" data-toggle="tooltip" data-original-title="@lang.AlbumView"><span class="glyphicon glyphicon-th-large"></span></a> 
+                <a class="albumview-switchtolist" title="" data-placement="top" data-toggle="tooltip" data-original-title="@lang.ListView"><span class="glyphicon glyphicon-th-list"></span></a>
+            </span>
+        </p>
+
+        <div>@Html.Raw(Model.ArticleInfo.summary)</div>
+
+        @if (Model.PhotoList.Any())
+        {
+            var index = 0;
+            <div class="photo-carousel-wrap">
+                <div class="carousel slide" data-ride="carousel" id="myCarousel">
+                    <ol class="carousel-indicators">
+                        @foreach (string activeStr in Model.PhotoList.Select(item => item.IsCover == "1" ? "active" : string.Empty))
+                        {
+                            <li data-slide-to="@index" data-target="#myCarousel" class="@activeStr"></li>
+                            index++;
+                        }
+                    </ol>
+                    <div class="carousel-inner">
+                        @foreach (var item in Model.PhotoList)
+                        {
+                            var activeStr = item.IsCover == "1" ? " active" : string.Empty;
+                            <div class="item@(activeStr)">
+                                <img alt="" src="@Url.Content("~" + item.Src)">
+                                <div class="carousel-caption">
+                                    <h4>@item.Title</h4>
+                                    <p>@item.Alt</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                      </a>
+                      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                      </a>
+                </div>
+            </div>
+        }
+        
+        <div class="album-photolist"></div>
+        <div class="article_tag text-muted">
+            @foreach (string tag in Model.ArticleInfo.tags.Split(',').Where(tag => !string.IsNullOrEmpty(tag.Trim())))
+            {
+                <a class="grayBoxA" href="@Html.YqUrl("/tag/" + HttpUtility.UrlEncode(tag.Replace(".", "@"), Encoding.UTF8).Replace("+", "%20"))">@tag</a>
+            }
+        </div>
+        <div class="vote articlevote clearfix" voteid="@Model.ArticleInfo.articleid">
+            <ul>
+                <li>@lang.Vote_Up :</li>
+                <li class="vote_favor vote_favor_value"></li>
+                <li class="gap"></li>
+                <li>@lang.Vote_Down :</li>
+                <li class="vote_against vote_against_value"></li>
+                <li class="vote_tip"></li>
+            </ul>
+        </div>
+        <div class="article_link"></div>
+        <div class="article_comment">
+            <input type="hidden" value="desc" id="CommentOrderType" name="CommentOrderType"/>
+            <div id="commentform">
+                <a name="commentFormA"></a>
+                <h4>@lang.AddComment</h4>
+                @{Html.RenderPartial("_Comment", Model.Comment);}
+            </div>
+            <a name="commentA"></a>
+            <div id="commentlist">
+                <img class="loadingImgSmall" src="@Url.Content("~/content/image/ajax-loader-small.gif")"/>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 sidebar">
+
+        <div class="panel-group" id="accordion2">
+        @if (((List<AlbumModel>)ViewData["AllAlbums"]).Any())
+        {
+            foreach (var item in (List<AlbumModel>)ViewData["AllAlbums"])
+            {
+                if (item.ImgCount <= 0)
+                {
+                    continue;
+                }
+                if (headstr != item.Category.CateName)
+                {
+                    var unfold = " collapse";
+                    if (Model.Category == item.Category)
+                    {
+                        unfold = " in";
+                    }
+                    headstr = item.Category.CateName;
+                    albumGroupIndex++;
+                    if (albumGroupIndex > 1)
+                    {
+                        @:</div>
+                        @:</div>
+                        @:</div>
+                    }
+                    @:<div class="panel panel-default">
+                    @:<div class="panel-heading albums-sidebar-folder">
+                    @:<a class="panel-group-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse@(item.Varticle.id)" href="@Html.GetCateUrl(item.Category)">@item.Category.CateName</a></div>
+                    @:<div id="collapse@(item.Varticle.id)" class="panel-collapse@(unfold)">
+                    @:<div class="panel-body clearfix">
+
+                }
+                <div class="album-sidebar-box">
+                    <a href="@Html.YqUrl(item)" class="album-cover"><img src="@Url.Content("~" + Html.Thumbnail(item.Cover.Src, "85x85"))" onerror=" this.onerror = null;this.src = '@Url.Content("~/content/image/no_photo_big.gif")'; " alt="@item.Varticle.summary"/>
+                        <p class="album-info">
+                            @item.Varticle.title
+                        </p>
+                    </a>
+                    <p class="album-state">
+                    <span class="ui-icon ui-icon-newwin"></span>@item.ImgCount 
+                    @if (item.Varticle.subcount > 0)
+                    {
+                        <a title="Comment" class="album-commentstate" href="@Html.YqUrl(item)#commentA"> <span class="ui-icon ui-icon-comment"></span>@item.Varticle.subcount </a>
+                    }
+                    </p>                   
+                </div>
+            }
+            @:</div>
+            @:</div>
+            @:</div>
+        }
+        </div>
+    </div>
+</div>
+<input type="hidden" value="" id="current-comment" name="current-comment"/>
+<div id="modalbackdroptrue" class="modal hide fade">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">&times;</a>
+    </div>
+    <div class="modal-body">
+        <h4>@lang.DeleteComment</h4>
+        <p>
+            @lang.DeleteTip_AreUSureDelete
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a class="btn btn-success fl" id="comment-delete-yes">@lang.Yes</a>
+        <a data-dismiss="modal" class="btn btn-danger fl" id="comment-delete-no">@lang.No</a>
+    </div>
+</div>
+@section Js{
+    <script src="@Url.Content("~/Scripts/bootstrap-tooltip.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            GetArticleAjaxInfo();
+            $('.album-switch a').tooltip('hide');
+        });
+    </script>
+}

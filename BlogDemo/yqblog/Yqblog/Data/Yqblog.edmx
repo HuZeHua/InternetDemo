@@ -1,0 +1,841 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="YqblogModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="YqblogModelStoreContainer">
+          <EntitySet Name="blog_article" EntityType="YqblogModel.Store.blog_article" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="blog_articledetail" EntityType="YqblogModel.Store.blog_articledetail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="blog_roles" EntityType="YqblogModel.Store.blog_roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="blog_userprofile" EntityType="YqblogModel.Store.blog_userprofile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="blog_users" EntityType="YqblogModel.Store.blog_users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="blog_varticle" EntityType="YqblogModel.Store.blog_varticle" store:Type="Views" store:Schema="dbo" store:Name="blog_varticle">
+            <DefiningQuery>SELECT 
+      [blog_varticle].[id] AS [id], 
+      [blog_varticle].[typeid] AS [typeid], 
+      [blog_varticle].[cateid] AS [cateid], 
+      [blog_varticle].[catepath] AS [catepath], 
+      [blog_varticle].[articleid] AS [articleid], 
+      [blog_varticle].[parentid] AS [parentid], 
+      [blog_varticle].[layer] AS [layer], 
+      [blog_varticle].[subcount] AS [subcount], 
+      [blog_varticle].[userid] AS [userid], 
+      [blog_varticle].[username] AS [username], 
+      [blog_varticle].[title] AS [title], 
+      [blog_varticle].[summary] AS [summary], 
+      [blog_varticle].[content] AS [content], 
+      [blog_varticle].[viewcount] AS [viewcount], 
+      [blog_varticle].[orderid] AS [orderid], 
+      [blog_varticle].[replypermit] AS [replypermit], 
+      [blog_varticle].[status] AS [status], 
+      [blog_varticle].[ip] AS [ip], 
+      [blog_varticle].[favor] AS [favor], 
+      [blog_varticle].[against] AS [against], 
+      [blog_varticle].[iscommend] AS [iscommend], 
+      [blog_varticle].[istop] AS [istop], 
+      [blog_varticle].[createdate] AS [createdate], 
+      [blog_varticle].[lastreplydate] AS [lastreplydate], 
+      [blog_varticle].[lastreplyuser] AS [lastreplyuser], 
+      [blog_varticle].[lang] AS [lang], 
+      [blog_varticle].[articletypeid] AS [articletypeid], 
+      [blog_varticle].[rename] AS [rename], 
+      [blog_varticle].[isindextop] AS [isindextop], 
+      [blog_varticle].[url] AS [url], 
+      [blog_varticle].[seotitle] AS [seotitle], 
+      [blog_varticle].[seodescription] AS [seodescription], 
+      [blog_varticle].[seokeywords] AS [seokeywords], 
+      [blog_varticle].[seometas] AS [seometas], 
+      [blog_varticle].[tags] AS [tags]
+      FROM [dbo].[blog_varticle] AS [blog_varticle]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="blog_vuser" EntityType="YqblogModel.Store.blog_vuser" store:Type="Views" store:Schema="dbo" store:Name="blog_vuser">
+            <DefiningQuery>SELECT 
+      [blog_vuser].[userid] AS [userid], 
+      [blog_vuser].[roleid] AS [roleid], 
+      [blog_vuser].[username] AS [username], 
+      [blog_vuser].[userpwd] AS [userpwd], 
+      [blog_vuser].[userstate] AS [userstate], 
+      [blog_vuser].[usercreatedate] AS [usercreatedate], 
+      [blog_vuser].[lastlogindate] AS [lastlogindate], 
+      [blog_vuser].[lastactivitydate] AS [lastactivitydate], 
+      [blog_vuser].[gender] AS [gender], 
+      [blog_vuser].[nickname] AS [nickname], 
+      [blog_vuser].[signature] AS [signature], 
+      [blog_vuser].[intro] AS [intro], 
+      [blog_vuser].[birth] AS [birth], 
+      [blog_vuser].[location] AS [location], 
+      [blog_vuser].[website] AS [website], 
+      [blog_vuser].[qq] AS [qq], 
+      [blog_vuser].[sina] AS [sina], 
+      [blog_vuser].[facebook] AS [facebook], 
+      [blog_vuser].[twitter] AS [twitter], 
+      [blog_vuser].[medals] AS [medals], 
+      [blog_vuser].[phone] AS [phone], 
+      [blog_vuser].[email] AS [email], 
+      [blog_vuser].[isSendEmail] AS [isSendEmail]
+      FROM [dbo].[blog_vuser] AS [blog_vuser]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__blog_artic__artic__37A5467C" Association="YqblogModel.Store.FK__blog_artic__artic__37A5467C">
+            <End Role="blog_article" EntitySet="blog_article" />
+            <End Role="blog_articledetail" EntitySet="blog_articledetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__blog_user__rolei__37A5467C" Association="YqblogModel.Store.FK__blog_user__rolei__37A5467C">
+            <End Role="blog_roles" EntitySet="blog_roles" />
+            <End Role="blog_users" EntitySet="blog_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__blog_user__useri__38996AB5" Association="YqblogModel.Store.FK__blog_user__useri__38996AB5">
+            <End Role="blog_users" EntitySet="blog_users" />
+            <End Role="blog_userprofile" EntitySet="blog_userprofile" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="blog_article">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="typeid" Type="int" Nullable="false" />
+          <Property Name="cateid" Type="int" Nullable="false" />
+          <Property Name="catepath" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="articleid" Type="bigint" Nullable="false" />
+          <Property Name="parentid" Type="bigint" Nullable="false" />
+          <Property Name="layer" Type="int" Nullable="false" />
+          <Property Name="subcount" Type="int" Nullable="false" />
+          <Property Name="userid" Type="bigint" Nullable="false" />
+          <Property Name="username" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="title" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="summary" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="content" Type="ntext" Nullable="false" />
+          <Property Name="viewcount" Type="int" Nullable="false" />
+          <Property Name="orderid" Type="int" Nullable="false" />
+          <Property Name="replypermit" Type="tinyint" Nullable="false" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+          <Property Name="ip" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="favor" Type="int" Nullable="false" />
+          <Property Name="against" Type="int" Nullable="false" />
+          <Property Name="iscommend" Type="tinyint" Nullable="false" />
+          <Property Name="istop" Type="tinyint" Nullable="false" />
+          <Property Name="createdate" Type="datetime" Nullable="false" />
+          <Property Name="lastreplydate" Type="datetime" Nullable="false" />
+          <Property Name="lastreplyuser" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="lang" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="articletypeid" Type="int" Nullable="false" />
+          <Property Name="rename" Type="nvarchar" Nullable="false" MaxLength="60" />
+          <Property Name="isindextop" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="blog_articledetail">
+          <Key>
+            <PropertyRef Name="articleid" />
+          </Key>
+          <Property Name="articleid" Type="bigint" Nullable="false" />
+          <Property Name="seotitle" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="seodescription" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="seokeywords" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="seometas" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="tags" Type="nvarchar" Nullable="false" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="blog_roles">
+          <Key>
+            <PropertyRef Name="roleid" />
+          </Key>
+          <Property Name="roleid" Type="int" Nullable="false" />
+          <Property Name="rolename" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="blog_userprofile">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="bigint" Nullable="false" />
+          <Property Name="gender" Type="int" />
+          <Property Name="nickname" Type="nvarchar" MaxLength="100" />
+          <Property Name="signature" Type="nvarchar" MaxLength="500" />
+          <Property Name="intro" Type="nvarchar" MaxLength="2000" />
+          <Property Name="birth" Type="datetime" />
+          <Property Name="location" Type="nvarchar" MaxLength="500" />
+          <Property Name="website" Type="nvarchar" MaxLength="500" />
+          <Property Name="qq" Type="nvarchar" MaxLength="50" />
+          <Property Name="sina" Type="nvarchar" MaxLength="200" />
+          <Property Name="facebook" Type="nvarchar" MaxLength="200" />
+          <Property Name="twitter" Type="nvarchar" MaxLength="200" />
+          <Property Name="medals" Type="nvarchar" MaxLength="500" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" />
+          <Property Name="isSendEmail" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="blog_users">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="roleid" Type="int" Nullable="false" />
+          <Property Name="username" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="userpwd" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="userstate" Type="int" Nullable="false" />
+          <Property Name="usercreatedate" Type="datetime" Nullable="false" />
+          <Property Name="lastlogindate" Type="datetime" Nullable="false" />
+          <Property Name="lastactivitydate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NewTest.dbo.blog_varticle' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="blog_varticle">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="typeid" Type="int" Nullable="false" />
+          <Property Name="cateid" Type="int" Nullable="false" />
+          <Property Name="catepath" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="articleid" Type="bigint" Nullable="false" />
+          <Property Name="parentid" Type="bigint" Nullable="false" />
+          <Property Name="layer" Type="int" Nullable="false" />
+          <Property Name="subcount" Type="int" Nullable="false" />
+          <Property Name="userid" Type="bigint" Nullable="false" />
+          <Property Name="username" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="title" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="summary" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="content" Type="ntext" Nullable="false" />
+          <Property Name="viewcount" Type="int" Nullable="false" />
+          <Property Name="orderid" Type="int" Nullable="false" />
+          <Property Name="replypermit" Type="tinyint" Nullable="false" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+          <Property Name="ip" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="favor" Type="int" Nullable="false" />
+          <Property Name="against" Type="int" Nullable="false" />
+          <Property Name="iscommend" Type="tinyint" Nullable="false" />
+          <Property Name="istop" Type="tinyint" Nullable="false" />
+          <Property Name="createdate" Type="datetime" Nullable="false" />
+          <Property Name="lastreplydate" Type="datetime" Nullable="false" />
+          <Property Name="lastreplyuser" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="lang" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="articletypeid" Type="int" Nullable="false" />
+          <Property Name="rename" Type="nvarchar" Nullable="false" MaxLength="60" />
+          <Property Name="isindextop" Type="tinyint" Nullable="false" />
+          <Property Name="url" Type="nvarchar" MaxLength="60" />
+          <Property Name="seotitle" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="seodescription" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="seokeywords" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="seometas" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="tags" Type="nvarchar" Nullable="false" MaxLength="60" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NewTest.dbo.blog_vuser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="blog_vuser">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="bigint" Nullable="false" />
+          <Property Name="roleid" Type="int" Nullable="false" />
+          <Property Name="username" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="userpwd" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="userstate" Type="int" Nullable="false" />
+          <Property Name="usercreatedate" Type="datetime" Nullable="false" />
+          <Property Name="lastlogindate" Type="datetime" Nullable="false" />
+          <Property Name="lastactivitydate" Type="datetime" Nullable="false" />
+          <Property Name="gender" Type="int" />
+          <Property Name="nickname" Type="nvarchar" MaxLength="100" />
+          <Property Name="signature" Type="nvarchar" MaxLength="500" />
+          <Property Name="intro" Type="nvarchar" MaxLength="2000" />
+          <Property Name="birth" Type="datetime" />
+          <Property Name="location" Type="nvarchar" MaxLength="500" />
+          <Property Name="website" Type="nvarchar" MaxLength="500" />
+          <Property Name="qq" Type="nvarchar" MaxLength="50" />
+          <Property Name="sina" Type="nvarchar" MaxLength="200" />
+          <Property Name="facebook" Type="nvarchar" MaxLength="200" />
+          <Property Name="twitter" Type="nvarchar" MaxLength="200" />
+          <Property Name="medals" Type="nvarchar" MaxLength="500" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" />
+          <Property Name="isSendEmail" Type="bit" />
+        </EntityType>
+        <Association Name="FK__blog_artic__artic__37A5467C">
+          <End Role="blog_article" Type="YqblogModel.Store.blog_article" Multiplicity="1" />
+          <End Role="blog_articledetail" Type="YqblogModel.Store.blog_articledetail" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="blog_article">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="blog_articledetail">
+              <PropertyRef Name="articleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__blog_user__rolei__37A5467C">
+          <End Role="blog_roles" Type="YqblogModel.Store.blog_roles" Multiplicity="1" />
+          <End Role="blog_users" Type="YqblogModel.Store.blog_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="blog_roles">
+              <PropertyRef Name="roleid" />
+            </Principal>
+            <Dependent Role="blog_users">
+              <PropertyRef Name="roleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__blog_user__useri__38996AB5">
+          <End Role="blog_users" Type="YqblogModel.Store.blog_users" Multiplicity="1" />
+          <End Role="blog_userprofile" Type="YqblogModel.Store.blog_userprofile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="blog_users">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="blog_userprofile">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="blog_createarticle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="typeid" Type="int" Mode="In" />
+          <Parameter Name="cateid" Type="int" Mode="In" />
+          <Parameter Name="catepath" Type="nvarchar" Mode="In" />
+          <Parameter Name="articleid" Type="bigint" Mode="In" />
+          <Parameter Name="parentid" Type="bigint" Mode="In" />
+          <Parameter Name="layer" Type="int" Mode="In" />
+          <Parameter Name="userid" Type="bigint" Mode="In" />
+          <Parameter Name="username" Type="nchar" Mode="In" />
+          <Parameter Name="title" Type="nvarchar" Mode="In" />
+          <Parameter Name="summary" Type="nvarchar" Mode="In" />
+          <Parameter Name="content" Type="ntext" Mode="In" />
+          <Parameter Name="replypermit" Type="tinyint" Mode="In" />
+          <Parameter Name="status" Type="tinyint" Mode="In" />
+          <Parameter Name="ip" Type="nvarchar" Mode="In" />
+          <Parameter Name="seotitle" Type="nvarchar" Mode="In" />
+          <Parameter Name="seodescription" Type="nvarchar" Mode="In" />
+          <Parameter Name="seokeywords" Type="nvarchar" Mode="In" />
+          <Parameter Name="seometas" Type="nvarchar" Mode="In" />
+          <Parameter Name="rename" Type="nvarchar" Mode="In" />
+          <Parameter Name="tags" Type="nvarchar" Mode="In" />
+          <Parameter Name="iscommend" Type="tinyint" Mode="In" />
+          <Parameter Name="istop" Type="tinyint" Mode="In" />
+          <Parameter Name="isindextop" Type="tinyint" Mode="In" />
+          <Parameter Name="createdate" Type="datetime" Mode="In" />
+          <Parameter Name="lang" Type="nchar" Mode="In" />
+          <Parameter Name="articletypeid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="blog_deletearticle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="aid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="blog_logicDeleteArticle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="aid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="blog_updatearticle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="aid" Type="bigint" Mode="In" />
+          <Parameter Name="typeid" Type="int" Mode="In" />
+          <Parameter Name="cateid" Type="int" Mode="In" />
+          <Parameter Name="catepath" Type="nvarchar" Mode="In" />
+          <Parameter Name="parentid" Type="bigint" Mode="In" />
+          <Parameter Name="title" Type="nvarchar" Mode="In" />
+          <Parameter Name="summary" Type="nvarchar" Mode="In" />
+          <Parameter Name="content" Type="ntext" Mode="In" />
+          <Parameter Name="replypermit" Type="tinyint" Mode="In" />
+          <Parameter Name="status" Type="tinyint" Mode="In" />
+          <Parameter Name="seotitle" Type="nvarchar" Mode="In" />
+          <Parameter Name="seodescription" Type="nvarchar" Mode="In" />
+          <Parameter Name="seokeywords" Type="nvarchar" Mode="In" />
+          <Parameter Name="seometas" Type="nvarchar" Mode="In" />
+          <Parameter Name="rename" Type="nvarchar" Mode="In" />
+          <Parameter Name="tags" Type="nvarchar" Mode="In" />
+          <Parameter Name="iscommend" Type="tinyint" Mode="In" />
+          <Parameter Name="istop" Type="tinyint" Mode="In" />
+          <Parameter Name="isindextop" Type="tinyint" Mode="In" />
+          <Parameter Name="articletypeid" Type="int" Mode="In" />
+          <Parameter Name="layer" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="YqblogModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="YqblogEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="blog_article" EntityType="YqblogModel.blog_article" />
+          <EntitySet Name="blog_articledetail" EntityType="YqblogModel.blog_articledetail" />
+          <EntitySet Name="blog_roles" EntityType="YqblogModel.blog_roles" />
+          <EntitySet Name="blog_userprofile" EntityType="YqblogModel.blog_userprofile" />
+          <EntitySet Name="blog_users" EntityType="YqblogModel.blog_users" />
+          <EntitySet Name="blog_varticle" EntityType="YqblogModel.blog_varticle" />
+          <AssociationSet Name="FK__blog_artic__artic__37A5467C" Association="YqblogModel.FK__blog_artic__artic__37A5467C">
+            <End Role="blog_article" EntitySet="blog_article" />
+            <End Role="blog_articledetail" EntitySet="blog_articledetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__blog_user__rolei__37A5467C" Association="YqblogModel.FK__blog_user__rolei__37A5467C">
+            <End Role="blog_roles" EntitySet="blog_roles" />
+            <End Role="blog_users" EntitySet="blog_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__blog_user__useri__38996AB5" Association="YqblogModel.FK__blog_user__useri__38996AB5">
+            <End Role="blog_users" EntitySet="blog_users" />
+            <End Role="blog_userprofile" EntitySet="blog_userprofile" />
+          </AssociationSet>
+          <EntitySet Name="blog_vuser" EntityType="YqblogModel.blog_vuser" />
+          <FunctionImport Name="fun_articledel">
+            <Parameter Name="aid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="fun_logicArticleDel">
+            <Parameter Name="aid" Mode="In" Type="Int64" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="blog_article">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="typeid" Type="Int32" Nullable="false" />
+          <Property Name="cateid" Type="Int32" Nullable="false" />
+          <Property Name="catepath" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="articleid" Type="Int64" Nullable="false" />
+          <Property Name="parentid" Type="Int64" Nullable="false" />
+          <Property Name="layer" Type="Int32" Nullable="false" />
+          <Property Name="subcount" Type="Int32" Nullable="false" />
+          <Property Name="userid" Type="Int64" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="summary" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="content" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="viewcount" Type="Int32" Nullable="false" />
+          <Property Name="orderid" Type="Int32" Nullable="false" />
+          <Property Name="replypermit" Type="Byte" Nullable="false" />
+          <Property Name="status" Type="Byte" Nullable="false" />
+          <Property Name="ip" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="favor" Type="Int32" Nullable="false" />
+          <Property Name="against" Type="Int32" Nullable="false" />
+          <Property Name="iscommend" Type="Byte" Nullable="false" />
+          <Property Name="istop" Type="Byte" Nullable="false" />
+          <Property Name="createdate" Type="DateTime" Nullable="false" />
+          <Property Name="lastreplydate" Type="DateTime" Nullable="false" />
+          <Property Name="lastreplyuser" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="lang" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="articletypeid" Type="Int32" Nullable="false" />
+          <Property Name="rename" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="isindextop" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="blog_articledetail" Relationship="YqblogModel.FK__blog_artic__artic__37A5467C" FromRole="blog_article" ToRole="blog_articledetail" />
+        </EntityType>
+        <EntityType Name="blog_articledetail">
+          <Key>
+            <PropertyRef Name="articleid" />
+          </Key>
+          <Property Name="articleid" Type="Int64" Nullable="false" />
+          <Property Name="seotitle" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="seodescription" Type="String" Nullable="false" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="seokeywords" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="seometas" Type="String" Nullable="false" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="tags" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="blog_article" Relationship="YqblogModel.FK__blog_artic__artic__37A5467C" FromRole="blog_articledetail" ToRole="blog_article" />
+        </EntityType>
+        <EntityType Name="blog_roles">
+          <Key>
+            <PropertyRef Name="roleid" />
+          </Key>
+          <Property Name="roleid" Type="Int32" Nullable="false" />
+          <Property Name="rolename" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="blog_users" Relationship="YqblogModel.FK__blog_user__rolei__37A5467C" FromRole="blog_roles" ToRole="blog_users" />
+        </EntityType>
+        <EntityType Name="blog_userprofile">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="Int64" Nullable="false" />
+          <Property Name="gender" Type="Int32" />
+          <Property Name="nickname" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="signature" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="intro" Type="String" MaxLength="2000" Unicode="true" FixedLength="false" />
+          <Property Name="birth" Type="DateTime" />
+          <Property Name="location" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="website" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="qq" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="sina" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="facebook" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="twitter" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="medals" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="phone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="isSendEmail" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="blog_users" Relationship="YqblogModel.FK__blog_user__useri__38996AB5" FromRole="blog_userprofile" ToRole="blog_users" />
+        </EntityType>
+        <EntityType Name="blog_users">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleid" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="userpwd" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="userstate" Type="Int32" Nullable="false" />
+          <Property Name="usercreatedate" Type="DateTime" Nullable="false" />
+          <Property Name="lastlogindate" Type="DateTime" Nullable="false" />
+          <Property Name="lastactivitydate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="blog_roles" Relationship="YqblogModel.FK__blog_user__rolei__37A5467C" FromRole="blog_users" ToRole="blog_roles" />
+          <NavigationProperty Name="blog_userprofile" Relationship="YqblogModel.FK__blog_user__useri__38996AB5" FromRole="blog_users" ToRole="blog_userprofile" />
+        </EntityType>
+        <EntityType Name="blog_varticle">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="typeid" Type="Int32" Nullable="false" />
+          <Property Name="cateid" Type="Int32" Nullable="false" />
+          <Property Name="catepath" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="articleid" Type="Int64" Nullable="false" />
+          <Property Name="parentid" Type="Int64" Nullable="false" />
+          <Property Name="layer" Type="Int32" Nullable="false" />
+          <Property Name="subcount" Type="Int32" Nullable="false" />
+          <Property Name="userid" Type="Int64" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="summary" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="content" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="viewcount" Type="Int32" Nullable="false" />
+          <Property Name="orderid" Type="Int32" Nullable="false" />
+          <Property Name="replypermit" Type="Byte" Nullable="false" />
+          <Property Name="status" Type="Byte" Nullable="false" />
+          <Property Name="ip" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="favor" Type="Int32" Nullable="false" />
+          <Property Name="against" Type="Int32" Nullable="false" />
+          <Property Name="iscommend" Type="Byte" Nullable="false" />
+          <Property Name="istop" Type="Byte" Nullable="false" />
+          <Property Name="createdate" Type="DateTime" Nullable="false" />
+          <Property Name="lastreplydate" Type="DateTime" Nullable="false" />
+          <Property Name="lastreplyuser" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="lang" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="articletypeid" Type="Int32" Nullable="false" />
+          <Property Name="rename" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="isindextop" Type="Byte" Nullable="false" />
+          <Property Name="url" Type="String" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="seotitle" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="seodescription" Type="String" Nullable="false" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="seokeywords" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="seometas" Type="String" Nullable="false" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <Property Name="tags" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__blog_artic__artic__37A5467C">
+          <End Role="blog_article" Type="YqblogModel.blog_article" Multiplicity="1" />
+          <End Role="blog_articledetail" Type="YqblogModel.blog_articledetail" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="blog_article">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="blog_articledetail">
+              <PropertyRef Name="articleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__blog_user__rolei__37A5467C">
+          <End Role="blog_roles" Type="YqblogModel.blog_roles" Multiplicity="1" />
+          <End Role="blog_users" Type="YqblogModel.blog_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="blog_roles">
+              <PropertyRef Name="roleid" />
+            </Principal>
+            <Dependent Role="blog_users">
+              <PropertyRef Name="roleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__blog_user__useri__38996AB5">
+          <End Role="blog_users" Type="YqblogModel.blog_users" Multiplicity="1" />
+          <End Role="blog_userprofile" Type="YqblogModel.blog_userprofile" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="blog_users">
+              <PropertyRef Name="userid" />
+            </Principal>
+            <Dependent Role="blog_userprofile">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="blog_vuser">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Type="Int64" Name="userid" Nullable="false" />
+          <Property Type="Int32" Name="roleid" Nullable="false" />
+          <Property Type="String" Name="username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="userpwd" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="userstate" Nullable="false" />
+          <Property Type="DateTime" Name="usercreatedate" Nullable="false" />
+          <Property Type="DateTime" Name="lastlogindate" Nullable="false" />
+          <Property Type="DateTime" Name="lastactivitydate" Nullable="false" />
+          <Property Type="Int32" Name="gender" />
+          <Property Type="String" Name="nickname" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="signature" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="intro" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="birth" />
+          <Property Type="String" Name="location" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="website" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="qq" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="sina" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="facebook" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="twitter" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="medals" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="phone" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="email" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="isSendEmail" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="YqblogModelStoreContainer" CdmEntityContainer="YqblogEntities">
+          <EntitySetMapping Name="blog_article">
+            <EntityTypeMapping TypeName="YqblogModel.blog_article">
+              <MappingFragment StoreEntitySet="blog_article">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="typeid" ColumnName="typeid" />
+                <ScalarProperty Name="cateid" ColumnName="cateid" />
+                <ScalarProperty Name="catepath" ColumnName="catepath" />
+                <ScalarProperty Name="articleid" ColumnName="articleid" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="layer" ColumnName="layer" />
+                <ScalarProperty Name="subcount" ColumnName="subcount" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="viewcount" ColumnName="viewcount" />
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="replypermit" ColumnName="replypermit" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="favor" ColumnName="favor" />
+                <ScalarProperty Name="against" ColumnName="against" />
+                <ScalarProperty Name="iscommend" ColumnName="iscommend" />
+                <ScalarProperty Name="istop" ColumnName="istop" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="lastreplydate" ColumnName="lastreplydate" />
+                <ScalarProperty Name="lastreplyuser" ColumnName="lastreplyuser" />
+                <ScalarProperty Name="lang" ColumnName="lang" />
+                <ScalarProperty Name="articletypeid" ColumnName="articletypeid" />
+                <ScalarProperty Name="rename" ColumnName="rename" />
+                <ScalarProperty Name="isindextop" ColumnName="isindextop" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="blog_articledetail">
+            <EntityTypeMapping TypeName="YqblogModel.blog_articledetail">
+              <MappingFragment StoreEntitySet="blog_articledetail">
+                <ScalarProperty Name="articleid" ColumnName="articleid" />
+                <ScalarProperty Name="seotitle" ColumnName="seotitle" />
+                <ScalarProperty Name="seodescription" ColumnName="seodescription" />
+                <ScalarProperty Name="seokeywords" ColumnName="seokeywords" />
+                <ScalarProperty Name="seometas" ColumnName="seometas" />
+                <ScalarProperty Name="tags" ColumnName="tags" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="blog_roles">
+            <EntityTypeMapping TypeName="YqblogModel.blog_roles">
+              <MappingFragment StoreEntitySet="blog_roles">
+                <ScalarProperty Name="roleid" ColumnName="roleid" />
+                <ScalarProperty Name="rolename" ColumnName="rolename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="blog_userprofile">
+            <EntityTypeMapping TypeName="YqblogModel.blog_userprofile">
+              <MappingFragment StoreEntitySet="blog_userprofile">
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+                <ScalarProperty Name="signature" ColumnName="signature" />
+                <ScalarProperty Name="intro" ColumnName="intro" />
+                <ScalarProperty Name="birth" ColumnName="birth" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="qq" ColumnName="qq" />
+                <ScalarProperty Name="sina" ColumnName="sina" />
+                <ScalarProperty Name="facebook" ColumnName="facebook" />
+                <ScalarProperty Name="twitter" ColumnName="twitter" />
+                <ScalarProperty Name="medals" ColumnName="medals" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="isSendEmail" ColumnName="isSendEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="blog_users">
+            <EntityTypeMapping TypeName="YqblogModel.blog_users">
+              <MappingFragment StoreEntitySet="blog_users">
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="roleid" ColumnName="roleid" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="userpwd" ColumnName="userpwd" />
+                <ScalarProperty Name="userstate" ColumnName="userstate" />
+                <ScalarProperty Name="usercreatedate" ColumnName="usercreatedate" />
+                <ScalarProperty Name="lastlogindate" ColumnName="lastlogindate" />
+                <ScalarProperty Name="lastactivitydate" ColumnName="lastactivitydate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="blog_varticle">
+            <EntityTypeMapping TypeName="YqblogModel.blog_varticle">
+              <MappingFragment StoreEntitySet="blog_varticle">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="typeid" ColumnName="typeid" />
+                <ScalarProperty Name="cateid" ColumnName="cateid" />
+                <ScalarProperty Name="catepath" ColumnName="catepath" />
+                <ScalarProperty Name="articleid" ColumnName="articleid" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="layer" ColumnName="layer" />
+                <ScalarProperty Name="subcount" ColumnName="subcount" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="viewcount" ColumnName="viewcount" />
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="replypermit" ColumnName="replypermit" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="favor" ColumnName="favor" />
+                <ScalarProperty Name="against" ColumnName="against" />
+                <ScalarProperty Name="iscommend" ColumnName="iscommend" />
+                <ScalarProperty Name="istop" ColumnName="istop" />
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="lastreplydate" ColumnName="lastreplydate" />
+                <ScalarProperty Name="lastreplyuser" ColumnName="lastreplyuser" />
+                <ScalarProperty Name="lang" ColumnName="lang" />
+                <ScalarProperty Name="articletypeid" ColumnName="articletypeid" />
+                <ScalarProperty Name="rename" ColumnName="rename" />
+                <ScalarProperty Name="isindextop" ColumnName="isindextop" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="seotitle" ColumnName="seotitle" />
+                <ScalarProperty Name="seodescription" ColumnName="seodescription" />
+                <ScalarProperty Name="seokeywords" ColumnName="seokeywords" />
+                <ScalarProperty Name="seometas" ColumnName="seometas" />
+                <ScalarProperty Name="tags" ColumnName="tags" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="YqblogModel.blog_varticle">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="YqblogModel.Store.blog_createarticle">
+                  <ScalarProperty Name="articletypeid" ParameterName="articletypeid" />
+                  <ScalarProperty Name="lang" ParameterName="lang" />
+                  <ScalarProperty Name="createdate" ParameterName="createdate" />
+                  <ScalarProperty Name="isindextop" ParameterName="isindextop" />
+                  <ScalarProperty Name="istop" ParameterName="istop" />
+                  <ScalarProperty Name="iscommend" ParameterName="iscommend" />
+                  <ScalarProperty Name="tags" ParameterName="tags" />
+                  <ScalarProperty Name="rename" ParameterName="rename" />
+                  <ScalarProperty Name="seometas" ParameterName="seometas" />
+                  <ScalarProperty Name="seokeywords" ParameterName="seokeywords" />
+                  <ScalarProperty Name="seodescription" ParameterName="seodescription" />
+                  <ScalarProperty Name="seotitle" ParameterName="seotitle" />
+                  <ScalarProperty Name="ip" ParameterName="ip" />
+                  <ScalarProperty Name="status" ParameterName="status" />
+                  <ScalarProperty Name="replypermit" ParameterName="replypermit" />
+                  <ScalarProperty Name="content" ParameterName="content" />
+                  <ScalarProperty Name="summary" ParameterName="summary" />
+                  <ScalarProperty Name="title" ParameterName="title" />
+                  <ScalarProperty Name="username" ParameterName="username" />
+                  <ScalarProperty Name="userid" ParameterName="userid" />
+                  <ScalarProperty Name="layer" ParameterName="layer" />
+                  <ScalarProperty Name="parentid" ParameterName="parentid" />
+                  <ScalarProperty Name="articleid" ParameterName="articleid" />
+                  <ScalarProperty Name="catepath" ParameterName="catepath" />
+                  <ScalarProperty Name="cateid" ParameterName="cateid" />
+                  <ScalarProperty Name="typeid" ParameterName="typeid" />
+                  <ResultBinding Name="id" ColumnName="articleid" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="YqblogModel.Store.blog_updatearticle">
+                  <ScalarProperty Name="id" ParameterName="aid" Version="Current" />
+                  <ScalarProperty Name="layer" ParameterName="layer" Version="Current" />
+                  <ScalarProperty Name="articletypeid" ParameterName="articletypeid" Version="Current" />
+                  <ScalarProperty Name="isindextop" ParameterName="isindextop" Version="Current" />
+                  <ScalarProperty Name="istop" ParameterName="istop" Version="Current" />
+                  <ScalarProperty Name="iscommend" ParameterName="iscommend" Version="Current" />
+                  <ScalarProperty Name="tags" ParameterName="tags" Version="Current" />
+                  <ScalarProperty Name="rename" ParameterName="rename" Version="Current" />
+                  <ScalarProperty Name="seometas" ParameterName="seometas" Version="Current" />
+                  <ScalarProperty Name="seokeywords" ParameterName="seokeywords" Version="Current" />
+                  <ScalarProperty Name="seodescription" ParameterName="seodescription" Version="Current" />
+                  <ScalarProperty Name="seotitle" ParameterName="seotitle" Version="Current" />
+                  <ScalarProperty Name="status" ParameterName="status" Version="Current" />
+                  <ScalarProperty Name="replypermit" ParameterName="replypermit" Version="Current" />
+                  <ScalarProperty Name="content" ParameterName="content" Version="Current" />
+                  <ScalarProperty Name="summary" ParameterName="summary" Version="Current" />
+                  <ScalarProperty Name="title" ParameterName="title" Version="Current" />
+                  <ScalarProperty Name="parentid" ParameterName="parentid" Version="Current" />
+                  <ScalarProperty Name="catepath" ParameterName="catepath" Version="Current" />
+                  <ScalarProperty Name="cateid" ParameterName="cateid" Version="Current" />
+                  <ScalarProperty Name="typeid" ParameterName="typeid" Version="Current" />
+                </UpdateFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="blog_vuser">
+            <EntityTypeMapping TypeName="YqblogModel.blog_vuser">
+              <MappingFragment StoreEntitySet="blog_vuser">
+                <ScalarProperty Name="isSendEmail" ColumnName="isSendEmail" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="medals" ColumnName="medals" />
+                <ScalarProperty Name="twitter" ColumnName="twitter" />
+                <ScalarProperty Name="facebook" ColumnName="facebook" />
+                <ScalarProperty Name="sina" ColumnName="sina" />
+                <ScalarProperty Name="qq" ColumnName="qq" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="birth" ColumnName="birth" />
+                <ScalarProperty Name="intro" ColumnName="intro" />
+                <ScalarProperty Name="signature" ColumnName="signature" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="lastactivitydate" ColumnName="lastactivitydate" />
+                <ScalarProperty Name="lastlogindate" ColumnName="lastlogindate" />
+                <ScalarProperty Name="usercreatedate" ColumnName="usercreatedate" />
+                <ScalarProperty Name="userstate" ColumnName="userstate" />
+                <ScalarProperty Name="userpwd" ColumnName="userpwd" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="roleid" ColumnName="roleid" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fun_articledel" FunctionName="YqblogModel.Store.blog_deletearticle" />
+          <FunctionImportMapping FunctionImportName="fun_logicArticleDel" FunctionName="YqblogModel.Store.blog_logicDeleteArticle" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Yqblog">
+        <EntityTypeShape EntityType="YqblogModel.blog_article" Width="1.5" PointX="0.75" PointY="7.125" Height="6.787822265625" IsExpanded="true" />
+        <EntityTypeShape EntityType="YqblogModel.blog_articledetail" Width="1.5" PointX="3" PointY="9.375" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="YqblogModel.blog_roles" Width="1.5" PointX="0.75" PointY="2.375" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="YqblogModel.blog_userprofile" Width="1.5" PointX="5.25" PointY="1" Height="4.2879036458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="YqblogModel.blog_users" Width="1.5" PointX="3" PointY="1.75" Height="2.9417936197916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="YqblogModel.blog_varticle" Width="1.5" PointX="5.75" PointY="6.75" Height="7.7493294270833317" IsExpanded="true" />
+        <AssociationConnector Association="YqblogModel.FK__blog_artic__artic__37A5467C" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="10.557444661458334" />
+          <ConnectorPoint PointX="3" PointY="10.557444661458334" />
+        </AssociationConnector>
+        <AssociationConnector Association="YqblogModel.FK__blog_user__rolei__37A5467C" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="3.172841796875" />
+          <ConnectorPoint PointX="3" PointY="3.172841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="YqblogModel.FK__blog_user__useri__38996AB5" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="3.2208968098958328" />
+          <ConnectorPoint PointX="5.25" PointY="3.2208968098958328" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="YqblogModel.blog_vuser" Width="1.5" PointX="8.375" PointY="0.75" Height="5.4417122395833317" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

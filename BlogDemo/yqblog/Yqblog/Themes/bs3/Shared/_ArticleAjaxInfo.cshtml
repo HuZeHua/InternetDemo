@@ -1,0 +1,18 @@
+﻿@model Yqblog.ViewModels.ArticleAjaxInfoViewModel
+@{
+    Html.RenderPartial("_CommentList", Model.CommentsInfo);
+}
+<script type="text/javascript">
+    $(function () {
+        var viewCount = parseInt('@Model.ViewCount');
+        $('.article_viewcount').html(viewCount+" "+JudgeSingularOrPlural(viewCount, lang.View, lang.Views));
+        var commentCount = @(Model.CommentCount);
+        if(commentCount > 0)
+        {
+            $('.article_commentcount').html("<span class=\"ui-icon ui-icon-comment\"></span> <a href=\"#commentA\">"+commentCount+" "+lang.Tiao+JudgeSingularOrPlural(commentCount, lang.Comment, lang.Comments)+"</a>");
+        }
+        $('.articlevote .vote_favor_value').text('@Model.FavorCount');
+        $('.articlevote .vote_against_value').text('@Model.AgainstCount');
+        $('.article_link').html('<ul><li>« @Model.PreviousLink</li><li>» @Model.NextLink</li></ul>');
+    });
+</script>

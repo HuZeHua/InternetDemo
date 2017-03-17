@@ -1,0 +1,77 @@
+﻿@model Yqblog.Models.CommentModel
+@using Yqblog.General
+@using lang = Resource.Web;
+@{
+    var webConfigInfo = ViewBag.CI as GeneralConfigInfo;
+}
+@if ((webConfigInfo != null && !webConfigInfo.UserPermission) || ((Session["user"] as Yqblog.Data.blog_users) != null))
+{
+    <form name="CommentForm" id="CommentForm" action="">
+        <div class="tabbable innerContent">
+            <input type="hidden" value="@Model.CommentId" id="CommentId" name="CommentId"/>
+            <input type="hidden" value="@Model.ParentId" id="ParentId" name="ParentId"/>
+            <input type="hidden" value="@Model.CommentArticleId" id="CommentArticleId" name="CommentArticleId"/>
+            <input type="hidden" value="@Model.DataType" id="DataType" name="DataType"/>
+            <input type="hidden" value="@Model.UserId" id="UserId" name="UserId"/>
+            <div class="form-remark"></div>
+            @if (Model.UserId == 0)
+            {
+                <div class="control-group">
+                    <label for="UserName" class="control-label"><span>@lang.Username</span></label>
+                    <div class="controls">
+                        <input type="text" value="@Model.UserName" name="UserName" id="UserName" class="input-medium"/>
+                        <span class="form_tip"></span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="Email" class="control-label"><span>@lang.Email</span></label>
+                    <div class="controls">
+                        <input type="text" value="" name="Email" id="Email" class="input-medium"/>
+                        <span class="form_tip"></span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="Url" class="control-label"><span>@lang.Url</span></label>
+                    <div class="controls">
+                        <input type="text" value="" name="Url" id="Url" class="input-xlarge"/>
+                        <span class="form_tip"></span>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="control-group">
+                    <label class="control-label"><span>@lang.Username:</span>@Model.UserName</label>
+                </div>
+                <input type="hidden" value="@Model.UserName" id="UserName" name="UserName"/>
+            }
+            <div class="control-group">
+                <label for="Content" class="control-label"><span>@lang.Content</span></label>
+                <div class="controls">
+                    <textarea rows="6" name="Content" id="Content"></textarea>
+                    <span class="form_tip viewline"></span>
+                </div>
+            </div>
+            @if (webConfigInfo != null && webConfigInfo.IfValidateCode)
+            {
+                <div class="control-group">
+                    <label for="ValidationCode" class="control-label"><span>@lang.ValidationCode</span></label>
+                    <div class="controls clearfix">
+                        <input type="text" value="" name="ValidationCode" id="ValidationCode" class="input-small fl"/>
+                        <img src="@Url.Content("~/validateCode.ashx?n=4")" class="validateImg fl" title="@lang.ChangeValidationCode" alt=""/>
+                        <div class="form_tip validateCodeTip fl">@lang.ValidationCodeError</div>
+                    </div>
+                </div>
+            }
+            <div class="form-actions loadingwrap">
+                <a type="submit" class="btn btn-primary" id="BtnCommentSubmit">@lang.Submit</a> 
+                <a class="btn-reply-cancel hide">@lang.Cancel</a>
+                <a class="btn-edit-cancel hide">@lang.Cancel</a>
+            </div>
+        </div>
+    </form>
+}
+else
+{
+    <div id="mustLoginTip">@lang.MustLogIn, @lang.Please @Html.ActionLink(lang.Login, "LogOn", "Account") @lang.Or @Html.ActionLink(lang.Register, "Register", "Account")</div>
+}

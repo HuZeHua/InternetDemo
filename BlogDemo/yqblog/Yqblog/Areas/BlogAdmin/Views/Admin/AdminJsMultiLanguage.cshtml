@@ -1,0 +1,31 @@
+﻿@using res = Resource.Admin.Admin;
+@{
+    ViewBag.Title = res.JsLangGenerate;
+}
+<h1 class="page-title">
+   @res.JsLangGenerate
+</h1>
+<div class="row">			
+    <div class="span9">
+        <div class="widget">			
+            <div class="widget-header">
+                <h3>
+                    @res.JsLangGenerate
+                </h3>
+            </div>					
+            <div class="widget-content">
+		        <p id="jsLangGenerateResult">@res.Generating</p>
+            </div> 		
+        </div>
+    </div>		
+</div>
+@section Js{
+    <script type="text/javascript">
+        $(function () {
+            $.post('@Url.Action("AdminGenerateJsMultiLanguage", "Admin")', { rn: Math.random() }, function () {
+                $("#jsLangGenerateResult").html("@(res.GenerateSuccess)");
+            });
+        });
+    </script> 
+}
+

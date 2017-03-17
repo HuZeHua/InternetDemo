@@ -1,0 +1,76 @@
+﻿@model IEnumerable<UserInfoModel>
+@using Yqblog.Models
+@using res = Resource.Admin.Admin;
+@{
+    ViewBag.NavSelectedItem = "managerlist";
+}
+<h1 class="page-title">
+    @res.Administrators		
+</h1>
+<div class="widget">
+    <div class="widget-header">
+        <h3>@res.Administratorslist</h3>
+    </div>									
+    <div class="widget-content">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>ID</th>
+                    <th>@res.Operating</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (Model.Any())
+                {
+                    foreach (UserInfoModel item in Model)
+                    {
+                        <tr id="@(item.UserId)">
+                            <td>
+                            </td>
+                            <td><a href="@Html.YqUrl("/u/" + item.UserName + "")" target="_blank">@item.UserName</a></td>
+                            <td>
+                                @if (item.UserName.ToLower() != "admin")
+                                {
+                                    <a href="javascript:"  class="btn btn-success" onclick=" RemoveAdminRole('@item.UserName', @item.UserId) ">@res.Removetheadministrator</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div> 	
+</div>
+<div id="ModalCancelAdmin">
+    @{Html.RenderPartial("_ModalPopUp");}
+</div>
+<input type="hidden" id="deleteuserid" name="deleteuserid" value=""/>
+<input type="hidden" id="deleteuser" name="deleteuser" value=""/>
+@section Js{
+    <script type="text/javascript">
+        
+        $(function () {
+            $('#ModalCancelAdmin .modal-yes').click(function () {
+                $('#ModalCancelAdmin .modal').modal('hide');
+                DoRemoveAdminRole($('#deleteuser').val(), $('#deleteuserid').val());
+            });
+        });
+
+
+        RemoveAdminRole = function (user, userid) {
+            $('#deleteuserid').val(userid);
+            $('#deleteuser').val(user);
+            ModalView("ModalCancelAdmin", "@(res.CancelManagement)", "@(res.Confirm)");
+        };
+        
+        DoRemoveAdminRole = function(user, userid) {
+            $.post('@Url.Action("AdminRemoveUserFromRole", "Admin")', { user: user }, function () {
+                $('#' + userid).fadeOut('fast', function () {
+                    $(this).hide();
+                });
+            });
+        };
+    </script>
+}

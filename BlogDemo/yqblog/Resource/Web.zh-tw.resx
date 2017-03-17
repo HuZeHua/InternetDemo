@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>登錄</value>
+  </data>
+  <data name="LogOn_AccountInfo" xml:space="preserve">
+    <value>賬號信息</value>
+  </data>
+  <data name="LogOn_Tip" xml:space="preserve">
+    <value>請輸入您的用戶名及密碼，如果你還沒有賬號，請</value>
+  </data>
+  <data name="LogOn_RememberMe" xml:space="preserve">
+    <value>記住我?</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密碼</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>註冊</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>用戶名</value>
+  </data>
+  <data name="LogOn_UsernameOrPwdError" xml:space="preserve">
+    <value>用戶名或密碼錯誤</value>
+  </data>
+  <data name="SysError" xml:space="preserve">
+    <value>系統錯誤</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>管理</value>
+  </data>
+  <data name="Register_UsernameExists" xml:space="preserve">
+    <value>用戶名已存在, 請輸入不同的用戶名</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>確認密碼</value>
+  </data>
+  <data name="Register_CreateNewAccount" xml:space="preserve">
+    <value>創建新賬號</value>
+  </data>
+  <data name="Register_Tip" xml:space="preserve">
+    <value>使用下面的表單創建賬號,密碼不能少於6個字符</value>
+  </data>
+  <data name="Archive" xml:space="preserve">
+    <value>歸檔</value>
+  </data>
+  <data name="CommentReplyEmail" xml:space="preserve">
+    <value>評論回复提醒郵件</value>
+  </data>
+  <data name="LatestComments" xml:space="preserve">
+    <value>最新評論</value>
+  </data>
+  <data name="NoteReplyEmail" xml:space="preserve">
+    <value>留言回复提醒郵件</value>
+  </data>
+  <data name="SearchKey" xml:space="preserve">
+    <value>搜索關鍵字</value>
+  </data>
+  <data name="Tag" xml:space="preserve">
+    <value>標籤</value>
+  </data>
+  <data name="Vote_Tip_Success" xml:space="preserve">
+    <value>投票成功</value>
+  </data>
+  <data name="Vote_Tip_Voted" xml:space="preserve">
+    <value>你已經投過票</value>
+  </data>
+  <data name="AddComment" xml:space="preserve">
+    <value>發表評論</value>
+  </data>
+  <data name="AddNote" xml:space="preserve">
+    <value>發表留言</value>
+  </data>
+  <data name="AlbumComments" xml:space="preserve">
+    <value>相冊評論</value>
+  </data>
+  <data name="Albums" xml:space="preserve">
+    <value>相冊</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="ArticleComments" xml:space="preserve">
+    <value>文章評論</value>
+  </data>
+  <data name="Articles" xml:space="preserve">
+    <value>文章</value>
+  </data>
+  <data name="BasicInformation" xml:space="preserve">
+    <value>基礎信息</value>
+  </data>
+  <data name="Birth" xml:space="preserve">
+    <value>生日</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>by</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>修改密碼</value>
+  </data>
+  <data name="Commend" xml:space="preserve">
+    <value>推薦</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>評論</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>評論</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>內容</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>刪除</value>
+  </data>
+  <data name="DeleteComment" xml:space="preserve">
+    <value>刪除評論</value>
+  </data>
+  <data name="DeleteNote" xml:space="preserve">
+    <value>刪除留言</value>
+  </data>
+  <data name="DeleteTip_AreUSureDelete" xml:space="preserve">
+    <value>確定刪除選中項?</value>
+  </data>
+  <data name="Donotsend" xml:space="preserve">
+    <value>不發送</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>編輯</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>郵箱</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>錯誤</value>
+  </data>
+  <data name="Facebook" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>性別</value>
+  </data>
+  <data name="HomePage" xml:space="preserve">
+    <value>首頁</value>
+  </data>
+  <data name="In" xml:space="preserve">
+    <value>in</value>
+  </data>
+  <data name="Intro" xml:space="preserve">
+    <value>簡介</value>
+  </data>
+  <data name="IsSendEmail" xml:space="preserve">
+    <value>發送回复提醒郵件</value>
+  </data>
+  <data name="Lang" xml:space="preserve">
+    <value>zh-tw</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>位置</value>
+  </data>
+  <data name="ModifyInformation" xml:space="preserve">
+    <value>修改信息</value>
+  </data>
+  <data name="ModifyUserInfo" xml:space="preserve">
+    <value>修改用戶信息</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>月</value>
+  </data>
+  <data name="MustLogIn" xml:space="preserve">
+    <value>必須登錄</value>
+  </data>
+  <data name="MyComments" xml:space="preserve">
+    <value>我的評論</value>
+  </data>
+  <data name="MyMessages" xml:space="preserve">
+    <value>我的留言</value>
+  </data>
+  <data name="NavHome" xml:space="preserve">
+    <value>首頁</value>
+  </data>
+  <data name="NewComments" xml:space="preserve">
+    <value>最新評論</value>
+  </data>
+  <data name="NickName" xml:space="preserve">
+    <value>暱稱</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>沒有數據</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>留言</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>on</value>
+  </data>
+  <data name="Or" xml:space="preserve">
+    <value>或者</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>電話</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>圖片</value>
+  </data>
+  <data name="Please" xml:space="preserve">
+    <value>請</value>
+  </data>
+  <data name="PostedOn" xml:space="preserve">
+    <value>發表於</value>
+  </data>
+  <data name="Qq" xml:space="preserve">
+    <value>QQ</value>
+  </data>
+  <data name="Re" xml:space="preserve">
+    <value>Re</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>回复</value>
+  </data>
+  <data name="Rss" xml:space="preserve">
+    <value>文章</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>發送</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>統計</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="Tip_ThisFloorBeenDeleted" xml:space="preserve">
+    <value>該樓已經被刪除</value>
+  </data>
+  <data name="TopComments" xml:space="preserve">
+    <value>評論最多</value>
+  </data>
+  <data name="TopView" xml:space="preserve">
+    <value>瀏覽最多</value>
+  </data>
+  <data name="Twitter" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="UploadAvatar" xml:space="preserve">
+    <value>上傳頭像</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>個人主頁</value>
+  </data>
+  <data name="UserCenter" xml:space="preserve">
+    <value>用戶中心</value>
+  </data>
+  <data name="UserInfo" xml:space="preserve">
+    <value>用戶信息</value>
+  </data>
+  <data name="ValidationCode" xml:space="preserve">
+    <value>驗證碼</value>
+  </data>
+  <data name="ValidationCodeError" xml:space="preserve">
+    <value>驗證碼輸入錯誤</value>
+  </data>
+  <data name="ViewDetails" xml:space="preserve">
+    <value>查看詳情</value>
+  </data>
+  <data name="Vote_Down" xml:space="preserve">
+    <value>踩</value>
+  </data>
+  <data name="Vote_Up" xml:space="preserve">
+    <value>頂</value>
+  </data>
+  <data name="Website" xml:space="preserve">
+    <value>主頁</value>
+  </data>
+  <data name="Weibo" xml:space="preserve">
+    <value>微薄</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>年</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>新密碼</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>舊密碼</value>
+  </data>
+  <data name="Tip_ChangePasswordSuccess" xml:space="preserve">
+    <value>密碼修改成功</value>
+  </data>
+  <data name="ChangeValidationCode" xml:space="preserve">
+    <value>更新驗證碼</value>
+  </data>
+  <data name="Top" xml:space="preserve">
+    <value>置顶</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>留言</value>
+  </data>
+  <data name="Tiao" xml:space="preserve">
+    <value>条</value>
+  </data>
+  <data name="NoMore" xml:space="preserve">
+    <value>沒有了</value>
+  </data>
+  <data name="OldPasswordWrong" xml:space="preserve">
+    <value>舊密碼錯誤</value>
+  </data>
+  <data name="OnePhoto" xml:space="preserve">
+    <value>張</value>
+  </data>
+  <data name="SeveralPhotos" xml:space="preserve">
+    <value>張</value>
+  </data>
+  <data name="AlbumView" xml:space="preserve">
+    <value>相册查看</value>
+  </data>
+  <data name="ListView" xml:space="preserve">
+    <value>列表查看</value>
+  </data>
+  <data name="RestoreDefault" xml:space="preserve">
+    <value>重置為默認</value>
+  </data>
+  <data name="ThemeSetting" xml:space="preserve">
+    <value>模板設置</value>
+  </data>
+</root>

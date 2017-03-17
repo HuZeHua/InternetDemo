@@ -1,0 +1,118 @@
+﻿@model IEnumerable<UserInfoModel>
+@using Yqblog.Models
+@using res = Resource.Admin.Admin;
+@{
+    ViewBag.NavSelectedItem = "userlist";
+}
+<h1 class="page-title">
+    @res.Users		
+</h1>
+<div class="widget">
+    <div class="widget-header">
+        <h3>@res.Userlist</h3>
+    </div>									
+    <div class="widget-content">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>@res.UserName</th>
+                    <th style="min-width: 90px;">@res.RegistrationDate</th>
+                    <th style="min-width: 90px;">@res.LastloginDate</th>
+                    <th style="min-width: 250px;">@res.Operating</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr id="@item.UserId">
+                            <td>
+                            </td>
+                            <td><a href="@Html.YqUrl("/u/" + item.UserName + "")" target="_blank">@item.UserName</a></td>
+                            <td>
+                                @item.CreateDate.ToString("yyyy-MM-dd")
+                            </td>
+                            <td>@item.LastLoginDate.ToString("yyyy-MM-dd")</td>
+                            <td>
+                                @if (item.UserName.ToLower() != "admin")
+                                {
+                                    if (item.RoleId != 2)
+                                    {<a href="javascript:" class="btn btn-success" onclick=" SetAdminRole('@item.UserName', @item.UserId) ">@res.Settoadministrator</a>}
+                                    <a href="javascript:" class="btn btn-danger" onclick=" Del('@item.UserName', @item.UserId) ">@res.Delete</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody></table>
+
+        <div class="pager"></div>
+    </div> 	
+</div>
+
+<div id="ModalDeleteUser">
+    @{Html.RenderPartial("_ModalPopUp");}
+</div>
+<div id="ModalSetAdmin">
+    @{Html.RenderPartial("_ModalPopUp");}
+</div>
+<input type="hidden" id="deleteuserid" name="deleteuserid" value=""/>
+<input type="hidden" id="deleteuser" name="deleteuser" value=""/>
+@section Js{
+    <script src="@Url.Content("~/Scripts/jquery.pager.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        var pageNo = @ViewBag.PageNo;
+        var pageCount = @ViewBag.PageCount;
+
+         $(function() {
+            if (pageCount == 0) {
+                $(".pager").hide();
+            }
+            $(".pager").pager({ pagenumber: pageNo, pagecount: pageCount, buttonClickCallback: PageClick });
+            
+            $('#ModalDeleteUser .modal-yes').click(function() {
+                $('#ModalDeleteUser .modal').modal('hide');
+                DoDel($('#deleteuser').val(),$('#deleteuserid').val());
+            });
+            
+            $('#ModalSetAdmin .modal-yes').click(function() {
+                $('#ModalSetAdmin .modal').modal('hide');
+                DoSetAdminRole($('#deleteuser').val());
+            });
+        });
+
+        PageClick = function(no) {
+            window.location = "?pageNo=" + no;
+        };
+
+        Del = function(user, userid) {
+            $('#deleteuserid').val(userid);
+            $('#deleteuser').val(user);
+            ModalView("ModalDeleteUser", "@(res.DeleteUser)", "@(res.DeleteSelected_Tip)");
+        };
+
+        DoDel = function(user, userid) {
+                $.post('@Url.Action("AdminDelUser", "Admin")', { user: user }, function(data) {
+                    $('#' + userid).fadeOut('fast', function() {
+                        $(this).remove();
+                    });
+                });
+        };
+
+        SetAdminRole = function(user, userid) {
+            
+            $('#deleteuserid').val(userid);
+            $('#deleteuser').val(user);
+            ModalView("ModalSetAdmin", "@(res.SetAsAdmin)", "@(res.Confirm)");
+        };
+        
+
+        DoSetAdminRole = function(user) {
+                $.post('@Url.Action("AdminAddUserToRole", "Admin")', { user: user }, function() {
+                    window.location = "@Url.Action("AdminManagerList", "Admin")";
+                });
+        };
+    </script>
+}

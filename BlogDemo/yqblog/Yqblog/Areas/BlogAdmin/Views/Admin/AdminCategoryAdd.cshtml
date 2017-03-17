@@ -1,0 +1,203 @@
+﻿@model Yqblog.Models.CategoryModel
+@using res = Resource.Admin.Admin;
+@{
+    ViewBag.NavSelectedItem = "categorysort";
+    dynamic tid = ViewBag.Tid;
+    dynamic viatype = Convert.ToInt32(tid) > 0;
+    string siglelab = ViewBag.TypeId == 2 ? " singlestyle" : "";
+}
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script> 
+<h1 class="page-title">
+    @res.AddCategory		
+</h1>
+<div class="row">			
+    <div class="span9">
+        <div class="widget">			
+            <div class="widget-header">
+                <h3>
+                    @if (ViewBag.CateId == 0)
+                    {
+                        @res.AddCategory
+                    }
+                    else
+                    {
+                        string t = res.Add + " \"" + ViewBag.CateName + "\" " + res.Subcategories;
+                        @t
+                    }
+                </h3>
+            </div>					
+            <div class="widget-content">
+                <div id="AjaxResult" class="tabbable innerContent@(siglelab)">
+                    @using (Ajax.BeginForm("AdminCategoryAdd", "Admin", FormMethod.Post, new AjaxOptions {LoadingElementId = "Loading", InsertionMode = InsertionMode.InsertBefore, OnSuccess = "ProcessSuccess"}, new {id = "categoryform", name = "categoryform", @class = "form-horizontal"}))
+                    {
+                        <div class="control-group">
+                            @Html.LabelFor(m => m.CateName, new {@class = "control-label"})
+                            <div class="controls">
+                                @Html.TextBoxFor(m => m.CateName, new {@class = "input-medium"})
+                                @Html.ValidationMessageFor(m => m.CateName)
+                            </div>
+                        </div>
+
+                        if (ViewBag.CateId == 0)
+                        {
+                            <div class="control-group">
+                                @Html.LabelFor(m => m.ParentId, new {@class = "control-label"})
+                                <div class="controls">
+                                    @Html.DropDownList("ParentId")
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <input type="hidden" value="@Model.ParentId" name="ParentId" id="ParentId"/>
+                        }
+                        if (ViewBag.CateId == 0 || viatype)
+                        {
+                            <div class="control-group">
+                                @Html.LabelFor(m => m.Type, new { @class = "control-label" })
+                                <div class="controls">
+                                    @if (viatype)
+                                    {
+                                        <select disabled=disabled><option value="">@ViewBag.TypeName</option>
+                                        </select>
+                                        <input type="hidden" value="@ViewBag.TypeId" name="Type" id="Type"/>
+                                    }
+                                    else
+                                    {
+                                        @Html.DropDownList("Type")
+                                    }
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="control-group">
+                                @Html.LabelFor(m => m.Type, new { @class = "control-label" })
+                                <div class="controls">
+                                    <select disabled=disabled><option value="">@ViewBag.TypeName</option>
+                                    </select>
+                                    <input type="hidden" value="@ViewBag.TypeId" name="Type" id="Type"/>
+                                </div>
+                            </div>
+                        }
+                        <div class="control-group replypermit displayInline">
+                            @Html.LabelFor(m => m.ReplyPermit, new { @class = "control-label" })
+                            <div class="controls">
+                                <label class="radio">
+                                    <input type="radio" value="1" name="ReplyPermit" id="ReplyPermit_y" checked="checked" />
+                                    @res.Yes</label>
+                                <label class="radio">
+                                    <input type="radio" value="0" name="ReplyPermit" id="ReplyPermit_n" />
+                                    @res.No</label>
+                            </div>
+                        </div>
+                        <div class="control-group displayInline">
+                            @Html.LabelFor(m => m.IsNav, new { @class = "control-label" })
+                            <div class="controls">
+                                <label class="radio">
+                                    <input type="radio" value="true" name="IsNav" id="IsNav_y" checked="checked" />
+                                    @res.Yes</label>
+                                <label class="radio">
+                                    <input type="radio" value="false" name="IsNav" id="IsNav_n" />
+                                    @res.No</label>
+                            </div>
+                        </div>
+                        <div class="control-group isInHomePage displayInline">
+                            @Html.LabelFor(m => m.IsIndex, new { @class = "control-label" })
+                            <div class="controls">
+                                <div id="help_categoryIsIndex" class="pull-right btn_help">?</div>
+                                <label class="radio">
+                                    <input type="radio" value="true" name="IsIndex" id="IsIndex_y"  autocomplete="off"/>
+                                    @res.Yes</label>
+                                <label class="radio">
+                                    <input type="radio" value="false" name="IsIndex" id="IsIndex_n" checked="checked" autocomplete="off"/>
+                                    @res.No</label>
+                            </div>
+                        </div>
+                        <div class="categoryIsIndexDetail hide">
+                        <div class="control-group listNum isInHomePage">
+                            <label class="control-label"><span></span></label>
+                            <div class="controls">
+                                @Html.LabelFor(m => m.ListNum)
+                                @Html.TextBoxFor(m => m.ListNum, new { @class = "input-mini" })
+                                @Html.ValidationMessageFor(m => m.ListNum)
+                            </div>
+                        </div>
+                            <div class="control-group isInHomePage">
+                                <label class="control-label"><span></span></label>
+                                <div class="controls">
+                                    @Html.LabelFor(m => m.HomePageKey)
+                                    @Html.TextBoxFor(m => m.HomePageKey, new { @class = "input-medium" })
+                                    <br>
+                                    @Html.ValidationMessageFor(m => m.HomePageKey)
+                                </div>
+                            </div>
+</div>
+                        <div class="control-group">
+                            @Html.LabelFor(m => m.ReName, new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.TextBoxFor(m => m.ReName, new { @class = "input-medium" })
+                                @Html.ValidationMessageFor(m => m.ReName)
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            @Html.LabelFor(m => m.CustomView, new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.TextBoxFor(m => m.CustomView, new { @class = "input-medium" })
+                                @Html.ValidationMessageFor(m => m.CustomView)
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            @Html.LabelFor(m => m.Description, new { @class = "control-label" })
+                            <div class="controls">
+                                @Html.TextAreaFor(model => model.Description)
+                                @Html.ValidationMessageFor(m => m.Description)
+                            </div>
+                        </div>
+                        <div class="control-group displayInline">
+                            @Html.LabelFor(m => m.Status, new { @class = "control-label" })
+                            <div class="controls">
+                                <label class="radio">
+                                    <input type="radio" value="1" name="Status" id="Status_y" checked="checked" />
+                                    @res.Normal</label>
+                                <label class="radio">
+                                    <input type="radio" value="2" name="Status" id="Status_n" />
+                                    @res.Close</label>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button id="BtnSubmit"  class="btn btn-primary" type="submit">@res.Submit</button> 
+                            <a class="btn btn_cancel">@res.Cancel</a>
+                            <span id="Loading" class="hide"> @res.Loading</span>
+                        </div>
+                    }
+                </div>          		
+            </div> 		
+        </div>
+    </div>		
+</div>
+
+@section Js{
+    <script type="text/javascript">
+        var typeid = @tid;
+        function ProcessSuccess(re) {
+            if (typeid > 0) {
+                Go(re);
+            } else {
+                Go("@Url.Action("AdminCategorySort", "Admin")");
+            }
+        }
+
+        $(function() {
+            $('input[name=IsIndex]').on("click",function() {
+                if ($(this).val()=='true') {
+                    $('.categoryIsIndexDetail').show();
+                } else {
+                    $('.categoryIsIndexDetail').hide();
+                }
+            });
+        });
+    </script> 
+}

@@ -1,0 +1,33 @@
+﻿@using Yqblog.Models
+@using lang = Resource.Web;  
+@model Yqblog.ViewModels.NoteListViewModel
+@{
+    var notePagerList = ((IQueryable<FloorArticleModel>)Model.NotePagerInfo.Entity).ToList();
+    if (notePagerList.Any())
+    {
+        <h4>@Model.NotePagerInfo.Amount @lang.Tiao@Html.JudgeSingularOrPlural(Model.NotePagerInfo.Amount, lang.Note, lang.Notes)</h4>
+        <div class="pagerwrap loadingwrap">
+        </div>
+        <ul class="datalist">
+            @foreach (var item in notePagerList)
+            {
+                <li>
+                    <a name="item@(item.orderid)"></a>
+                    @{ Html.RenderPartial("_FloorContent", item.FloorArticles); }
+                </li>
+            }
+        </ul>
+        <div class="pagerwrap loadingwrap"></div>
+    }
+}
+
+<script type="text/javascript">
+    $(function() {
+        $(".pagerwrap").pager({ pagenumber: @(Model.NotePagerInfo.PageNo), pagecount: @(Model.NotePagerInfo.PageCount), buttonClickCallback: PageClick });
+        $(".pagerwrap").find("ul").addClass("pagination");
+    });
+
+    function PageClick(no,tar) {
+        GetNotes(no,tar);
+    }
+</script>

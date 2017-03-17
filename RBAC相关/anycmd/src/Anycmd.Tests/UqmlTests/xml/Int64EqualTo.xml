@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QuerySpecification>
+  <Expression Name="Int64Field" Type="Int64" Operator="EqualTo" Value="31"/>
+</QuerySpecification>
+

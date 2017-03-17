@@ -1,0 +1,55 @@
+﻿@using Yqblog.General
+@using lang = Resource.Web;
+@{
+    var webConfigInfo = ViewBag.CI as GeneralConfigInfo;
+    var langCount = webConfigInfo == null ? 0 : webConfigInfo.WebLangList.Length;
+    var randomstring = DateTime.Now.ToString("hhmmss");
+} 
+<li>
+    <p class="userinfo" id="logonInfo">
+        @if ((Session["user"] as Yqblog.Data.blog_users) != null)
+        {
+            var user = (Session["user"] as Yqblog.Data.blog_users);
+
+            <a href="@Url.Action("ucenter", "account")"> <i class="icon-user"></i> @user.username</a>
+            if (user.blog_roles.rolename == "admin")
+            {
+                <a href="@Url.Action("manage", "account")?@randomstring" target="_blank">@lang.Manage</a>
+            }
+            <a href="@Url.Action("logoff", "account")">@lang.Logout</a>
+        }
+        else
+        {
+            <a href="@Url.Action("register", "account")">@lang.Register</a>
+            <a href="@Url.Action("logon", "account")">@lang.Login</a>
+        }
+    </p>
+</li>
+@if (webConfigInfo != null && langCount > 1)
+{
+    <li class="divider-vertical"></li>
+    <li class="dropdown ">
+        <a href="###" class="dropdown-toggle " data-toggle="dropdown">
+            @Html.GetCurrentLang() <b class="caret"></b>					
+        </a>
+        <ul class="dropdown-menu">
+            @if (Array.IndexOf(webConfigInfo.WebLangList, "en-us") > -1)
+            {
+                <li> @Html.ActionLink("English", "ChangeLanguage", "Lang", new { language = "en-us" }, null) </li>   
+            }
+            @if (Array.IndexOf(webConfigInfo.WebLangList, "zh-cn") > -1)
+            {
+                <li>  @Html.ActionLink("中[简体]", "ChangeLanguage", "Lang", new { language = "zh-cn" }, null) </li>  
+            }
+            @if (Array.IndexOf(webConfigInfo.WebLangList, "zh-tw") > -1)
+            {
+                <li> @Html.ActionLink("中[繁体]", "ChangeLanguage", "Lang", new { language = "zh-tw" }, null) </li>
+            }           
+        </ul>
+    </li>
+}
+                
+                
+
+                
+

@@ -1,0 +1,62 @@
+﻿@model Yqblog.ViewModels.AlbumsViewModel
+@using lang = Resource.Web;
+@{
+    ViewBag.Title = Model.Category.CateName;
+    ViewBag.Category = Model.Category;
+}
+@section Seo{
+    @Html.Raw(ViewBag.Seo)
+}
+<div class="row">
+    <div class="col-md-12">
+
+    <ul class="breadcrumb">
+    <li>@Html.ActionLink(lang.HomePage, "Index", "Home") <span class="divider">/</span></li>
+    @Html.Raw(Model.WebPath)
+    </ul>
+
+    </div>
+    <div class="col-md-12">
+        <div class="albums-wrap clearfix">
+            @if (Model.Albums.Any())
+            {
+                var headstr = "";
+                <div class="albumlist">
+                    @foreach (var item in Model.Albums)
+                    {
+                        if (item.ImgCount <= 0)
+                        {
+                            continue;
+                        }
+                        if (headstr != item.Category.CateName)
+                        {
+                            headstr = item.Category.CateName;
+                            <div class="albums-folder"><h3>@item.Category.CateName</h3></div> 
+                        }
+                        var topInfo = (item.Varticle.istop == 1 ? "<div class=\"album-top\"><span class=\"glyphicon glyphicon-circle-arrow-up\"></span></div>" : string.Empty);
+                        <div class="album-box">
+                         @Html.Raw(topInfo) 
+                            <a href="@Html.YqUrl(item)" class="album-cover"><img src="@Url.Content("~" + Html.Thumbnail(item.Cover.Src, "200x200"))" onerror="this.onerror=null;this.src='@Url.Content("~/content/image/no_photo_big.gif")';" alt="@item.Varticle.summary"/>
+                                <p class="album-info">
+                                    @item.Varticle.title
+                                </p>
+                            </a>
+                            <p class="album-state">
+                            @item.ImgCount @Html.JudgeSingularOrPlural(item.ImgCount, lang.OnePhoto, lang.SeveralPhotos)
+                            @if (item.Varticle.subcount > 0)
+                            {   
+                                  <a title="Comment"  class="album-commentstate" href="@Html.YqUrl(item)#commentA"> @item.Varticle.subcount @Html.JudgeSingularOrPlural(item.Varticle.subcount, lang.Comment, lang.Comments)</a> 
+                            }
+                            </p>                  
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+
+
+

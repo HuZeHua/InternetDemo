@@ -1,0 +1,37 @@
+/*
+ * Note: While Microsoft is not the author of this file, Microsoft is
+ * offering you a license subject to the terms of the Microsoft Software
+ * License Terms for Microsoft ASP.NET Model View Controller 3.
+ * Microsoft reserves all other rights. The notices below are provided
+ * for informational purposes only and are not the license terms under
+ * which Microsoft distributed this file.
+ *
+ * jQuery UI CSS Framework 1.8.11
+ *
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ *
+ * http://docs.jquery.com/UI/Theming
+ */
+@import "jquery.ui.base.css";
+@import "jquery.ui.theme.css";
+
+.ui-datepicker .ui-datepicker-title select {font-size:1em; margin:1px 0; } 
+.ui-datepicker select.ui-datepicker-month-year { 100%;} 
+.ui-datepicker select.ui-datepicker-month, 
+.ui-datepicker select.ui-datepicker-year { 47%;} 
+.ui-datepicker .ui-datepicker-title select.ui-datepicker-year { float: left; } 
+.ui-state-word{    background: url("images/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll 50% 50% #eee;
+    border: 1px solid #D3D3D3;
+    color: #555555;
+    font-weight: normal;
+    display: block;
+    padding: 0.2em;
+    text-align: right;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background: url("images/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll 50% 50% #eee;
+    border: 1px solid #D3D3D3;
+    color: #fff;
+    font-weight: normal;
+}

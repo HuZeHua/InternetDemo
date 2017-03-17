@@ -1,0 +1,600 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="AddAlbum" xml:space="preserve">
+    <value>新增相冊</value>
+  </data>
+  <data name="AddCategory" xml:space="preserve">
+    <value>新增分類</value>
+  </data>
+  <data name="AddContent" xml:space="preserve">
+    <value>新增內容</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>提交中...</value>
+  </data>
+  <data name="Album" xml:space="preserve">
+    <value>相册</value>
+  </data>
+  <data name="AlbumsEdits" xml:space="preserve">
+    <value>相册修改</value>
+  </data>
+  <data name="AllowComments" xml:space="preserve">
+    <value>允許評論</value>
+  </data>
+  <data name="Article" xml:space="preserve">
+    <value>文章</value>
+  </data>
+  <data name="AspectRatio" xml:space="preserve">
+    <value>顯示比例</value>
+  </data>
+  <data name="BasicInformation" xml:space="preserve">
+    <value>基礎信息</value>
+  </data>
+  <data name="BasisSet" xml:space="preserve">
+    <value>基礎設置</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>分類</value>
+  </data>
+  <data name="CategoryDel_Tip" xml:space="preserve">
+    <value>確定刪除當前分類及其子項？</value>
+  </data>
+  <data name="CategoryReset" xml:space="preserve">
+    <value>重置分類信息</value>
+  </data>
+  <data name="CategorySettings" xml:space="preserve">
+    <value>分類設置</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>評論</value>
+  </data>
+  <data name="Configuration" xml:space="preserve">
+    <value>配置管理</value>
+  </data>
+  <data name="ContentList" xml:space="preserve">
+    <value>内容列表</value>
+  </data>
+  <data name="ContentManagement" xml:space="preserve">
+    <value>内容管理</value>
+  </data>
+  <data name="Cover_Tip" xml:space="preserve">
+    <value>單選按鈕選中表示設為封面</value>
+  </data>
+  <data name="CustomArea" xml:space="preserve">
+    <value>自定義區域[首页]</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="DeleteSelected" xml:space="preserve">
+    <value>刪除選中項</value>
+  </data>
+  <data name="DeleteSelected_Tip" xml:space="preserve">
+    <value>確認刪除選中項？</value>
+  </data>
+  <data name="Delete_Tip" xml:space="preserve">
+    <value>確認刪除？</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>編輯</value>
+  </data>
+  <data name="ForumConfiguration" xml:space="preserve">
+    <value>論壇配置</value>
+  </data>
+  <data name="ImmediateRelease" xml:space="preserve">
+    <value>立即發布</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>當前位置</value>
+  </data>
+  <data name="ManagementHome" xml:space="preserve">
+    <value>管理首頁</value>
+  </data>
+  <data name="ManualManagement" xml:space="preserve">
+    <value>分類手動管理</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>留言</value>
+  </data>
+  <data name="ModifyCategory" xml:space="preserve">
+    <value>修改分類</value>
+  </data>
+  <data name="ModifyContent" xml:space="preserve">
+    <value>修改內容</value>
+  </data>
+  <data name="NoComments" xml:space="preserve">
+    <value>不允許評論</value>
+  </data>
+  <data name="NoRecommended" xml:space="preserve">
+    <value>不推薦</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="NoShow" xml:space="preserve">
+    <value>不顯示</value>
+  </data>
+  <data name="NoSticky" xml:space="preserve">
+    <value>不置頂</value>
+  </data>
+  <data name="Operating" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="Posts" xml:space="preserve">
+    <value>帖子</value>
+  </data>
+  <data name="Prompt" xml:space="preserve">
+    <value>提示</value>
+  </data>
+  <data name="Recommend" xml:space="preserve">
+    <value>推薦</value>
+  </data>
+  <data name="ReproducedConfiguration" xml:space="preserve">
+    <value>轉載配置</value>
+  </data>
+  <data name="SaveDraft" xml:space="preserve">
+    <value>保存草稿</value>
+  </data>
+  <data name="SelectPhotos" xml:space="preserve">
+    <value>選取圖片</value>
+  </data>
+  <data name="SEO" xml:space="preserve">
+    <value>SEO</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>顯示</value>
+  </data>
+  <data name="SinglePage" xml:space="preserve">
+    <value>單頁</value>
+  </data>
+  <data name="Subcategories" xml:space="preserve">
+    <value>下子分類</value>
+  </data>
+  <data name="Success_Tip" xml:space="preserve">
+    <value>操作成功。</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>標題</value>
+  </data>
+  <data name="Top" xml:space="preserve">
+    <value>置頂</value>
+  </data>
+  <data name="Upload_Tip" xml:space="preserve">
+    <value>沒有選取任何圖片</value>
+  </data>
+  <data name="UserInterface" xml:space="preserve">
+    <value>分類用戶界面管理</value>
+  </data>
+  <data name="Contributors" xml:space="preserve">
+    <value>投稿</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="Ascending" xml:space="preserve">
+    <value>升序</value>
+  </data>
+  <data name="Descending" xml:space="preserve">
+    <value>降序</value>
+  </data>
+  <data name="Draft" xml:space="preserve">
+    <value>草稿</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>篩選</value>
+  </data>
+  <data name="Sort" xml:space="preserve">
+    <value>排序</value>
+  </data>
+  <data name="CustomGlobalArea" xml:space="preserve">
+    <value>自定義區域[全網]</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>確定執行？</value>
+  </data>
+  <data name="Administratorslist" xml:space="preserve">
+    <value>管理員列表</value>
+  </data>
+  <data name="Deleteaccount" xml:space="preserve">
+    <value>刪除賬號</value>
+  </data>
+  <data name="LastloginDate" xml:space="preserve">
+    <value>上一次登錄</value>
+  </data>
+  <data name="RegistrationDate" xml:space="preserve">
+    <value>註冊日期</value>
+  </data>
+  <data name="Removetheadministrator" xml:space="preserve">
+    <value>刪除管理</value>
+  </data>
+  <data name="Settoadministrator" xml:space="preserve">
+    <value>設為管理</value>
+  </data>
+  <data name="Userlist" xml:space="preserve">
+    <value>用戶列表</value>
+  </data>
+  <data name="Administrators" xml:space="preserve">
+    <value>管理員</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>註冊用戶</value>
+  </data>
+  <data name="UserManagement" xml:space="preserve">
+    <value>用戶管理</value>
+  </data>
+  <data name="EmailSet" xml:space="preserve">
+    <value>郵件發送設置</value>
+  </data>
+  <data name="IDnumber" xml:space="preserve">
+    <value>Id號</value>
+  </data>
+  <data name="Called" xml:space="preserve">
+    <value>頁面中調用</value>
+  </data>
+  <data name="StaticSet" xml:space="preserve">
+    <value>靜態化設置</value>
+  </data>
+  <data name="Atleastone" xml:space="preserve">
+    <value>至少有一個選中項</value>
+  </data>
+  <data name="DefaultLangSet" xml:space="preserve">
+    <value>默認語言必須在多語言設置被選中</value>
+  </data>
+  <data name="Nolimited" xml:space="preserve">
+    <value>不限</value>
+  </data>
+  <data name="Generatepages" xml:space="preserve">
+    <value>頁面批量生成</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>首頁</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>語言</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>生成</value>
+  </data>
+  <data name="DateCompare" xml:space="preserve">
+    <value>結束日期必須大於起始日期</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>區間</value>
+  </data>
+  <data name="MustCateId" xml:space="preserve">
+    <value>必選，請先在“配置管理” - “分類設置”處新增分類信息</value>
+  </data>
+  <data name="Anonymous" xml:space="preserve">
+    <value>匿名</value>
+  </data>
+  <data name="LoggedUser" xml:space="preserve">
+    <value>登錄用戶</value>
+  </data>
+  <data name="Forum" xml:space="preserve">
+    <value>論壇</value>
+  </data>
+  <data name="MultiLangSet" xml:space="preserve">
+    <value>多語言設置</value>
+  </data>
+  <data name="ExtensionInfo" xml:space="preserve">
+    <value>擴展信息</value>
+  </data>
+  <data name="ExtensionSet" xml:space="preserve">
+    <value>擴展字段</value>
+  </data>
+  <data name="Modify" xml:space="preserve">
+    <value>修改</value>
+  </data>
+  <data name="CategoryInfo" xml:space="preserve">
+    <value>分類信息</value>
+  </data>
+  <data name="ExtensionField" xml:space="preserve">
+    <value>擴展字段</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>回帖</value>
+  </data>
+  <data name="AlbumComment" xml:space="preserve">
+    <value>相冊評論</value>
+  </data>
+  <data name="ArticleComment" xml:space="preserve">
+    <value>文章評論</value>
+  </data>
+  <data name="SinglePageComment" xml:space="preserve">
+    <value>單頁評論</value>
+  </data>
+  <data name="PageRenameTip" xml:space="preserve">
+    <value>頁面重命名不能全爲數字</value>
+  </data>
+  <data name="AddedSuccessfully" xml:space="preserve">
+    <value>新增成功</value>
+  </data>
+  <data name="ContinueModify" xml:space="preserve">
+    <value>繼續修改</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>默認</value>
+  </data>
+  <data name="DeletedSuccessfully" xml:space="preserve">
+    <value>删除成功</value>
+  </data>
+  <data name="DeleteFailed" xml:space="preserve">
+    <value>刪除失敗</value>
+  </data>
+  <data name="ModificationFailed" xml:space="preserve">
+    <value>修改失敗,格式不符合要求。</value>
+  </data>
+  <data name="ModifiedSuccessfully" xml:space="preserve">
+    <value>修改成功</value>
+  </data>
+  <data name="ModifyFailed" xml:space="preserve">
+    <value>修改失敗</value>
+  </data>
+  <data name="Nolimited1" xml:space="preserve">
+    <value>不限</value>
+  </data>
+  <data name="OperationFailed" xml:space="preserve">
+    <value>操作失敗</value>
+  </data>
+  <data name="OperationSuccessful" xml:space="preserve">
+    <value>操作成功</value>
+  </data>
+  <data name="SelectSubcategories" xml:space="preserve">
+    <value>選擇子分類</value>
+  </data>
+  <data name="UploadFile_Tip1" xml:space="preserve">
+    <value>請選擇文件</value>
+  </data>
+  <data name="UploadFile_Tip2" xml:space="preserve">
+    <value>上傳目錄不存在</value>
+  </data>
+  <data name="UploadFile_Tip3" xml:space="preserve">
+    <value>上傳文件大小超過限制</value>
+  </data>
+  <data name="UploadFile_Tip4" xml:space="preserve">
+    <value>上傳文件擴展名是不允許的擴展名</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>查看</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>國家</value>
+  </data>
+  <data name="ModifyConfiguration" xml:space="preserve">
+    <value>修改配置信息</value>
+  </data>
+  <data name="NetworkFailure" xml:space="preserve">
+    <value>網絡故障</value>
+  </data>
+  <data name="NetworkNoAccessed" xml:space="preserve">
+    <value>外網無法訪問</value>
+  </data>
+  <data name="OperationFailed1" xml:space="preserve">
+    <value>操作未能成功執行，請稍後再試或提交反饋至YQHome.net，可能的原因</value>
+  </data>
+  <data name="RelativeAddress" xml:space="preserve">
+    <value>相對地址</value>
+  </data>
+  <data name="SiteDescription" xml:space="preserve">
+    <value>站點描述</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>確定</value>
+  </data>
+  <data name="SubmittedTo" xml:space="preserve">
+    <value>提交到</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>標籤</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="BatchDeleteArticle" xml:space="preserve">
+    <value>批量刪除文章</value>
+  </data>
+  <data name="CancelManagement" xml:space="preserve">
+    <value>取消管理員權限</value>
+  </data>
+  <data name="DeleteArticle" xml:space="preserve">
+    <value>刪除文章</value>
+  </data>
+  <data name="DeleteUser" xml:space="preserve">
+    <value>刪除用戶</value>
+  </data>
+  <data name="GenerateSuccess" xml:space="preserve">
+    <value>生成成功</value>
+  </data>
+  <data name="Generating" xml:space="preserve">
+    <value>生成中...</value>
+  </data>
+  <data name="GeneratingManagement" xml:space="preserve">
+    <value>生成管理</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="JsLangGenerate" xml:space="preserve">
+    <value>多語言js文件生成</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>後台管理</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="Rights" xml:space="preserve">
+    <value>All Rights Reserved</value>
+  </data>
+  <data name="SetAsAdmin" xml:space="preserve">
+    <value>設為管理員</value>
+  </data>
+  <data name="ThemeBy" xml:space="preserve">
+    <value>Theme by</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>總計</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="SmtpPortTip" xml:space="preserve">
+    <value>Gmail:587,其它:25</value>
+  </data>
+  <data name="SmtpServerTip" xml:space="preserve">
+    <value>例如: smtp.gmail.com</value>
+  </data>
+  <data name="WebStaticFolderTip" xml:space="preserve">
+    <value>可用{year}{month}{day}表示當前年，月，日</value>
+  </data>
+  <data name="ThumbnailInfoTip" xml:space="preserve">
+    <value>格式要求：(例如 200x150,90x60)</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>確定</value>
+  </data>
+  <data name="Undelete" xml:space="preserve">
+    <value>恢復刪除</value>
+  </data>
+  <data name="ResetThumbnail" xml:space="preserve">
+    <value>重新生成縮略圖</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>用戶名</value>
+  </data>
+</root>
